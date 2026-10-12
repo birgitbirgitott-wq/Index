@@ -8,7 +8,6 @@
   <meta name="theme-color" content="#1a1e29">
   <title>YpsoShift</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -139,7 +138,6 @@
       align-items: center;
     }
 
-    /* Active Site Banner */
     .active-site-card {
       background: linear-gradient(135deg, rgba(0, 210, 255, 0.1), rgba(0, 114, 255, 0.05));
       border: 1.5px solid var(--primary);
@@ -176,17 +174,45 @@
       color: var(--text-muted);
     }
 
-    /* Body Map Graphic */
-    .body-map-container {
-      position: relative;
+    /* Kindermodus Share Button */
+    .parent-share-btn {
+      background: linear-gradient(135deg, #ff9500, #ffcc00);
+      color: #000;
+      border: none;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 1.05rem;
+      font-weight: 800;
       width: 100%;
-      height: 280px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 16px;
+      cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(255, 149, 0, 0.3);
+      transition: transform 0.1s;
+    }
+
+    .parent-share-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      width: 100%;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-top: 10px;
+    }
+
+    .btn-primary:active {
+      opacity: 0.9;
     }
 
     .body-grid {
@@ -194,7 +220,6 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       width: 100%;
-      max-width: 320px;
     }
 
     .body-zone {
@@ -223,49 +248,6 @@
       color: var(--text-muted);
     }
 
-    /* Parent Share Button (Child Mode) */
-    .parent-share-btn {
-      background: linear-gradient(135deg, #ff9500, #ffcc00);
-      color: #000;
-      border: none;
-      border-radius: 18px;
-      padding: 16px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      width: 100%;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 6px 20px rgba(255, 149, 0, 0.3);
-      transition: transform 0.1s;
-    }
-
-    .parent-share-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* Primary Action Button */
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff;
-      border: none;
-      border-radius: 14px;
-      padding: 14px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      width: 100%;
-      cursor: pointer;
-      transition: opacity 0.2s;
-      margin-top: 10px;
-    }
-
-    .btn-primary:active {
-      opacity: 0.9;
-    }
-
-    /* History List */
     .history-list {
       display: flex;
       flex-direction: column;
@@ -282,7 +264,6 @@
       font-size: 0.85rem;
     }
 
-    /* Bottom Nav */
     nav {
       position: fixed;
       bottom: 0;
@@ -325,7 +306,7 @@
       <span>YpsoShift</span>
       <span class="badge-child">Kindermodus</span>
     </div>
-    <button class="mode-toggle" id="modeToggleBtn" onclick="toggleChildMode()">
+    <button class="mode-toggle" id="modeToggleBtn" onclick="toggleModeWithPIN()">
       <span id="modeIcon">👶</span>
       <span id="modeText">Kindermodus</span>
     </button>
@@ -333,14 +314,14 @@
 
   <div class="container">
 
-    <!-- Parent Share Banner (Child Mode Only) -->
+    <!-- Kindermodus: Eltern Teilen Button -->
     <div id="childShareSection" style="display: none;">
       <button class="parent-share-btn" onclick="shareWithParents()">
         <span>📱</span> Mit Eltern teilen
       </button>
     </div>
 
-    <!-- Active Site Display -->
+    <!-- Aktive Katheter-Stelle -->
     <div class="card active-site-card">
       <div class="section-title">
         <span>Aktuelle Katheter-Stelle</span>
@@ -353,34 +334,34 @@
         </div>
       </div>
       <div class="site-timer" id="siteTimer">42:15:08</div>
-      <div class="site-meta" id="siteTimerMeta">Verbleibend (Empfehlung: max. 3 Tage)</div>
-      <button class="btn-primary" onclick="changeSitePrompt()">Katheter jetzt wechseln</button>
+      <div class="site-meta" id="siteTimerMeta">Verbleibende Tragedauer</div>
+      <button class="btn-primary" onclick="protectedAction(changeSitePrompt)">Katheter jetzt wechseln</button>
     </div>
 
-    <!-- Body Map Overview -->
+    <!-- Körperstellen Übersicht -->
     <div class="card">
       <div class="section-title">Körper-Übersicht & Erholung</div>
       <div class="body-grid">
-        <div class="body-zone active" onclick="selectZone('Bauch (Rechts)')">
+        <div class="body-zone active" onclick="protectedAction(() => selectZone('Bauch (Rechts)'))">
           <div class="body-zone-title">Bauch R.</div>
           <div class="body-zone-status" style="color: var(--primary);">Aktiv</div>
         </div>
-        <div class="body-zone" onclick="selectZone('Bauch (Links)')">
+        <div class="body-zone" onclick="protectedAction(() => selectZone('Bauch (Links)'))">
           <div class="body-zone-title">Bauch L.</div>
           <div class="body-zone-status">Bereit</div>
         </div>
-        <div class="body-zone" onclick="selectZone('Oberschenkel (Rechts)')">
+        <div class="body-zone" onclick="protectedAction(() => selectZone('Oberschenkel (Rechts)'))">
           <div class="body-zone-title">Bein R.</div>
           <div class="body-zone-status" style="color: var(--yellow);">Erholung (1 Tag)</div>
         </div>
-        <div class="body-zone" onclick="selectZone('Oberschenkel (Links)')">
+        <div class="body-zone" onclick="protectedAction(() => selectZone('Oberschenkel (Links)'))">
           <div class="body-zone-title">Bein L.</div>
           <div class="body-zone-status">Bereit</div>
         </div>
       </div>
     </div>
 
-    <!-- History -->
+    <!-- Verlauf -->
     <div class="card" id="historyCard">
       <div class="section-title">Letzte Wechsel</div>
       <div class="history-list" id="historyList">
@@ -414,22 +395,49 @@
 
   <script>
     let isChildMode = false;
+    const PARENT_PIN = "1234"; // Eltern-PIN zum Entsperren & Verstellen
+
     let siteStartTime = localStorage.getItem('ypso_site_start') ? new Date(localStorage.getItem('ypso_site_start')) : new Date();
     let currentSiteName = localStorage.getItem('ypso_site_name') || 'Bauch (Rechts)';
 
     function init() {
-      // Load saved state
       isChildMode = localStorage.getItem('ypso_child_mode') === 'true';
       applyChildModeUI();
       updateTimer();
       setInterval(updateTimer, 1000);
     }
 
-    function toggleChildMode() {
-      // Direkter Umschalter OHNE PIN-Abfrage
-      isChildMode = !isChildMode;
-      localStorage.setItem('ypso_child_mode', isChildMode);
-      applyChildModeUI();
+    // Wechselt Modus; erfordert PIN, wenn man den Kindermodus verlassen will
+    function toggleModeWithPIN() {
+      if (isChildMode) {
+        const inputPIN = prompt("Eltern-PIN eingeben, um Kindermodus zu beenden:");
+        if (inputPIN === PARENT_PIN) {
+          isChildMode = false;
+          localStorage.setItem('ypso_child_mode', 'false');
+          applyChildModeUI();
+          alert("Kindermodus deaktiviert.");
+        } else if (inputPIN !== null) {
+          alert("Falsche PIN! Kindermodus bleibt aktiv.");
+        }
+      } else {
+        isChildMode = true;
+        localStorage.setItem('ypso_child_mode', 'true');
+        applyChildModeUI();
+      }
+    }
+
+    // Schützt tiefgreifende Aktionen im Kindermodus mit PIN
+    function protectedAction(actionCallback) {
+      if (isChildMode) {
+        const inputPIN = prompt("Aktion geschützt! Bitte Eltern-PIN eingeben:");
+        if (inputPIN === PARENT_PIN) {
+          actionCallback();
+        } else if (inputPIN !== null) {
+          alert("Falsche PIN!");
+        }
+      } else {
+        actionCallback();
+      }
     }
 
     function applyChildModeUI() {
@@ -440,8 +448,8 @@
 
       if (isChildMode) {
         body.classList.add('child-mode');
-        modeText.innerText = 'Normal-Modus';
-        modeIcon.innerText = '⚙️';
+        modeText.innerText = 'Eltern-Bereich (PIN)';
+        modeIcon.innerText = '🔒';
         shareSection.style.display = 'block';
       } else {
         body.classList.remove('child-mode');
@@ -453,7 +461,7 @@
 
     function updateTimer() {
       const now = new Date();
-      const maxDurationHours = 72; // 3 Tage Empfehlung
+      const maxDurationHours = 72; // 3 Tage
       const diffMs = now - siteStartTime;
       const remainingMs = (maxDurationHours * 3600 * 1000) - diffMs;
 
@@ -472,7 +480,7 @@
     }
 
     function changeSitePrompt() {
-      const newZone = prompt("Neue Katheter-Stelle eingeben (z.B. Bauch Links):", "Bauch (Links)");
+      const newZone = prompt("Neue Katheter-Stelle eingeben:", "Bauch (Links)");
       if (newZone) {
         currentSiteName = newZone;
         siteStartTime = new Date();
@@ -483,8 +491,18 @@
       }
     }
 
+    function selectZone(zoneName) {
+      if (confirm(`Möchtest du die Stelle auf "${zoneName}" wechseln?`)) {
+        currentSiteName = zoneName;
+        siteStartTime = new Date();
+        localStorage.setItem('ypso_site_name', currentSiteName);
+        localStorage.setItem('ypso_site_start', siteStartTime.toISOString());
+        updateTimer();
+      }
+    }
+
     function shareWithParents() {
-      const text = `Hallo! 🎈\nMein aktueller Katheter sitzt seit ${siteStartTime.toLocaleDateString('de-DE')} (${siteStartTime.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'})} Uhr) an der Stelle: *${currentSiteName}*.\nRestzeit: ${document.getElementById('siteTimer').innerText}.`;
+      const text = `Hallo! 🎈\nMein aktueller Katheter sitzt seit ${siteStartTime.toLocaleDateString('de-DE')} (${siteStartTime.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'})} Uhr) an der Stelle: *${currentSiteName}*.\nVerbleibende Tragedauer: ${document.getElementById('siteTimer').innerText}.`;
       
       if (navigator.share) {
         navigator.share({
@@ -493,7 +511,7 @@
         }).catch(() => {});
       } else {
         navigator.clipboard.writeText(text);
-        alert("Status in die Zwischenablage kopiert! Du kannst ihn jetzt bei WhatsApp oder SMS einfügen.");
+        alert("Status kopiert! Du kannst ihn jetzt bei WhatsApp oder SMS einfügen.");
       }
     }
 
