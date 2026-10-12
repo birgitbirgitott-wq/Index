@@ -131,7 +131,7 @@
         .stock-inputs { display: flex; gap: 10px; align-items: center; }
         .stock-inputs div { flex: 1; }
 
-        .checkbox-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+        .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
         .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
         .checkbox-label input { width: auto; }
 
@@ -146,9 +146,12 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .alert-box { background: rgba(255, 149, 0, 0.15); border-left: 4px solid var(--warning); padding: 10px; border-radius: 0 8px 8px 0; font-size: 13px; margin-top: 10px; color: var(--warning); }
+        .info-box { background: rgba(0, 122, 255, 0.1); border-left: 4px solid var(--primary); padding: 10px; border-radius: 0 8px 8px 0; font-size: 12px; margin-top: 10px; }
 
         #pinOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--card-bg); z-index: 999; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
         #pinOverlay input { padding: 12px; font-size: 20px; text-align: center; width: 160px; margin: 15px 0; border-radius: 10px; border: 2px solid var(--primary); background: var(--card-bg); color: var(--text); }
+        
+        .doc-preview { width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px; margin-top: 8px; border: 1px solid rgba(128,128,128,0.3); display: none; }
     </style>
 </head>
 <body>
@@ -184,7 +187,7 @@
             </div>
         </div>
 
-        <!-- NEU: MIT ELTERN TEILEN BUTTON IM KINDERMODUS -->
+        <!-- MIT ELTERN TEILEN BUTTON IM KINDERMODUS -->
         <div class="parent-share-box">
             <button class="btn-parent-share" onclick="shareWithParents()">
                 <span>📱</span> Mit Eltern teilen
@@ -248,7 +251,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: SCHICHTEN -->
+        <!-- TAB 2: SCHICHTEN, KRANKHEIT & SPORT -->
         <div id="tab-shifts" class="tab-content">
             <div class="card">
                 <h2>🔄 Schichtplan & Basal-Anpassung</h2>
@@ -277,26 +280,80 @@
                 </div>
                 <button class="btn-primary" onclick="protectedAction(saveShiftNote)">Schicht-Anpassung speichern</button>
             </div>
+
+            <div class="card">
+                <h2>🤒 Krankheits-Modus (Fieber / Infekt)</h2>
+                <p style="font-size:12px; color:var(--text-secondary); margin-bottom:10px;">Bei Krankheit steigt der Insulinbedarf durch Stresshormone an.</p>
+                <div class="form-group">
+                    <label>Basalraten-Korrektur:</label>
+                    <select id="sickBasalBoost">
+                        <option value="+10%">+10% Basalrate</option>
+                        <option value="+20%" selected>+20% Basalrate (Standard Infekt)</option>
+                        <option value="+30%">+30% Basalrate (Fieber)</option>
+                        <option value="+50%">+50% Basalrate (Starker Infekt)</option>
+                    </select>
+                </div>
+                <button class="btn-primary" style="background-color:var(--warning);" onclick="protectedAction(logSickMode)">🤒 Krankheit-Status aktivieren & im Verlauf speichern</button>
+            </div>
+
+            <div class="card">
+                <h2>⚽ Sport & Aktivitäts-Tracker</h2>
+                <div class="form-group">
+                    <label>Sportart & Intensität:</label>
+                    <input type="text" id="sportTypeInput" placeholder="z. B. Joggen / Ausdauer (45 Min)">
+                </div>
+                <button class="btn-primary" style="background-color:var(--success);" onclick="logSportEvent()">⚽ Sport erfassen & Muskelauffülleffekt-Warnung</button>
+            </div>
         </div>
 
-        <!-- TAB 3: LAGER, RESERVOIRE & REZEPT -->
+        <!-- TAB 3: LAGER, REZEPT & REISE-CHECKLISTE -->
         <div id="tab-stock" class="tab-content">
             <div class="card">
                 <h2>📝 Rezept-Bestellung (Flexibel wählbar)</h2>
                 <div class="checkbox-group">
-                    <label class="checkbox-label"><input type="checkbox" id="orderCath" checked> Katheter (Ypsopump)</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderRes" checked> Reservoire / Patronen</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderSens" checked> BZ-Sensoren</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderIns" checked> Insulin (Größe wählbar)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderCath" checked> Katheter (Teflon / Stahl)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderRes" checked> Leere Reservoire (Aufziehen)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderCartridges"> Vorgefüllte Patronen (160 IE)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderSens" checked> BZ-Sensoren (10/14/15T)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderPenNeedles"> Pen-Nadeln (4/5/6/8mm)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderSyringes"> U100-Einwegspritzen</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderIns" checked> Insulin (Fläschchen / Patronen)</label>
                 </div>
 
                 <div class="form-group">
                     <label>Insulin-Typ & Gebindegröße:</label>
-                    <input type="text" id="insulinTypeInput" value="Fiasp / Novorapid (10ml Fläschchen)">
+                    <input type="text" id="insulinTypeInput" value="Fiasp (10ml Fläschchen)">
                 </div>
 
                 <button class="btn-primary" onclick="generatePrescriptionText()">📄 Rezept-Anforderung generieren</button>
-                <textarea id="prescriptionOutput" style="height:100px; margin-top:8px; display:none;" readonly></textarea>
+                <textarea id="prescriptionOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
+            </div>
+
+            <div class="card">
+                <h2>✈️ Urlaubs- & Reise-Checkliste</h2>
+                <div class="checkbox-group" id="travelChecklist">
+                    <label class="checkbox-label"><input type="checkbox"> 💉 Katheter (Doppelte Menge)</label>
+                    <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire / Patronen</label>
+                    <label class="checkbox-label"><input type="checkbox"> 💧 Insulin (Auf KÜHLUNG achten! Nie im Frachtraum!)</label>
+                    <label class="checkbox-label"><input type="checkbox"> 🖋️ Pen-Nadeln & U100-Einwegspritzen</label>
+                    <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren & Ersatz-Sensor</label>
+                    <label class="checkbox-label"><input type="checkbox"> 🍬 Traubenzucker / Notfall-Hypo-Set</label>
+                    <label class="checkbox-label"><input type="checkbox"> 🩸 Blutzuckermessgerät & Teststreifen (Backup)</label>
+                    <label class="checkbox-label"><input type="checkbox"> 📄 Ärztliche Bescheinigung für den Zoll / Flughafen</label>
+                </div>
+                <div class="info-box">
+                    <strong>🌴 Tropen- & Kälte-Tipp:</strong> Insulin vor direkter Sonne schützen! Verwende in heißen Ländern eine Frio-Kühltasche. Im Flugzeug Insulin IMMER ins Handgepäck nehmen (im Frachtraum herrscht Frostgefahr!).
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📄 Reisedokumente & Zoll-Attest</h2>
+                <div class="form-group">
+                    <label>Attest / Ausweis ablegen (Foto auswählen):</label>
+                    <input type="file" id="docUploadInput" accept="image/*" onchange="handleDocUpload(event)">
+                </div>
+                <img id="docPreviewImg" class="doc-preview" alt="Vorschau Reisedokument">
+                <button class="btn-secondary" id="btnRemoveDoc" style="display:none;" onclick="removeDocImage()">Dokument löschen</button>
             </div>
 
             <div class="card">
@@ -309,13 +366,18 @@
 
             <div class="card">
                 <h2>📦 Material-Bestand</h2>
-                <div class="form-group">
-                    <label>Verwendetes Insulin:</label>
-                    <input type="text" id="userInsulinBrand" value="Fiasp" onchange="saveInsulinBrand()">
-                </div>
 
                 <div class="stock-box">
                     <div class="stock-header"><span>💉 Katheter</span><span id="badgeCatheterTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="form-group">
+                        <label style="font-size:11px;">Typ & Längen:</label>
+                        <select id="cathConfigSelect">
+                            <option value="Teflon 6mm / 60cm">Teflon (6mm Kanüle / 60cm Schlauch)</option>
+                            <option value="Teflon 9mm / 80cm">Teflon (9mm Kanüle / 80cm Schlauch)</option>
+                            <option value="Stahl 5.5mm / 60cm">Stahl Orbit (5.5mm / 60cm Schlauch)</option>
+                            <option value="Stahl 8mm / 80cm">Stahl Orbit (8mm / 80cm Schlauch)</option>
+                        </select>
+                    </div>
                     <div class="stock-inputs">
                         <div><label style="font-size:11px;">Packungen (10er):</label><input type="number" id="boxCatheter" value="2" onchange="updateStock()"></div>
                         <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleCatheter" value="5" onchange="updateStock()"></div>
@@ -323,7 +385,7 @@
                 </div>
 
                 <div class="stock-box">
-                    <div class="stock-header"><span>🧪 Reservoire / Patronen</span><span id="badgeResTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="stock-header"><span>🧪 Leere Reservoire</span><span id="badgeResTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
                     <div class="stock-inputs">
                         <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxRes" value="2" onchange="updateStock()"></div>
                         <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleRes" value="4" onchange="updateStock()"></div>
@@ -331,17 +393,84 @@
                 </div>
 
                 <div class="stock-box">
-                    <div class="stock-header"><span>📡 Sensoren</span><span id="badgeSensorTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="stock-header"><span>💧 Insulin-Vorrat</span><span id="badgeInsulinTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="form-group" style="margin-bottom:8px;">
+                        <label style="font-size:11px;">Insulin & Behälter:</label>
+                        <input type="text" id="userInsulinBrand" value="Fiasp (10ml Fläschchen)" onchange="saveInsulinBrand()">
+                    </div>
                     <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxSensor" value="3" onchange="updateStock()"></div>
+                        <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxInsulin" value="1" onchange="updateStock()"></div>
+                        <div><label style="font-size:11px;">Einzelne Einheiten:</label><input type="number" id="singleInsulin" value="3" onchange="updateStock()"></div>
                     </div>
                 </div>
+
+                <div class="stock-box">
+                    <div class="stock-header"><span>🖋️ Pen-Nadeln & Einwegspritzen</span><span id="badgeNeedlesTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="form-group">
+                        <label style="font-size:11px;">Nadelgröße:</label>
+                        <select id="needleSizeSelect">
+                            <option value="4mm">4 mm (Sehr kurz)</option>
+                            <option value="5mm" selected>5 mm (Standard)</option>
+                            <option value="6mm">6 mm</option>
+                            <option value="8mm">8 mm</option>
+                        </select>
+                    </div>
+                    <div class="stock-inputs">
+                        <div><label style="font-size:11px;">Pen-Nadeln (Stk.):</label><input type="number" id="singleNeedles" value="20" onchange="updateStock()"></div>
+                        <div><label style="font-size:11px;">U100 Spritzen (Stk.):</label><input type="number" id="singleSyringes" value="5" onchange="updateStock()"></div>
+                    </div>
+                </div>
+
+                <div class="stock-box">
+                    <div class="stock-header"><span>📡 BZ-Sensoren</span><span id="badgeSensorTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="form-group">
+                        <label style="font-size:11px;">Sensor-Tragedauer:</label>
+                        <select id="sensorDurationSelect">
+                            <option value="10T">10 Tage (z. B. Dexcom G7)</option>
+                            <option value="14T" selected>14 Tage (z. B. Libre 3)</option>
+                            <option value="15T">15 Tage (Neue Generation)</option>
+                        </select>
+                    </div>
+                    <div class="stock-inputs">
+                        <div><label style="font-size:11px;">Packungen / Stk.:</label><input type="number" id="boxSensor" value="3" onchange="updateStock()"></div>
+                    </div>
+                </div>
+                
                 <div id="stockAlerts"></div>
             </div>
         </div>
 
-        <!-- TAB 4: OPTIONEN -->
+        <!-- TAB 4: OPTIONEN & NOTFALLPLAN -->
         <div id="tab-settings" class="tab-content">
+            <div class="card">
+                <h2>🚨 Notfall-Plan (Pumpenausfall / ICT)</h2>
+                <div class="form-group">
+                    <label>Notfall-Langzeitinsulin (Präparat):</label>
+                    <input type="text" id="emergencyInsulinBrand" value="Tresiba / Lantus">
+                </div>
+                <div class="time-row form-group">
+                    <div>
+                        <label>Dosis Morgens (IE):</label>
+                        <input type="number" id="basalMorningIE" value="12">
+                    </div>
+                    <div>
+                        <label>Dosis Abends (IE):</label>
+                        <input type="number" id="basalEveningIE" value="10">
+                    </div>
+                </div>
+                <div class="time-row form-group">
+                    <div>
+                        <label>Mahlzeiten-Faktor (BE):</label>
+                        <input type="text" id="factorBE" value="1.5 IE / BE">
+                    </div>
+                    <div>
+                        <label>Korrektur-Faktor:</label>
+                        <input type="text" id="factorCorrection" value="1 IE senkt 40 mg/dl">
+                    </div>
+                </div>
+                <button class="btn-primary" style="background-color:var(--danger);" onclick="saveEmergencyPlan()">💾 Notfall-Plan speichern</button>
+            </div>
+
             <div class="card">
                 <h2>🚨 Notfall-Knopf Optionen</h2>
                 <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;">
@@ -357,15 +486,18 @@
                     </select>
                 </div>
             </div>
+
             <div class="card">
                 <h2>📟 Pumpo-Assistent</h2>
                 <button class="btn-secondary" onclick="resetPumpoGuide()">📟 Pumpo-Hilfe & Tour zurücksetzen</button>
             </div>
+
             <div class="card">
                 <h2>💾 Datensicherung</h2>
                 <button class="btn-secondary" onclick="exportData()">📤 Daten sichern (Export)</button>
                 <button class="btn-secondary" onclick="importData()">📥 Daten laden (Import)</button>
             </div>
+
             <div class="card">
                 <h2>⚙️ Allgemeine Optionen</h2>
                 <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🌙 Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
@@ -400,10 +532,18 @@
         let activeCatheter = JSON.parse(localStorage.getItem('ypso_active_cath')) || null;
         let activeSensor = JSON.parse(localStorage.getItem('ypso_active_sens')) || null;
         let recoveringSpots = JSON.parse(localStorage.getItem('ypso_recovering')) || [];
-        let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { catBox: 2, catSingle: 5, resBox: 2, resSingle: 4, senBox: 3 };
+        
+        let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { 
+            catBox: 2, catSingle: 5, 
+            resBox: 2, resSingle: 4, 
+            insBox: 1, insSingle: 3,
+            needles: 20, syringes: 5,
+            senBox: 3 
+        };
+        
         let history = JSON.parse(localStorage.getItem('ypso_history')) || [];
         let batteryDate = parseInt(localStorage.getItem('ypso_battery')) || new Date().getTime();
-        let insulinBrand = localStorage.getItem('ypso_insulin') || 'Fiasp';
+        let insulinBrand = localStorage.getItem('ypso_insulin') || 'Fiasp (10ml Fläschchen)';
 
         const PARENT_PIN = "1234";
         let pendingAction = null;
@@ -420,11 +560,11 @@
         updateStock();
         updateHistoryUI();
         updateBatteryUI();
+        loadDocImage();
         startPumpoTour(1);
 
         if (currentShift !== 'Keine') selectShift(currentShift, false);
 
-        // PIN-Schutz Logik für sensible Aktionen & Kindermodus-Beendigung
         function protectedAction(actionCallback) {
             if (kidsMode) {
                 pendingAction = actionCallback;
@@ -438,13 +578,11 @@
 
         function requestKidsModeToggle() {
             if (kidsMode) {
-                // Wenn Kindermodus an ist -> PIN erforderlich zum Ausschalten
                 pendingAction = toggleKidsModeAction;
                 document.getElementById('pinInput').value = '';
                 document.getElementById('pinOverlay').style.display = 'flex';
                 document.getElementById('pinInput').focus();
             } else {
-                // Einschalten geht direkt ohne PIN
                 toggleKidsModeAction();
             }
         }
@@ -471,7 +609,7 @@
         function cancelPin() {
             document.getElementById('pinOverlay').style.display = 'none';
             pendingAction = null;
-            applyTheme(); // UI-Checkboxen zurücksetzen
+            applyTheme();
         }
 
         function shareWithParents() {
@@ -485,7 +623,7 @@
                 }).catch(() => {});
             } else {
                 navigator.clipboard.writeText(text);
-                alert("Status in die Zwischenablage kopiert! Du kannst ihn jetzt bei WhatsApp oder SMS einfügen.");
+                alert("Status in die Zwischenablage kopiert!");
             }
         }
 
@@ -507,20 +645,20 @@
             } else if (step === 2) {
                 switchTab('shifts', document.getElementById('nav-shifts'));
                 msgEl.innerHTML = kidsMode ?
-                    `<strong>🔄 Schritt 2: Schichtplaner</strong><br>Hier kannst du deine Schichten und Anpassungen ansehen.` :
-                    `<strong>🔄 Schritt 2: Schichtplaner</strong><br>Hier wählst du deine Schicht.`;
+                    `<strong>🔄 Schritt 2: Schichten, Krankheit & Sport</strong>` :
+                    `<strong>🔄 Schritt 2: Schichtplaner, Krankheits- & Sportmodus</strong>`;
                 nextBtn.innerText = "Weiter: Lager ➔";
             } else if (step === 3) {
                 switchTab('stock', document.getElementById('nav-stock'));
                 msgEl.innerHTML = kidsMode ?
                     `<strong>📦 Schritt 3: Dein Material-Lager</strong>` :
-                    `<strong>📦 Schritt 3: Lager & Rezepte</strong>`;
+                    `<strong>📦 Schritt 3: Lager, Reise-Checkliste & Dokumente</strong>`;
                 nextBtn.innerText = "Weiter: Optionen ➔";
             } else if (step === 4) {
                 switchTab('settings', document.getElementById('nav-settings'));
                 msgEl.innerHTML = kidsMode ?
                     `<strong>⚙️ Schritt 4: Einstellungen</strong>` :
-                    `<strong>⚙️ Schritt 4: Optionen</strong>`;
+                    `<strong>⚙️ Schritt 4: Notfallplan & Optionen</strong>`;
                 nextBtn.innerText = "Tour beenden ✅";
             } else {
                 closePumpoGuide();
@@ -617,6 +755,36 @@
             alert(`⚠️ Stelle für 14 Tage wegen Gewebe-Problem gesperrt.`);
         }
 
+        function logSickMode() {
+            const boost = document.getElementById('sickBasalBoost').value;
+            const dateStr = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            history.unshift({ text: `🤒 Krankheit gemeldet (${boost})`, date: dateStr });
+            localStorage.setItem('ypso_history', JSON.stringify(history));
+            updateHistoryUI();
+            alert(`🤒 Krankheits-Modus gespeichert! (${boost})`);
+        }
+
+        function logSportEvent() {
+            const detail = document.getElementById('sportTypeInput').value || 'Sport / Bewegung';
+            const dateStr = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            history.unshift({ text: `⚽ Sport: ${detail}`, date: dateStr });
+            localStorage.setItem('ypso_history', JSON.stringify(history));
+            updateHistoryUI();
+            alert(`⚽ Sport gespeichert! Denke an den Muskelauffülleffekt (Hypo-Gefahr in den nächsten Stunden).`);
+        }
+
+        function saveEmergencyPlan() {
+            const plan = {
+                brand: document.getElementById('emergencyInsulinBrand').value,
+                morn: document.getElementById('basalMorningIE').value,
+                eve: document.getElementById('basalEveningIE').value,
+                be: document.getElementById('factorBE').value,
+                corr: document.getElementById('factorCorrection').value
+            };
+            localStorage.setItem('ypso_emergency_plan', JSON.stringify(plan));
+            alert('🚨 Notfall-Plan erfolgreich gespeichert!');
+        }
+
         function renderPins() {
             const now = new Date().getTime();
             const hours72 = 72 * 60 * 60 * 1000;
@@ -688,6 +856,10 @@
             stock.catSingle = parseInt(document.getElementById('singleCatheter').value) || 0;
             stock.resBox = parseInt(document.getElementById('boxRes').value) || 0;
             stock.resSingle = parseInt(document.getElementById('singleRes').value) || 0;
+            stock.insBox = parseInt(document.getElementById('boxInsulin').value) || 0;
+            stock.insSingle = parseInt(document.getElementById('singleInsulin').value) || 0;
+            stock.needles = parseInt(document.getElementById('singleNeedles').value) || 0;
+            stock.syringes = parseInt(document.getElementById('singleSyringes').value) || 0;
             stock.senBox = parseInt(document.getElementById('boxSensor').value) || 0;
             localStorage.setItem('ypso_stock', JSON.stringify(stock));
             syncStockUI();
@@ -702,15 +874,23 @@
             document.getElementById('boxCatheter').value = stock.catBox;
             document.getElementById('singleCatheter').value = stock.catSingle;
             document.getElementById('boxRes').value = stock.resBox;
-            document.getElementById('singleRes').value = stock.resSingle;
+            document.getElementById('singleRes').value = stock.singleRes;
+            document.getElementById('boxInsulin').value = stock.insBox || 0;
+            document.getElementById('singleInsulin').value = stock.insSingle || 0;
+            document.getElementById('singleNeedles').value = stock.needles || 0;
+            document.getElementById('singleSyringes').value = stock.syringes || 0;
             document.getElementById('boxSensor').value = stock.senBox;
 
             const totalCat = (stock.catBox * 10) + stock.catSingle;
             const totalRes = (stock.resBox * 10) + stock.resSingle;
+            const totalIns = ((stock.insBox || 0) * 5) + (stock.insSingle || 0);
+            const totalNeedles = stock.needles || 0;
             const totalSen = stock.senBox;
 
             document.getElementById('badgeCatheterTotal').innerText = `${totalCat} Stk.`;
             document.getElementById('badgeResTotal').innerText = `${totalRes} Stk.`;
+            document.getElementById('badgeInsulinTotal').innerText = `${totalIns} Einheiten`;
+            document.getElementById('badgeNeedlesTotal').innerText = `${totalNeedles} Nadeln`;
             document.getElementById('badgeSensorTotal').innerText = `${totalSen} Stk.`;
 
             if ((totalCat * 3) <= 12 || (totalRes * 3) <= 12 || (totalSen * 10) <= 12) {
@@ -742,16 +922,61 @@
             out.style.display = 'block';
 
             let items = [];
-            if (document.getElementById('orderCath').checked) items.push("- 3x Pck. Orbit Katheter");
-            if (document.getElementById('orderRes').checked) items.push("- 3x Pck. Ypsopump Reservoire / Patronen");
-            if (document.getElementById('orderSens').checked) items.push("- 3x Pck. BZ-Sensoren");
+            if (document.getElementById('orderCath').checked) {
+                const cfg = document.getElementById('cathConfigSelect').value;
+                items.push(`- 3x Pck. Katheter (${cfg})`);
+            }
+            if (document.getElementById('orderRes').checked) items.push("- 3x Pck. Leere Reservoire zum Aufziehen");
+            if (document.getElementById('orderCartridges').checked) items.push("- 3x Pck. Vorgefüllte Ypsopump Patronen (160 IE)");
+            if (document.getElementById('orderSens').checked) {
+                const dur = document.getElementById('sensorDurationSelect').value;
+                items.push(`- 3x Pck. BZ-Sensoren (${dur})`);
+            }
+            if (document.getElementById('orderPenNeedles').checked) {
+                const nSize = document.getElementById('needleSizeSelect').value;
+                items.push(`- 1x Pck. Pen-Nadeln (${nSize})`);
+            }
+            if (document.getElementById('orderSyringes').checked) items.push("- 1x Pck. U100-Einwegspritzen");
             if (document.getElementById('orderIns').checked) {
                 const insDesc = document.getElementById('insulinTypeInput').value;
                 items.push(`- Insulin: ${insDesc}`);
             }
 
             out.value = `Sehr geehrte Praxis / Versorger,\n\nbitte stellen Sie mir ein Folgerezept aus für:\n` + items.join('\n') + `\n\nVielen Dank!`;
-            alert('Rezept-Anforderung flexibel erstellt!');
+            alert('Rezept-Anforderung erstellt!');
+        }
+
+        function handleDocUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const dataUrl = e.target.result;
+                    localStorage.setItem('ypso_doc_img', dataUrl);
+                    showDocPreview(dataUrl);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showDocPreview(url) {
+            const img = document.getElementById('docPreviewImg');
+            const btn = document.getElementById('btnRemoveDoc');
+            img.src = url;
+            img.style.display = 'block';
+            btn.style.display = 'block';
+        }
+
+        function loadDocImage() {
+            const saved = localStorage.getItem('ypso_doc_img');
+            if (saved) showDocPreview(saved);
+        }
+
+        function removeDocImage() {
+            localStorage.removeItem('ypso_doc_img');
+            document.getElementById('docPreviewImg').style.display = 'none';
+            document.getElementById('btnRemoveDoc').style.display = 'none';
+            document.getElementById('docUploadInput').value = '';
         }
 
         function resetBattery() {
