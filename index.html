@@ -53,12 +53,12 @@
         .card { background-color: var(--card-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 0.5px solid rgba(128,128,128,0.1); }
         .card h2 { font-size: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
 
-        .pumpo-box { background: rgba(0, 122, 255, 0.08); border: 1.5px solid var(--primary); border-radius: 14px; padding: 12px; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start; }
-        .pumpo-avatar { font-size: 32px; animation: bounce 2s infinite ease-in-out; }
+        .pumpo-box { background: rgba(0, 122, 255, 0.1); border: 2px solid var(--primary); border-radius: 14px; padding: 14px; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 4px 15px rgba(0,122,255,0.15); }
+        .pumpo-avatar { font-size: 36px; animation: bounce 2s infinite ease-in-out; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
         .pumpo-text { font-size: 13px; line-height: 1.4; flex: 1; }
-        .pumpo-btns { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
-        .pumpo-btn-next { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .pumpo-btns { display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
+        .pumpo-btn-next { background: var(--primary); color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
         .pumpo-close { background: none; border: none; font-size: 11px; color: var(--text-secondary); cursor: pointer; text-decoration: underline; }
 
         .parent-share-box { display: none; margin-bottom: 16px; }
@@ -138,6 +138,7 @@
 
         .voice-btn { background: var(--primary); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .voice-btn.listening { background: var(--danger); animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
         .collapsible-body { display: none; margin-top: 10px; }
 
@@ -149,6 +150,11 @@
         .factor-card { background: var(--card-bg); padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid rgba(128,128,128,0.2); }
         .btn-remove-slot { background: var(--danger); color: white; border: none; padding: 2px 6px; border-radius: 4px; font-size: 10px; cursor: pointer; float: right; font-weight: bold; }
         .prescription-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+
+        .doc-thumb-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+        .doc-thumb { position: relative; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(128,128,128,0.3); background: #000; }
+        .doc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .doc-thumb button { position: absolute; top: 2px; right: 2px; background: rgba(255,59,48,0.8); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -168,7 +174,7 @@
         <div class="header-btns">
             <button id="voiceControlBtn" class="voice-btn" onclick="toggleVoiceRecognition()" title="Sprachsteuerung">🎙️</button>
             <button onclick="toggleLanguage()" title="Sprache wechseln"><span id="langIndicator">DE</span></button>
-            <button onclick="startPumpoTour(1)" title="Pumpo Hilfe">📟</button>
+            <button onclick="startPumpoTour()" title="Pumpo Hilfe">📟</button>
             <button onclick="toggleDarkMode()" title="Dunkelmodus">🌙</button>
             <button onclick="requestKidsModeToggle()" title="Kinder-Modus">🎈</button>
         </div>
@@ -176,13 +182,14 @@
 
     <div class="container" role="main">
         
-        <!-- PUMPO ASSISTENT -->
+        <!-- PUMPO SUPER-ASSISTENT -->
         <div class="pumpo-box" id="pumpoGuide">
             <div class="pumpo-avatar" id="pumpoAvatar">🤖</div>
             <div class="pumpo-text">
-                <span id="pumpoMsg"><strong>Hi, ich bin Pumpo!</strong><br>Klicke auf "Weiter", um zu sehen, wie ich dir im Diabetes-Alltag helfe!</span>
+                <span id="pumpoMsg"><strong>Hi, ich bin Pumpo! Dein persönlicher App-Mentor.</strong><br>Klicke auf "Weiter", und ich nehme dich an die Hand und zeige dir Schritt für Schritt alle Bereiche!</span>
                 <div class="pumpo-btns">
                     <button class="pumpo-btn-next" id="pumpoNextBtn" onclick="nextPumpoStep()">Weiter ➔</button>
+                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px; margin-top:0;" onclick="askPumpoHelp()">❓ Was kann ich hier tun?</button>
                     <button class="pumpo-close" onclick="closePumpoGuide()">[X] Ausblenden</button>
                 </div>
             </div>
@@ -460,16 +467,29 @@
             </div>
 
             <div class="card">
-                <h2 onclick="toggleSection('travelSection')">✈️ Reise-Checkliste & Zoll-Bescheinigung <span id="arrowTravel">▼</span></h2>
+                <h2 onclick="toggleSection('travelSection')">✈️ Umfassende Urlaubs-Checkliste & Attest-Backup <span id="arrowTravel">▼</span></h2>
                 <div id="travelSection" class="collapsible-body">
                     <div class="checkbox-group" id="travelChecklist">
-                        <label class="checkbox-label"><input type="checkbox"> 💉 Katheter (Doppelte Menge)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire</label>
-                        <label class="checkbox-label"><input type="checkbox"> 💧 Insulin (Handgepäck)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren & Backup</label>
+                        <label class="checkbox-label"><input type="checkbox"> 💉 Katheter & Infusionssets (Doppelte Menge + Puffer)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire / Ampullen</label>
+                        <label class="checkbox-label"><input type="checkbox"> 💧 Schnellinsulin + Langzeitinsulin (Handgepäck!)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren + Empfänger / App aktiv</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🩸 Blutzucker-Messgerät + Teststreifen & Stechhilfe</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🔋 Ersatzbatterien (z.B. AAA / Knopfzellen je nach Pumpe)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🖊️ Notfall-Insulinpens (falls Pumpe ausfällt)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🍬 Traubenzucker, Saft / Hypo-Snacks</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🧪 Keton-Teststreifen (Blut oder Urin)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🩹 Pflaster, Hautdesinfektion & Fixierspray</label>
                     </div>
-                    <button class="btn-primary" style="background-color:var(--primary); margin-top:8px;" onclick="generateTravelCertificate('en')">🌐 Medical Airport Certificate (English)</button>
-                    <textarea id="travelCertOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
+                    
+                    <div class="form-group" style="margin-top:14px;">
+                        <label style="font-weight:700; color:var(--primary);">📸 Ärztliches Attest / Zoll-Dokument fotografieren:</label>
+                        <p style="font-size:11px; color:var(--text-secondary); margin-bottom:6px;">Fotografiere dein echtes Attest vom Arzt (Vorder- und Rückseite), um es sicher auf dem Handy zu haben.</p>
+                        <input type="file" id="docImageInput" accept="image/*" capture="environment" style="display:none;" onchange="handleDocImageUpload(event)">
+                        <button class="btn-primary" style="background-color:var(--success);" onclick="document.getElementById('docImageInput').click()">📷 Foto vom Attest aufnehmen / hochladen</button>
+                    </div>
+
+                    <div class="doc-thumb-container" id="docThumbContainer"></div>
                 </div>
             </div>
 
@@ -523,9 +543,19 @@
                     <label>Tages-Gesamtdosis (TDD) in IE:</label>
                     <input type="number" step="1" id="tddInputValue" value="40" oninput="calculatePumpToPen()">
                 </div>
+                <div class="form-group" style="margin-top:8px;">
+                    <label>Aufteilung Morgens / Abends (% Anteil morgens):</label>
+                    <select id="splitRatioSelect" onchange="calculatePumpToPen()">
+                        <option value="50" selected>50% Morgens / 50% Abends (Standard)</option>
+                        <option value="60">60% Morgens / 40% Abends</option>
+                        <option value="40">40% Morgens / 60% Abends</option>
+                        <option value="70">70% Morgens / 30% Abends</option>
+                    </select>
+                </div>
                 <div class="calc-result-box" id="pumpToPenResultBox">
                     Empfohlenes Langzeitinsulin (z.B. Tresiba / Lantus):<br>
-                    <strong id="basalCalcResult" style="font-size:18px; color:var(--danger);">20.0 IE / Tag</strong>
+                    <strong id="basalCalcResult" style="font-size:16px; color:var(--danger);">Gesamt: 20.0 IE / Tag</strong><br>
+                    <span id="basalSplitResult" style="font-size:13px; font-weight:600; color:var(--primary);">Morgens: 10.0 IE | Abends: 10.0 IE</span>
                 </div>
             </div>
 
@@ -602,7 +632,7 @@
                 <h2>⚙️ Allgemeine Optionen</h2>
                 <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🌙 Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
                 <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🔒 PIN-App-Sperre:</span><input type="checkbox" id="pinToggle" onchange="togglePinSetting()" style="width:auto;"></div>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🎈 Kinder-Modus:</span><input type="checkbox" id="kidsToggle" onchange="requestKidsModeToggle()" style="width:auto;"></div>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🎈 Kinder-Modus:</span><input type="checkbox" id="kidsToggle" onclick="requestKidsModeToggle()" style="width:auto;"></div>
             </div>
         </div>
 
@@ -620,14 +650,15 @@
         let currentType = 'catheter';
         let currentView = 'front';
         let currentShift = localStorage.getItem('ypso_shift') || 'Keine';
+        let currentLang = localStorage.getItem('ypso_lang') || 'DE';
         
         let currentPumpoTourStep = 0;
         const pumpoSteps = [
-            "<strong>Hi, ich bin Pumpo!</strong><br>Ich helfe dir, dich in der App zurechtzufinden. Klicke auf 'Weiter'!",
-            "<strong>📍 Körper & Katheter:</strong><br>Hier wählst du deine Einstichstelle (Teflon oder Stahl). Wenn ein Katheter verstopft war, kannst du das hier direkt vermerken – das landet übersichtlich im Arzt-Bericht!",
-            "<strong>🔄 Schichten & Notizen:</strong><br>Optimiert für Schichtarbeiter! Passe deine Basalrate an, berechne BEs mit dem Skalierungs-Rechner oder nutze das Notfall-Tagebuch.",
-            "<strong>📦 Lager & Filter:</strong><br>Behalte deinen Vorrat im Blick und nutze den kaskadierenden Suchfilter für deine Katheter und Rezepte.",
-            "<strong>⚙️ Optionen & Faktoren:</strong><br>Hier verwaltest du deine 3 getrennten Obergruppen (BE, Korrektur, Zielwerte), die sich automatisch nach Uhrzeit sortieren!"
+            { tab: 'pump', text: "<strong>Hi! Ich bin Pumpo, dein persönlicher App-Mentor.</strong><br>Klicke auf 'Weiter', dann zeige ich dir live, wie du Katheter und Sensoren auf dem Körper anlegst!" },
+            { tab: 'pump', text: "<strong>📍 Körperkarte:</strong><br>Wähle hier ob Katheter oder Sensor, klicke eine Körperstelle an, markiere Teflon oder Stahl – und wenn er verstopft war, mach den Haken rein! Das speichert alles perfekt für deinen Arzt." },
+            { tab: 'shifts', text: "<strong>🔄 Schichten & Notfall:</strong><br>Hier bist du im Schichtdienst-Paradies! Passe Raten an, rechne Lebensmittel in BE um (10g oder 12g) oder nutze das Notfall-Tagebuch bei Sensor-Ausfall im Urlaub." },
+            { tab: 'stock', text: "<strong>📦 Lager & Filter:</strong><br>Hier behältst du den Material-Überblick, checkst die erweiterte Urlaubs-Checkliste ab und kannst Fotos von deinem echten ärztlichen Attest hinterlegen!" },
+            { tab: 'settings', text: "<strong>⚙️ Optionen & Faktoren:</strong><br>Hier verwaltest du deine 3 getrennten Obergruppen (BE, Korrektur, Zielwerte) mit automatischer Uhrzeit-Sortierung und dem ICT-Notfallumrechner inklusive Morgens/Abends-Aufteilung!" }
         ];
 
         let kidsMode = localStorage.getItem('ypso_kids') === 'true';
@@ -639,6 +670,7 @@
         let activeCatheter = JSON.parse(localStorage.getItem('ypso_active_cath')) || null;
         let activeSensor = JSON.parse(localStorage.getItem('ypso_active_sens')) || null;
         let recoveringSpots = JSON.parse(localStorage.getItem('ypso_recovering')) || [];
+        let doctorDocuments = JSON.parse(localStorage.getItem('ypso_doc_images')) || [];
         
         let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { catBox: 2, catSingle: 5, resBox: 2, resSingle: 4, insBox: 1, insSingle: 3, senBox: 3 };
         let history = JSON.parse(localStorage.getItem('ypso_history')) || [];
@@ -678,12 +710,58 @@
             document.getElementById('pinToggle').checked = pinProtection;
             document.getElementById('hypoToggle').checked = hypoActive;
             document.getElementById('hypoCard').style.display = hypoActive ? 'block' : 'none';
+            document.getElementById('langIndicator').innerText = currentLang;
         }
 
         function toggleDarkMode() { darkMode = !darkMode; localStorage.setItem('ypso_dark', darkMode); applyTheme(); }
         function togglePinSetting() { pinProtection = !pinProtection; localStorage.setItem('ypso_pin_active', pinProtection); }
         function toggleHypoSetting() { hypoActive = !hypoActive; localStorage.setItem('ypso_hypo_active', hypoActive); applyTheme(); }
         function saveHypoStep() { hypoStep = parseFloat(document.getElementById('hypoStepSelect').value); localStorage.setItem('ypso_hypo_step', hypoStep); document.getElementById('hypoUnitVal').innerText = hypoStep; }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'DE' ? 'EN' : 'DE';
+            localStorage.setItem('ypso_lang', currentLang);
+            applyTheme();
+            alert(currentLang === 'EN' ? 'Language switched to English' : 'Sprache auf Deutsch gewechselt');
+        }
+
+        let recognition = null;
+        function toggleVoiceRecognition() {
+            const btn = document.getElementById('voiceControlBtn');
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert('Dein Browser unterstützt leider keine Sprachsteuerung.');
+                return;
+            }
+
+            if (!recognition) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.lang = currentLang === 'EN' ? 'en-US' : 'de-DE';
+                recognition.continuous = false;
+                recognition.interimResults = false;
+
+                recognition.onresult = function(event) {
+                    const speech = event.results[0][0].transcript.toLowerCase();
+                    btn.classList.remove('listening');
+                    if (speech.includes('körper') || speech.includes('body')) switchTab('pump', document.getElementById('nav-pump'));
+                    else if (speech.includes('schicht') || speech.includes('shift')) switchTab('shifts', document.getElementById('nav-shifts'));
+                    else if (speech.includes('lager') || speech.includes('stock')) switchTab('stock', document.getElementById('nav-stock'));
+                    else if (speech.includes('option') || speech.includes('settings')) switchTab('settings', document.getElementById('nav-settings'));
+                    else alert(`Befehl verstanden: "${speech}"`);
+                };
+
+                recognition.onerror = function() { btn.classList.remove('listening'); };
+                recognition.onend = function() { btn.classList.remove('listening'); };
+            }
+
+            if (btn.classList.contains('listening')) {
+                recognition.stop();
+                btn.classList.remove('listening');
+            } else {
+                recognition.start();
+                btn.classList.add('listening');
+            }
+        }
 
         function switchTab(tabId, el) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -697,23 +775,67 @@
             el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
-        // --- PUMPO ASSISTENT LOGIK ---
         function nextPumpoStep() {
             currentPumpoTourStep = (currentPumpoTourStep + 1) % pumpoSteps.length;
-            document.getElementById('pumpoMsg').innerHTML = pumpoSteps[currentPumpoTourStep];
+            const stepData = pumpoSteps[currentPumpoTourStep];
+            document.getElementById('pumpoMsg').innerHTML = stepData.text;
+            const navBtn = document.getElementById('nav-' + stepData.tab);
+            if (navBtn) switchTab(stepData.tab, navBtn);
+        }
+
+        function startPumpoTour() {
+            document.getElementById('pumpoGuide').style.display = 'flex';
+            currentPumpoTourStep = 0;
+            const stepData = pumpoSteps[0];
+            document.getElementById('pumpoMsg').innerHTML = stepData.text;
+            switchTab(stepData.tab, document.getElementById('nav-' + stepData.tab));
+        }
+
+        function askPumpoHelp() {
+            alert('🤖 Pumpo-Hilfe:\nDu kannst hier jederzeit deine Katheter/Sensoren verwalten, Schichten eintragen, den Bestand prüfen oder Fotos von deinem Attest als Backup hochladen!');
         }
 
         function closePumpoGuide() {
             document.getElementById('pumpoGuide').style.display = 'none';
         }
 
-        function startPumpoTour(step) {
-            document.getElementById('pumpoGuide').style.display = 'flex';
-            currentPumpoTourStep = 0;
-            document.getElementById('pumpoMsg').innerHTML = pumpoSteps[0];
+        function handleDocImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                doctorDocuments.push(e.target.result);
+                localStorage.setItem('ypso_doc_images', JSON.stringify(doctorDocuments));
+                renderDocThumbnails();
+                alert('Attest-Seite erfolgreich gespeichert!');
+            };
+            reader.readAsDataURL(file);
         }
 
-        // --- KASKADIERENDER KATHETER-FILTER ---
+        function renderDocThumbnails() {
+            const container = document.getElementById('docThumbContainer');
+            if (!container) return;
+            if (doctorDocuments.length === 0) {
+                container.innerHTML = `<p style="font-size:11px; color:var(--text-secondary);">Noch keine Dokumente fotografiert.</p>`;
+                return;
+            }
+            container.innerHTML = doctorDocuments.map((imgSrc, idx) => `
+                <div class="doc-thumb">
+                    <img src="${imgSrc}" alt="Attest Seite ${idx+1}">
+                    <button onclick="removeDocImage(${idx})">✕</button>
+                </div>
+            `).join('');
+        }
+
+        function removeDocImage(idx) {
+            if (confirm('Dieses Dokument löschen?')) {
+                doctorDocuments.splice(idx, 1);
+                localStorage.setItem('ypso_doc_images', JSON.stringify(doctorDocuments));
+                renderDocThumbnails();
+            }
+        }
+
         function applyKatheterFilter() {
             const brand = document.getElementById('fltBrand').value;
             const material = document.getElementById('fltMaterial').value;
@@ -738,7 +860,6 @@
             }
         }
 
-        // --- RENDER DER 3 GETRENNTEN OBERGRUPPEN ---
         function renderAllGroups() {
             renderGroup('be', beSlots, 'groupBeContainer', 'IE/BE');
             renderGroup('corr', corrSlots, 'groupCorrContainer', '1 IE / mg/dl');
@@ -811,7 +932,15 @@
 
         function calculatePumpToPen() {
             const tdd = parseFloat(document.getElementById('tddInputValue').value) || 0;
-            document.getElementById('basalCalcResult').innerText = `${(tdd * 0.5).toFixed(1)} IE / Tag (Basal)`;
+            const morningPercent = parseInt(document.getElementById('splitRatioSelect').value) || 50;
+            const eveningPercent = 100 - morningPercent;
+            
+            const totalBasal = tdd * 0.5; 
+            const morningDose = (totalBasal * (morningPercent / 100)).toFixed(1);
+            const eveningDose = (totalBasal * (eveningPercent / 100)).toFixed(1);
+
+            document.getElementById('basalCalcResult').innerText = `Gesamt-Basalbedarf: ${totalBasal.toFixed(1)} IE / Tag`;
+            document.getElementById('basalSplitResult').innerText = `🌞 Morgens spritzen: ${morningDose} IE  |  🌙 Abends spritzen: ${eveningDose} IE`;
         }
 
         function addManualLogEntry() {
@@ -845,14 +974,9 @@
         }
 
         function requestKidsModeToggle() {
-            if (kidsMode) {
-                pendingAction = () => { kidsMode = false; localStorage.setItem('ypso_kids', kidsMode); applyTheme(); };
-                document.getElementById('pinInput').value = '';
-                document.getElementById('pinOverlay').style.display = 'flex';
-                document.getElementById('pinInput').focus();
-            } else {
-                kidsMode = true; localStorage.setItem('ypso_kids', kidsMode); applyTheme();
-            }
+            kidsMode = !kidsMode;
+            localStorage.setItem('ypso_kids', kidsMode);
+            applyTheme();
         }
 
         function checkPin() {
@@ -978,7 +1102,7 @@
             out.style.display = 'block';
 
             let report = `📋 DIABETES-BERICHT FÜR DEN ARZT\n`;
-            report = `Erstellt am: ${new Date().toLocaleDateString('de-DE')}\n`;
+            report += `Erstellt am: ${new Date().toLocaleDateString('de-DE')}\n`;
             report += `--------------------------------------------------\n\n`;
             report += `🔍 KATHETER- & INJEKTIONS-VERLAUF (Fokus auf Probleme/Verstopfungen):\n`;
 
@@ -992,7 +1116,7 @@
             }
 
             report += `\n--------------------------------------------------\n`;
-            report += `💡 HINWEIS: Einträge mit dem Vermerk [VERSTOPFT] erklären mögliche BZ-Spitzen (Hyperglykämien) durch Insulinmangel.\n`;
+            report += `💡 HINWEIS: Einträge mit dem Vermerk [VERSTOPFT] erklären mögliche BZ-Spitzen durch Insulinmangel.\n`;
 
             out.value = report;
             navigator.clipboard.writeText(report);
@@ -1027,7 +1151,6 @@
         function saveShiftNote() { alert(`Schicht (${currentShift}) gespeichert!`); }
         function triggerHypoQuick() { alert('Notfall erfasst!'); }
         function generatePrescriptionText() { alert('Rezept generiert!'); }
-        function generateTravelCertificate() { alert('Zoll-Bescheinigung erstellt!'); }
         function resetBattery() { batteryDate = new Date().getTime(); localStorage.setItem('ypso_battery', batteryDate); updateBatteryUI(); alert('Batterie zurückgesetzt!'); }
         function updateBatteryUI() { document.getElementById('batteryStatus').innerText = `Gewechselt vor ${Math.floor((new Date().getTime() - batteryDate) / 86400000)} Tagen`; }
         function exportData() { const b = new Blob([JSON.stringify(localStorage)], {type: "application/json"}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = "backup.json"; a.click(); }
@@ -1049,6 +1172,7 @@
         calculatePumpToPen();
         renderManualLogUI();
         applyKatheterFilter();
+        renderDocThumbnails();
     </script>
 </body>
 </html>
