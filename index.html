@@ -156,21 +156,21 @@
     <div id="srAnnounce" class="sr-only" aria-live="polite"></div>
 
     <div id="pinOverlay" role="dialog" aria-modal="true">
-        <h2>ð Eltern-PIN erforderlich</h2>
+        <h2>🔒 Eltern-PIN erforderlich</h2>
         <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Bitte 4-stellige PIN eingeben (Default: 1234):</p>
         <input type="password" id="pinInput" maxlength="4" placeholder="****">
-        <button class="btn-primary" style="width:160px;" onclick="checkPin()">BestÃ¤tigen</button>
+        <button class="btn-primary" style="width:160px;" onclick="checkPin()">Bestätigen</button>
         <button class="btn-secondary" style="width:160px; margin-top:10px;" onclick="cancelPin()">Abbrechen</button>
     </div>
 
     <header role="banner">
         <h1 id="appTitle">YpsoShift Master Pro</h1>
         <div class="header-btns">
-            <button id="voiceControlBtn" class="voice-btn" onclick="toggleVoiceRecognition()" title="Sprachsteuerung">ðï¸</button>
+            <button id="voiceControlBtn" class="voice-btn" onclick="toggleVoiceRecognition()" title="Sprachsteuerung">🎙️</button>
             <button onclick="toggleLanguage()" title="Sprache wechseln"><span id="langIndicator">DE</span></button>
-            <button onclick="startPumpoTour(1)" title="Pumpo Hilfe">ð</button>
-            <button onclick="toggleDarkMode()" title="Dunkelmodus">ð</button>
-            <button onclick="requestKidsModeToggle()" title="Kinder-Modus">ð</button>
+            <button onclick="startPumpoTour(1)" title="Pumpo Hilfe">📟</button>
+            <button onclick="toggleDarkMode()" title="Dunkelmodus">🌙</button>
+            <button onclick="requestKidsModeToggle()" title="Kinder-Modus">🎈</button>
         </div>
     </header>
 
@@ -178,36 +178,36 @@
         
         <!-- PUMPO ASSISTENT -->
         <div class="pumpo-box" id="pumpoGuide">
-            <div class="pumpo-avatar" id="pumpoAvatar">ð¤</div>
+            <div class="pumpo-avatar" id="pumpoAvatar">🤖</div>
             <div class="pumpo-text">
                 <span id="pumpoMsg"><strong>Hi, ich bin Pumpo!</strong><br>Klicke auf "Weiter", um zu sehen, wie ich dir im Diabetes-Alltag helfe!</span>
                 <div class="pumpo-btns">
-                    <button class="pumpo-btn-next" id="pumpoNextBtn" onclick="nextPumpoStep()">Weiter â</button>
+                    <button class="pumpo-btn-next" id="pumpoNextBtn" onclick="nextPumpoStep()">Weiter ➔</button>
                     <button class="pumpo-close" onclick="closePumpoGuide()">[X] Ausblenden</button>
                 </div>
             </div>
         </div>
 
         <div class="parent-share-box">
-            <button class="btn-parent-share" onclick="shareWithParents()"><span>ð±</span> Mit Eltern teilen</button>
+            <button class="btn-parent-share" onclick="shareWithParents()"><span>📱</span> Mit Eltern teilen</button>
         </div>
 
         <div class="hypo-card" id="hypoCard" style="display:none;">
-            <button class="btn-hypo" onclick="triggerHypoQuick()">ð¨ HYPO-NOTFALL ( +<span id="hypoUnitVal">1.0</span> BE/KE )</button>
+            <button class="btn-hypo" onclick="triggerHypoQuick()">🚨 HYPO-NOTFALL ( +<span id="hypoUnitVal">1.0</span> BE/KE )</button>
         </div>
 
-        <!-- TAB 1: KÃRPER & KATHETER -->
+        <!-- TAB 1: KÖRPER & KATHETER -->
         <div id="tab-pump" class="tab-content active" role="tabpanel">
             <div class="card">
-                <h2>Einstichstelle wÃ¤hlen</h2>
+                <h2>Einstichstelle wählen</h2>
                 <div class="type-selector">
-                    <button class="type-btn active" id="typeCatheter" onclick="setEntryType('catheter')">ð Katheter</button>
-                    <button class="type-btn" id="typeSensor" onclick="setEntryType('sensor')">ð¡ BZ-Sensor</button>
+                    <button class="type-btn active" id="typeCatheter" onclick="setEntryType('catheter')">💉 Katheter</button>
+                    <button class="type-btn" id="typeSensor" onclick="setEntryType('sensor')">📡 BZ-Sensor</button>
                 </div>
 
                 <div class="view-switch">
                     <button class="active" id="btnViewFront" onclick="switchBodyView('front')">Vorderseite</button>
-                    <button id="btnViewBack" onclick="switchBodyView('back')">RÃ¼ckseite / GesÃ¤Ã</button>
+                    <button id="btnViewBack" onclick="switchBodyView('back')">Rückseite / Gesäß</button>
                 </div>
 
                 <div class="body-canvas">
@@ -229,14 +229,14 @@
                     <button class="body-pin pin-front pin-thigh" id="pin-thigh-l" onclick="selectSpotPin('Oberschenkel Links', this)"></button>
                     <button class="body-pin pin-front pin-thigh" id="pin-thigh-r" onclick="selectSpotPin('Oberschenkel Rechts', this)"></button>
 
-                    <button class="body-pin pin-back" id="pin-arm-back-l" onclick="selectSpotPin('Oberarm-RÃ¼ckseite Links ð¡', this)" style="display:none;"></button>
-                    <button class="body-pin pin-back" id="pin-arm-back-r" onclick="selectSpotPin('Oberarm-RÃ¼ckseite Rechts ð¡', this)" style="display:none;"></button>
-                    <button class="body-pin pin-back" id="pin-glute-l" onclick="selectSpotPin('GesÃ¤Ã Links', this)" style="display:none;"></button>
-                    <button class="body-pin pin-back" id="pin-glute-r" onclick="selectSpotPin('GesÃ¤Ã Rechts', this)" style="display:none;"></button>
+                    <button class="body-pin pin-back" id="pin-arm-back-l" onclick="selectSpotPin('Oberarm-Rückseite Links 📡', this)" style="display:none;"></button>
+                    <button class="body-pin pin-back" id="pin-arm-back-r" onclick="selectSpotPin('Oberarm-Rückseite Rechts 📡', this)" style="display:none;"></button>
+                    <button class="body-pin pin-back" id="pin-glute-l" onclick="selectSpotPin('Gesäß Links', this)" style="display:none;"></button>
+                    <button class="body-pin pin-back" id="pin-glute-r" onclick="selectSpotPin('Gesäß Rechts', this)" style="display:none;"></button>
                 </div>
 
-                <p id="spotInfo" style="font-size:13px; font-weight:600; text-align:center; color:var(--primary); margin-top:8px;">Keine Stelle gewÃ¤hlt</p>
-                <div id="activeTimerBadge" class="info-box" style="text-align:center; margin-top:8px; display:none;">â±ï¸ Katheter lÃ¤uft seit: <span id="timerText">0 Std.</span></div>
+                <p id="spotInfo" style="font-size:13px; font-weight:600; text-align:center; color:var(--primary); margin-top:8px;">Keine Stelle gewählt</p>
+                <div id="activeTimerBadge" class="info-box" style="text-align:center; margin-top:8px; display:none;">⏱️ Katheter läuft seit: <span id="timerText">0 Std.</span></div>
 
                 <div class="form-group" style="margin-top:10px;">
                     <label>Material:</label>
@@ -248,17 +248,17 @@
 
                 <div class="checkbox-group" style="margin-top:10px;">
                     <label class="checkbox-label" style="color: var(--danger); font-weight: 600;">
-                        <input type="checkbox" id="checkIssueClog"> â ï¸ Katheter war verstopft / lief nicht (vorzeitiger Wechsel vor 3 Tagen)
+                        <input type="checkbox" id="checkIssueClog"> ⚠️ Katheter war verstopft / lief nicht (vorzeitiger Wechsel vor 3 Tagen)
                     </label>
                 </div>
 
                 <button class="btn-primary" id="setButton" onclick="protectedAction(setNewEntry)">Neuen Katheter setzen</button>
-                <button class="btn-secondary" id="btnTissueIssue" onclick="protectedAction(markTissueIssue)">â ï¸ Gewebe-Problem melden (14T Sperre)</button>
+                <button class="btn-secondary" id="btnTissueIssue" onclick="protectedAction(markTissueIssue)">⚠️ Gewebe-Problem melden (14T Sperre)</button>
             </div>
 
             <div class="card">
                 <h2>Verlauf & Arzt-Bericht</h2>
-                <button class="btn-secondary" style="margin-bottom:10px;" onclick="generateDoctorReport()">ð Arzt-Bericht (Detailliert & Ãbersicht)</button>
+                <button class="btn-secondary" style="margin-bottom:10px;" onclick="generateDoctorReport()">📋 Arzt-Bericht (Detailliert & Übersicht)</button>
                 <textarea id="doctorReportOutput" style="height:140px; margin-top:8px; display:none;" readonly></textarea>
                 <div id="historyList" style="margin-top:10px;"></div>
             </div>
@@ -267,10 +267,10 @@
         <!-- TAB 2: SCHICHTEN & NOTFALL-TAGEBUCH -->
         <div id="tab-shifts" class="tab-content" role="tabpanel">
             <div class="card">
-                <h2>ð Schichtplan & Schicht-Assistent</h2>
+                <h2>🔄 Schichtplan & Schicht-Assistent</h2>
                 <div class="shift-grid">
-                    <button class="shift-btn" onclick="selectShift('FrÃ¼h')">FrÃ¼h</button>
-                    <button class="shift-btn" onclick="selectShift('SpÃ¤t')">SpÃ¤t</button>
+                    <button class="shift-btn" onclick="selectShift('Früh')">Früh</button>
+                    <button class="shift-btn" onclick="selectShift('Spät')">Spät</button>
                     <button class="shift-btn" onclick="selectShift('Nacht')">Nacht</button>
                     <button class="shift-btn" onclick="selectShift('Frei')">Frei</button>
                 </div>
@@ -296,7 +296,7 @@
             </div>
 
             <div class="card">
-                <h2>ð BE / KH Skalierungs-Rechner</h2>
+                <h2>🍎 BE / KH Skalierungs-Rechner</h2>
                 <div class="time-row form-group">
                     <div>
                         <label>KH pro 100g / ml:</label>
@@ -321,23 +321,23 @@
 
             <div class="card">
                 <h2 onclick="toggleSection('emergencyLogSection')" style="cursor:pointer;">
-                    ð©¸ Sensor-Ausfall Notfall-Tagebuch (Urlaub) <span id="arrowEmergencyLog">â¼</span>
+                    🩸 Sensor-Ausfall Notfall-Tagebuch (Urlaub) <span id="arrowEmergencyLog">▼</span>
                 </h2>
                 <div id="emergencyLogSection" class="collapsible-body">
-                    <p style="font-size:11px; color:var(--text-secondary); margin-bottom:10px;">Falls im Urlaub kein Sensor verfÃ¼gbar ist:</p>
+                    <p style="font-size:11px; color:var(--text-secondary); margin-bottom:10px;">Falls im Urlaub kein Sensor verfügbar ist:</p>
                     <div class="time-row form-group">
                         <div><label>BZ (mg/dl):</label><input type="number" id="manualBzVal" placeholder="z.B. 140"></div>
                         <div><label>Gegessene BE:</label><input type="number" step="0.5" id="manualBeVal" placeholder="z.B. 3.0"></div>
                         <div><label>Gespritzt (IE):</label><input type="number" step="0.5" id="manualIeVal" placeholder="z.B. 4.5"></div>
                     </div>
                     <div class="form-group"><label>Notiz / Grund:</label><input type="text" id="manualNoteVal" placeholder="z.B. Sensor abgerissen"></div>
-                    <button class="btn-primary" style="background-color:var(--warning);" onclick="addManualLogEntry()">ð Manuelle Notfall-Messung speichern</button>
+                    <button class="btn-primary" style="background-color:var(--warning);" onclick="addManualLogEntry()">📝 Manuelle Notfall-Messung speichern</button>
                     <div id="manualLogList" style="margin-top:12px;"></div>
                 </div>
             </div>
 
             <div class="card">
-                <h2>ð¤ Krankheits-Modus (Fieber / Infekt)</h2>
+                <h2>🤒 Krankheits-Modus (Fieber / Infekt)</h2>
                 <div class="form-group">
                     <label>Basalraten-Korrektur:</label>
                     <select id="sickBasalBoost">
@@ -347,26 +347,26 @@
                         <option value="+50%">+50% Basalrate (Starker Infekt)</option>
                     </select>
                 </div>
-                <button class="btn-primary" style="background-color:var(--warning);" onclick="protectedAction(logSickMode)">ð¤ Krankheit-Status aktivieren & speichern</button>
+                <button class="btn-primary" style="background-color:var(--warning);" onclick="protectedAction(logSickMode)">🤒 Krankheit-Status aktivieren & speichern</button>
             </div>
 
             <div class="card">
-                <h2>â½ Sport & AktivitÃ¤ts-Tracker</h2>
+                <h2>⚽ Sport & Aktivitäts-Tracker</h2>
                 <div class="form-group">
-                    <label>Sportart & IntensitÃ¤t:</label>
+                    <label>Sportart & Intensität:</label>
                     <input type="text" id="sportTypeInput" placeholder="z. B. Joggen / Ausdauer (45 Min)">
                 </div>
-                <button class="btn-primary" style="background-color:var(--success);" onclick="logSportEvent()">â½ Sport erfassen</button>
+                <button class="btn-primary" style="background-color:var(--success);" onclick="logSportEvent()">⚽ Sport erfassen</button>
             </div>
         </div>
 
         <!-- TAB 3: LAGER & FILTER -->
         <div id="tab-stock" class="tab-content" role="tabpanel">
             <div class="card">
-                <h2>ð Smarter Katheter-Suchfilter & Rezept</h2>
+                <h2>📝 Smarter Katheter-Suchfilter & Rezept</h2>
                 
                 <div class="filter-box">
-                    <label style="font-size:12px; font-weight:700; color:var(--primary); margin-bottom:8px; display:block;">ð Katheter-Filter (Kaskadierend):</label>
+                    <label style="font-size:12px; font-weight:700; color:var(--primary); margin-bottom:8px; display:block;">🔍 Katheter-Filter (Kaskadierend):</label>
                     
                     <div class="filter-grid">
                         <div>
@@ -391,17 +391,17 @@
 
                     <div class="filter-grid">
                         <div>
-                            <label style="font-size:10px;">EinfÃ¼hrwinkel:</label>
+                            <label style="font-size:10px;">Einführwinkel:</label>
                             <select id="fltWinkel" onchange="applyKatheterFilter()">
                                 <option value="all">Alle Winkel</option>
-                                <option value="90Â°">90Â° (senkrecht)</option>
-                                <option value="schrÃ¤g">schrÃ¤g (20Â°-45Â°)</option>
+                                <option value="90°">90° (senkrecht)</option>
+                                <option value="schräg">schräg (20°-45°)</option>
                             </select>
                         </div>
                         <div>
-                            <label style="font-size:10px;">KanÃ¼lenlÃ¤nge:</label>
+                            <label style="font-size:10px;">Kanülenlänge:</label>
                             <select id="fltLength" onchange="applyKatheterFilter()">
-                                <option value="all">Alle LÃ¤ngen</option>
+                                <option value="all">Alle Längen</option>
                                 <option value="5.5 mm">5,5 mm</option>
                                 <option value="6 mm">6 mm</option>
                                 <option value="8 mm">8 mm</option>
@@ -414,9 +414,9 @@
                     </div>
 
                     <div class="form-group" style="margin-bottom:6px;">
-                        <label style="font-size:10px;">SchlauchlÃ¤nge:</label>
+                        <label style="font-size:10px;">Schlauchlänge:</label>
                         <select id="fltSchlauch" onchange="applyKatheterFilter()">
-                            <option value="all">Alle SchlauchlÃ¤ngen</option>
+                            <option value="all">Alle Schlauchlängen</option>
                             <option value="45 cm">45 cm</option>
                             <option value="60 cm">60 cm</option>
                             <option value="80 cm">80 cm</option>
@@ -426,7 +426,7 @@
                     </div>
 
                     <div id="filterResultBox" class="info-box" style="margin-top:8px; font-weight:600;">
-                        Passende Katheter: <strong>WÃ¤hle oben Filter aus</strong>
+                        Passende Katheter: <strong>Wähle oben Filter aus</strong>
                     </div>
                 </div>
 
@@ -451,30 +451,30 @@
                 </div>
 
                 <div class="form-group" style="margin-top:8px;">
-                    <label>Detail-Bezeichnung fÃ¼r Rezept:</label>
-                    <input type="text" id="insulinTypeInput" value="Fiasp (10ml FlÃ¤schchen / Schnell)">
+                    <label>Detail-Bezeichnung für Rezept:</label>
+                    <input type="text" id="insulinTypeInput" value="Fiasp (10ml Fläschchen / Schnell)">
                 </div>
 
-                <button class="btn-primary" onclick="generatePrescriptionText()">ð Rezept-Anforderung generieren</button>
+                <button class="btn-primary" onclick="generatePrescriptionText()">📄 Rezept-Anforderung generieren</button>
                 <textarea id="prescriptionOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
             </div>
 
             <div class="card">
-                <h2 onclick="toggleSection('travelSection')">âï¸ Reise-Checkliste & Zoll-Bescheinigung <span id="arrowTravel">â¼</span></h2>
+                <h2 onclick="toggleSection('travelSection')">✈️ Reise-Checkliste & Zoll-Bescheinigung <span id="arrowTravel">▼</span></h2>
                 <div id="travelSection" class="collapsible-body">
                     <div class="checkbox-group" id="travelChecklist">
-                        <label class="checkbox-label"><input type="checkbox"> ð Katheter (Doppelte Menge)</label>
-                        <label class="checkbox-label"><input type="checkbox"> ð§ª Leere Reservoire</label>
-                        <label class="checkbox-label"><input type="checkbox"> ð§ Insulin (HandgepÃ¤ck)</label>
-                        <label class="checkbox-label"><input type="checkbox"> ð¡ BZ-Sensoren & Backup</label>
+                        <label class="checkbox-label"><input type="checkbox"> 💉 Katheter (Doppelte Menge)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire</label>
+                        <label class="checkbox-label"><input type="checkbox"> 💧 Insulin (Handgepäck)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren & Backup</label>
                     </div>
-                    <button class="btn-primary" style="background-color:var(--primary); margin-top:8px;" onclick="generateTravelCertificate('en')">ð Medical Airport Certificate (English)</button>
+                    <button class="btn-primary" style="background-color:var(--primary); margin-top:8px;" onclick="generateTravelCertificate('en')">🌐 Medical Airport Certificate (English)</button>
                     <textarea id="travelCertOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
                 </div>
             </div>
 
             <div class="card">
-                <h2>ð Pumpen-Batterie</h2>
+                <h2>🔋 Pumpen-Batterie</h2>
                 <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(128,128,128,0.1); padding:10px; border-radius:8px;">
                     <span id="batteryStatus" style="font-size:13px; font-weight:600;">Gewechselt vor X Tagen</span>
                     <button class="btn-primary" style="margin-top:0; width:auto; padding:6px 12px; font-size:12px;" onclick="protectedAction(resetBattery)">Neu gewechselt</button>
@@ -482,30 +482,30 @@
             </div>
 
             <div class="card">
-                <h2>ð¦ Material-Bestand</h2>
+                <h2>📦 Material-Bestand</h2>
                 <div class="stock-box">
-                    <div class="stock-header"><span>ð Katheter</span><span id="badgeCatheterTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="stock-header"><span>💉 Katheter</span><span id="badgeCatheterTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
                     <div class="stock-inputs">
                         <div><label style="font-size:11px;">Packungen (10er):</label><input type="number" id="boxCatheter" value="2" onchange="updateStock()"></div>
                         <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleCatheter" value="5" onchange="updateStock()"></div>
                     </div>
                 </div>
                 <div class="stock-box">
-                    <div class="stock-header"><span>ð§ª Leere Reservoire</span><span id="badgeResTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="stock-header"><span>🧪 Leere Reservoire</span><span id="badgeResTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
                     <div class="stock-inputs">
                         <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxRes" value="2" onchange="updateStock()"></div>
                         <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleRes" value="4" onchange="updateStock()"></div>
                     </div>
                 </div>
                 <div class="stock-box">
-                    <div class="stock-header"><span>ð§ Insulin-Vorrat</span><span id="badgeInsulinTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="stock-header"><span>💧 Insulin-Vorrat</span><span id="badgeInsulinTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
                     <div class="stock-inputs">
                         <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxInsulin" value="1" onchange="updateStock()"></div>
                         <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleInsulin" value="3" onchange="updateStock()"></div>
                     </div>
                 </div>
                 <div class="stock-box">
-                    <div class="stock-header"><span>ð¡ BZ-Sensoren</span><span id="badgeSensorTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
+                    <div class="stock-header"><span>📡 BZ-Sensoren</span><span id="badgeSensorTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
                     <div class="stock-inputs">
                         <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxSensor" value="3" onchange="updateStock()"></div>
                     </div>
@@ -518,7 +518,7 @@
         <div id="tab-settings" class="tab-content" role="tabpanel">
             
             <div class="card">
-                <h2>ð¨ Pumpe-zu-Pen Umrechner (ICT Notfall)</h2>
+                <h2>🚨 Pumpe-zu-Pen Umrechner (ICT Notfall)</h2>
                 <div class="form-group">
                     <label>Tages-Gesamtdosis (TDD) in IE:</label>
                     <input type="number" step="1" id="tddInputValue" value="40" oninput="calculatePumpToPen()">
@@ -532,8 +532,8 @@
             <!-- OBERGRUPPE 1: BE-FAKTOREN -->
             <div class="card">
                 <div class="group-title">
-                    <span>ð 1. BE-Faktoren (IE/BE)</span>
-                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('be')">+ HinzufÃ¼gen</button>
+                    <span>🍞 1. BE-Faktoren (IE/BE)</span>
+                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('be')">+ Hinzufügen</button>
                 </div>
                 <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Sortiert sich automatisch nach Uhrzeit:</p>
                 <div id="groupBeContainer"></div>
@@ -542,8 +542,8 @@
             <!-- OBERGRUPPE 2: KORREKTURFAKTOREN -->
             <div class="card">
                 <div class="group-title">
-                    <span>â¡ 2. Korrekturfaktoren (1 IE / mg/dl)</span>
-                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('corr')">+ HinzufÃ¼gen</button>
+                    <span>⚡ 2. Korrekturfaktoren (1 IE / mg/dl)</span>
+                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('corr')">+ Hinzufügen</button>
                 </div>
                 <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Sortiert sich automatisch nach Uhrzeit:</p>
                 <div id="groupCorrContainer"></div>
@@ -552,17 +552,17 @@
             <!-- OBERGRUPPE 3: ZIELWERTE -->
             <div class="card">
                 <div class="group-title">
-                    <span>ð¯ 3. Zielwerte (mg/dl - manuell)</span>
-                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('target')">+ HinzufÃ¼gen</button>
+                    <span>🎯 3. Zielwerte (mg/dl - manuell)</span>
+                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('target')">+ Hinzufügen</button>
                 </div>
                 <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Sortiert sich automatisch nach Uhrzeit:</p>
                 <div id="groupTargetContainer"></div>
             </div>
 
             <div class="card">
-                <h2>ð Notfall-Pass & Langzeitinsulin</h2>
+                <h2>📋 Notfall-Pass & Langzeitinsulin</h2>
                 <div class="form-group">
-                    <label>Notfall-Langzeitinsulin (PrÃ¤parat):</label>
+                    <label>Notfall-Langzeitinsulin (Präparat):</label>
                     <input type="text" id="emergencyInsulinBrand" value="Tresiba / Lantus">
                 </div>
                 <div class="time-row form-group">
@@ -570,14 +570,14 @@
                     <div><label>Dosis Abends (IE):</label><input type="number" id="basalEve" value="10"></div>
                 </div>
 
-                <button class="btn-primary" style="background-color:var(--success); margin-top:8px;" onclick="generateEmergencyPassText()">ð Notfall-Pass kopieren (DE/EN)</button>
+                <button class="btn-primary" style="background-color:var(--success); margin-top:8px;" onclick="generateEmergencyPassText()">📋 Notfall-Pass kopieren (DE/EN)</button>
                 <textarea id="emergencyPassOutput" style="height:110px; margin-top:8px; display:none;" readonly></textarea>
 
-                <button class="btn-primary" style="background-color:var(--danger); margin-top:14px;" onclick="saveEmergencyPlan()">ð¾ Alle Gruppen komplett speichern</button>
+                <button class="btn-primary" style="background-color:var(--danger); margin-top:14px;" onclick="saveEmergencyPlan()">💾 Alle Gruppen komplett speichern</button>
             </div>
 
             <div class="card">
-                <h2>ð¨ Notfall-Knopf Optionen</h2>
+                <h2>🚨 Notfall-Knopf Optionen</h2>
                 <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;">
                     <span>Notfall-Knopf anzeigen:</span><input type="checkbox" id="hypoToggle" onchange="toggleHypoSetting()" style="width:auto;">
                 </div>
@@ -593,26 +593,26 @@
             </div>
 
             <div class="card">
-                <h2>ð¾ Datensicherung</h2>
-                <button class="btn-secondary" onclick="exportData()">ð¤ Daten sichern (Export)</button>
-                <button class="btn-secondary" onclick="importData()">ð¥ Daten laden (Import)</button>
+                <h2>💾 Datensicherung</h2>
+                <button class="btn-secondary" onclick="exportData()">📤 Daten sichern (Export)</button>
+                <button class="btn-secondary" onclick="importData()">📥 Daten laden (Import)</button>
             </div>
 
             <div class="card">
-                <h2>âï¸ Allgemeine Optionen</h2>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>ð Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>ð PIN-App-Sperre:</span><input type="checkbox" id="pinToggle" onchange="togglePinSetting()" style="width:auto;"></div>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>ð Kinder-Modus:</span><input type="checkbox" id="kidsToggle" onchange="requestKidsModeToggle()" style="width:auto;"></div>
+                <h2>⚙️ Allgemeine Optionen</h2>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🌙 Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🔒 PIN-App-Sperre:</span><input type="checkbox" id="pinToggle" onchange="togglePinSetting()" style="width:auto;"></div>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🎈 Kinder-Modus:</span><input type="checkbox" id="kidsToggle" onchange="requestKidsModeToggle()" style="width:auto;"></div>
             </div>
         </div>
 
     </div>
 
     <nav role="navigation">
-        <button class="nav-item active" id="nav-pump" onclick="switchTab('pump', this)"><div class="nav-icon">ð</div><span>KÃ¶rper</span></button>
-        <button class="nav-item" id="nav-shifts" onclick="switchTab('shifts', this)"><div class="nav-icon">ð</div><span>Schichten</span></button>
-        <button class="nav-item" id="nav-stock" onclick="switchTab('stock', this)"><div class="nav-icon">ð¦</div><span>Lager</span></button>
-        <button class="nav-item" id="nav-settings" onclick="switchTab('settings', this)"><div class="nav-icon">âï¸</div><span>Optionen</span></button>
+        <button class="nav-item active" id="nav-pump" onclick="switchTab('pump', this)"><div class="nav-icon">📍</div><span>Körper</span></button>
+        <button class="nav-item" id="nav-shifts" onclick="switchTab('shifts', this)"><div class="nav-icon">🔄</div><span>Schichten</span></button>
+        <button class="nav-item" id="nav-stock" onclick="switchTab('stock', this)"><div class="nav-icon">📦</div><span>Lager</span></button>
+        <button class="nav-item" id="nav-settings" onclick="switchTab('settings', this)"><div class="nav-icon">⚙️</div><span>Optionen</span></button>
     </nav>
 
     <script>
@@ -624,10 +624,10 @@
         let currentPumpoTourStep = 0;
         const pumpoSteps = [
             "<strong>Hi, ich bin Pumpo!</strong><br>Ich helfe dir, dich in der App zurechtzufinden. Klicke auf 'Weiter'!",
-            "<strong>ð KÃ¶rper & Katheter:</strong><br>Hier wÃ¤hlst du deine Einstichstelle (Teflon oder Stahl). Wenn ein Katheter verstopft war, kannst du das hier direkt vermerken â das landet Ã¼bersichtlich im Arzt-Bericht!",
-            "<strong>ð Schichten & Notizen:</strong><br>Optimiert fÃ¼r Schichtarbeiter! Passe deine Basalrate an, berechne BEs mit dem Skalierungs-Rechner oder nutze das Notfall-Tagebuch.",
-            "<strong>ð¦ Lager & Filter:</strong><br>Behalte deinen Vorrat im Blick und nutze den kaskadierenden Suchfilter fÃ¼r deine Katheter und Rezepte.",
-            "<strong>âï¸ Optionen & Faktoren:</strong><br>Hier verwaltest du deine 3 getrennten Obergruppen (BE, Korrektur, Zielwerte), die sich automatisch nach Uhrzeit sortieren!"
+            "<strong>📍 Körper & Katheter:</strong><br>Hier wählst du deine Einstichstelle (Teflon oder Stahl). Wenn ein Katheter verstopft war, kannst du das hier direkt vermerken – das landet übersichtlich im Arzt-Bericht!",
+            "<strong>🔄 Schichten & Notizen:</strong><br>Optimiert für Schichtarbeiter! Passe deine Basalrate an, berechne BEs mit dem Skalierungs-Rechner oder nutze das Notfall-Tagebuch.",
+            "<strong>📦 Lager & Filter:</strong><br>Behalte deinen Vorrat im Blick und nutze den kaskadierenden Suchfilter für deine Katheter und Rezepte.",
+            "<strong>⚙️ Optionen & Faktoren:</strong><br>Hier verwaltest du deine 3 getrennten Obergruppen (BE, Korrektur, Zielwerte), die sich automatisch nach Uhrzeit sortieren!"
         ];
 
         let kidsMode = localStorage.getItem('ypso_kids') === 'true';
@@ -663,16 +663,16 @@
         let pendingAction = null;
 
         const catheterDatabase = [
-            { name: "mylife YpsoPump Orbit micro 5.5mm / 60cm", brand: "mylife", material: "Stahl", winkel: "90Â°", length: "5.5 mm", schlauch: "60 cm" },
-            { name: "mylife YpsoPump Orbit soft 6mm / 60cm", brand: "mylife", material: "Teflon", winkel: "90Â°", length: "6 mm", schlauch: "60 cm" },
-            { name: "MiniMed Quick-set 9mm / 60cm", brand: "MiniMed", material: "Teflon", winkel: "90Â°", length: "9 mm", schlauch: "60 cm" },
-            { name: "Accu-Chek Tender 13mm / 60cm", brand: "Accu-Chek", material: "Teflon", winkel: "schrÃ¤g", length: "13 mm", schlauch: "60 cm" }
+            { name: "mylife YpsoPump Orbit micro 5.5mm / 60cm", brand: "mylife", material: "Stahl", winkel: "90°", length: "5.5 mm", schlauch: "60 cm" },
+            { name: "mylife YpsoPump Orbit soft 6mm / 60cm", brand: "mylife", material: "Teflon", winkel: "90°", length: "6 mm", schlauch: "60 cm" },
+            { name: "MiniMed Quick-set 9mm / 60cm", brand: "MiniMed", material: "Teflon", winkel: "90°", length: "9 mm", schlauch: "60 cm" },
+            { name: "Accu-Chek Tender 13mm / 60cm", brand: "Accu-Chek", material: "Teflon", winkel: "schräg", length: "13 mm", schlauch: "60 cm" }
         ];
 
         function applyTheme() {
             document.body.classList.toggle('kids-mode', kidsMode);
             document.body.classList.toggle('dark-mode', darkMode);
-            document.getElementById('appTitle').innerText = kidsMode ? 'ð Pumpe & Pflaster' : 'YpsoShift Master Pro';
+            document.getElementById('appTitle').innerText = kidsMode ? '🎈 Pumpe & Pflaster' : 'YpsoShift Master Pro';
             document.getElementById('kidsToggle').checked = kidsMode;
             document.getElementById('darkToggle').checked = darkMode;
             document.getElementById('pinToggle').checked = pinProtection;
@@ -734,7 +734,7 @@
                 box.innerHTML = `Kein Katheter passt zu dieser Filterkombination.`;
             } else {
                 box.innerHTML = `<strong>Passende Katheter (${filtered.length}):</strong><br>` + 
-                    filtered.map(f => `â¢ ${f.name}`).join('<br>');
+                    filtered.map(f => `• ${f.name}`).join('<br>');
             }
         }
 
@@ -750,7 +750,7 @@
             const container = document.getElementById(containerId);
             container.innerHTML = list.map((slot, idx) => `
                 <div class="factor-card">
-                    <button class="btn-remove-slot" onclick="removeSlot('${type}', ${idx})">â</button>
+                    <button class="btn-remove-slot" onclick="removeSlot('${type}', ${idx})">✕</button>
                     <div class="time-row" style="margin-bottom:6px;">
                         <span style="font-size:11px; font-weight:600;">Von:</span>
                         <input type="time" value="${slot.start}" onchange="${type}Slots[${idx}].start = this.value; renderAllGroups();">
@@ -783,7 +783,7 @@
             localStorage.setItem('ypso_be_slots', JSON.stringify(beSlots));
             localStorage.setItem('ypso_corr_slots', JSON.stringify(corrSlots));
             localStorage.setItem('ypso_target_slots', JSON.stringify(targetSlots));
-            alert('ð¨ Alle 3 Gruppen erfolgreich gespeichert & sortiert!');
+            alert('🚨 Alle 3 Gruppen erfolgreich gespeichert & sortiert!');
         }
 
         function generateEmergencyPassText() {
@@ -793,8 +793,8 @@
             const morn = document.getElementById('basalMorn').value;
             const eve = document.getElementById('basalEve').value;
 
-            out.value = `ð¨ DIABETES EMERGENCY PASS ð¨\nBasal: ${langIns} (M: ${morn}IE / A: ${eve}IE)\n` +
-                `BE: ${beSlots.map(s => `[\${s.start}-${s.end}]:${s.val}`).join(', ')}`;
+            out.value = `🚨 DIABETES EMERGENCY PASS 🚨\nBasal: ${langIns} (M: ${morn}IE / A: ${eve}IE)\n` +
+                `BE: ${beSlots.map(s => `[${s.start}-${s.end}]:${s.val}`).join(', ')}`;
             navigator.clipboard.writeText(out.value);
             alert('Notfall-Pass kopiert!');
         }
@@ -829,7 +829,7 @@
 
         function renderManualLogUI() {
             const container = document.getElementById('manualLogList');
-            if (manualLogs.length === 0) { container.innerHTML = `<p style="font-size:11px; color:var(--text-secondary);">Keine EintrÃ¤ge.</p>`; return; }
+            if (manualLogs.length === 0) { container.innerHTML = `<p style="font-size:11px; color:var(--text-secondary);">Keine Einträge.</p>`; return; }
             container.innerHTML = manualLogs.map(m => `<div style="font-size:12px; padding:6px 0; border-bottom:0.5px solid rgba(128,128,128,0.2);"><strong>BZ: ${m.bz}</strong> | BE: ${m.be} | IE: ${m.ie} (${m.note}) <span style="float:right; color:var(--text-secondary);">${m.date}</span></div>`).join('');
         }
 
@@ -896,10 +896,10 @@
             if (name.includes('Bauch Unten Rechts')) return document.getElementById('pin-belly-rd');
             if (name.includes('Oberschenkel Links')) return document.getElementById('pin-thigh-l');
             if (name.includes('Oberschenkel Rechts')) return document.getElementById('pin-thigh-r');
-            if (name.includes('Oberarm-RÃ¼ckseite Links')) return document.getElementById('pin-arm-back-l');
-            if (name.includes('Oberarm-RÃ¼ckseite Rechts')) return document.getElementById('pin-arm-back-r');
-            if (name.includes('GesÃ¤Ã Links')) return document.getElementById('pin-glute-l');
-            if (name.includes('GesÃ¤Ã Rechts')) return document.getElementById('pin-glute-r');
+            if (name.includes('Oberarm-Rückseite Links')) return document.getElementById('pin-arm-back-l');
+            if (name.includes('Oberarm-Rückseite Rechts')) return document.getElementById('pin-arm-back-r');
+            if (name.includes('Gesäß Links')) return document.getElementById('pin-glute-l');
+            if (name.includes('Gesäß Rechts')) return document.getElementById('pin-glute-r');
             return null;
         }
 
@@ -907,7 +907,7 @@
             selectedSpotName = name;
             document.querySelectorAll('.body-pin').forEach(p => p.classList.remove('selected'));
             el.classList.add('selected');
-            document.getElementById('spotInfo').innerText = `AusgewÃ¤hlt: ${name}`;
+            document.getElementById('spotInfo').innerText = `Ausgewählt: ${name}`;
         }
 
         function setEntryType(type) {
@@ -930,7 +930,7 @@
         }
 
         function setNewEntry() {
-            if (!selectedSpotName) { alert('Bitte wÃ¤hle zuerst eine Einstichstelle aus!'); return; }
+            if (!selectedSpotName) { alert('Bitte wähle zuerst eine Einstichstelle aus!'); return; }
             const now = new Date().getTime();
             const material = document.getElementById('activeCathMaterial').value;
             const isClogged = document.getElementById('checkIssueClog').checked;
@@ -950,8 +950,8 @@
             }
 
             const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            let logText = `${currentType === 'catheter' ? 'ð Katheter' : 'ð¡ Sensor'}: ${selectedSpotName} (${material})`;
-            if (isClogged) logText += ` â ï¸ [VERSTOPFT / Vorzeitiger Wechsel!]`;
+            let logText = `${currentType === 'catheter' ? '💉 Katheter' : '📡 Sensor'}: ${selectedSpotName} (${material})`;
+            if (isClogged) logText += ` ⚠️ [VERSTOPFT / Vorzeitiger Wechsel!]`;
 
             history.unshift({ text: logText, date: dateStr, clogged: isClogged, type: currentType, spot: selectedSpotName });
             localStorage.setItem('ypso_history', JSON.stringify(history));
@@ -959,32 +959,32 @@
             
             selectedSpotName = null;
             document.getElementById('checkIssueClog').checked = false;
-            document.getElementById('spotInfo').innerText = 'Keine Stelle gewÃ¤hlt';
+            document.getElementById('spotInfo').innerText = 'Keine Stelle gewählt';
             renderPins();
             updateHistoryUI();
             alert('Erfolgreich gespeichert!');
         }
 
         function markTissueIssue() {
-            if (!selectedSpotName) { alert('Bitte wÃ¤hle zuerst die Stelle aus.'); return; }
+            if (!selectedSpotName) { alert('Bitte wähle zuerst die Stelle aus.'); return; }
             recoveringSpots.push({ spot: selectedSpotName, removedTime: new Date().getTime(), lockType: 'tissue' });
             localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
             renderPins();
-            alert('Stelle fÃ¼r 14 Tage wegen Gewebeproblem gesperrt.');
+            alert('Stelle für 14 Tage wegen Gewebeproblem gesperrt.');
         }
 
         function generateDoctorReport() {
             const out = document.getElementById('doctorReportOutput');
             out.style.display = 'block';
 
-            let report = `ð DIABETES-BERICHT FÃR DEN ARZT\n`;
+            let report = `📋 DIABETES-BERICHT FÜR DEN ARZT\n`;
             report = `Erstellt am: ${new Date().toLocaleDateString('de-DE')}\n`;
             report += `--------------------------------------------------\n\n`;
-            report += `ð KATHETER- & INJEKTIONS-VERLAUF (Fokus auf Probleme/Verstopfungen):\n`;
+            report += `🔍 KATHETER- & INJEKTIONS-VERLAUF (Fokus auf Probleme/Verstopfungen):\n`;
 
             const catheterHistory = history.filter(h => h.text.includes('Katheter'));
             if (catheterHistory.length === 0) {
-                report += `Keine Katheter-EintrÃ¤ge vorhanden.\n`;
+                report += `Keine Katheter-Einträge vorhanden.\n`;
             } else {
                 catheterHistory.forEach((item, idx) => {
                     report += `${idx + 1}. ${item.date} - ${item.text}\n`;
@@ -992,11 +992,11 @@
             }
 
             report += `\n--------------------------------------------------\n`;
-            report += `ð¡ HINWEIS: EintrÃ¤ge mit dem Vermerk [VERSTOPFT] erklÃ¤ren mÃ¶gliche BZ-Spitzen (HyperglykÃ¤mien) durch Insulinmangel.\n`;
+            report += `💡 HINWEIS: Einträge mit dem Vermerk [VERSTOPFT] erklären mögliche BZ-Spitzen (Hyperglykämien) durch Insulinmangel.\n`;
 
             out.value = report;
             navigator.clipboard.writeText(report);
-            alert('Ãbersichtlicher Arzt-Bericht generiert und in die Zwischenablage kopiert!');
+            alert('Übersichtlicher Arzt-Bericht generiert und in die Zwischenablage kopiert!');
         }
 
         function updateStock() {
@@ -1028,14 +1028,14 @@
         function triggerHypoQuick() { alert('Notfall erfasst!'); }
         function generatePrescriptionText() { alert('Rezept generiert!'); }
         function generateTravelCertificate() { alert('Zoll-Bescheinigung erstellt!'); }
-        function resetBattery() { batteryDate = new Date().getTime(); localStorage.setItem('ypso_battery', batteryDate); updateBatteryUI(); alert('Batterie zurÃ¼ckgesetzt!'); }
+        function resetBattery() { batteryDate = new Date().getTime(); localStorage.setItem('ypso_battery', batteryDate); updateBatteryUI(); alert('Batterie zurückgesetzt!'); }
         function updateBatteryUI() { document.getElementById('batteryStatus').innerText = `Gewechselt vor ${Math.floor((new Date().getTime() - batteryDate) / 86400000)} Tagen`; }
         function exportData() { const b = new Blob([JSON.stringify(localStorage)], {type: "application/json"}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = "backup.json"; a.click(); }
         function importData() { const i = prompt("Code:"); if(i){localStorage.clear(); location.reload();} }
         
         function updateHistoryUI() {
             const list = document.getElementById('historyList');
-            if (history.length === 0) { list.innerHTML = `<div style="font-size:13px; color:var(--text-secondary);">Noch keine EintrÃ¤ge</div>`; return; }
+            if (history.length === 0) { list.innerHTML = `<div style="font-size:13px; color:var(--text-secondary);">Noch keine Einträge</div>`; return; }
             list.innerHTML = history.slice(0, 8).map(i => `<div style="display:flex; justify-content:space-between; font-size:12px; padding:6px 0; border-bottom:0.5px solid rgba(128,128,128,0.2); ${i.clogged ? 'color:var(--danger); font-weight:bold;' : ''}"><span>${i.text}</span><span style="color:var(--text-secondary);">${i.date}</span></div>`).join('');
         }
 
