@@ -598,7 +598,7 @@
             background: var(--card-bg); 
             color: var(--text); 
         }
-        
+
         .doc-preview { 
             width: 100%; 
             max-height: 200px; 
@@ -651,7 +651,6 @@
 
     <div class="container">
         
-        <!-- PUMPO INTERAKTIVER GUIDE -->
         <div class="pumpo-box" id="pumpoGuide">
             <div class="pumpo-avatar" id="pumpoAvatar">🤖</div>
             <div class="pumpo-text">
@@ -663,7 +662,6 @@
             </div>
         </div>
 
-        <!-- MIT ELTERN TEILEN BUTTON IM KINDERMODUS -->
         <div class="parent-share-box">
             <button class="btn-parent-share" onclick="shareWithParents()">
                 <span>📱</span> Mit Eltern teilen
@@ -674,7 +672,6 @@
             <button class="btn-hypo" onclick="triggerHypoQuick()">🚨 HYPO-NOTFALL ( +<span id="hypoUnitVal">1.0</span> BE/KE )</button>
         </div>
 
-        <!-- TAB 1: KÖRPERKARTE -->
         <div id="tab-pump" class="tab-content active">
             <div class="card">
                 <h2>Einstichstelle wählen</h2>
@@ -727,7 +724,6 @@
             </div>
         </div>
 
-        <!-- TAB 2: SCHICHTEN, KRANKHEIT & SPORT -->
         <div id="tab-shifts" class="tab-content">
             <div class="card">
                 <h2>🔄 Schichtplan & Basal-Anpassung</h2>
@@ -782,7 +778,6 @@
             </div>
         </div>
 
-        <!-- TAB 3: LAGER, REZEPT & REISE-CHECKLISTE -->
         <div id="tab-stock" class="tab-content">
             <div class="card">
                 <h2>📝 Rezept-Bestellung (Flexibel wählbar)</h2>
@@ -805,7 +800,6 @@
                 <textarea id="prescriptionOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
             </div>
 
-            <!-- KLAPPBARE REISE-CHECKLISTE & DOKUMENTE -->
             <div class="card">
                 <h2 onclick="toggleSection('travelSection')">✈️ Urlaubs- & Reise-Checkliste <span id="arrowTravel">▼</span></h2>
                 <div id="travelSection" class="collapsible-body">
@@ -919,7 +913,6 @@
             </div>
         </div>
 
-        <!-- TAB 4: OPTIONEN & NOTFALLPLAN -->
         <div id="tab-settings" class="tab-content">
             <div class="card">
                 <h2>🚨 Notfall-Plan (Pumpenausfall / ICT)</h2>
@@ -1411,7 +1404,7 @@
             document.getElementById('boxCatheter').value = stock.catBox;
             document.getElementById('singleCatheter').value = stock.catSingle;
             document.getElementById('boxRes').value = stock.resBox;
-            document.getElementById('singleRes').value = stock.resSingle;
+            document.getElementById('singleRes').value = stock.singleRes;
             document.getElementById('boxInsulin').value = stock.insBox || 0;
             document.getElementById('singleInsulin').value = stock.insSingle || 0;
             document.getElementById('singleNeedles').value = stock.needles || 0;
