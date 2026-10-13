@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>YpsoShift Master Pro</title>
+    <title>YpsoShift Master Pro Ultimate</title>
     <style>
         :root {
             --primary: #007AFF;
@@ -40,68 +40,339 @@
             font-family: -apple-system, BlinkMacSystemFont, "Comic Sans MS", "Chalkboard SE", sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: inherit; 
+            -webkit-tap-highlight-color: transparent; 
+        }
 
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 95px; transition: background-color 0.3s, color 0.3s; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            padding-bottom: 95px; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
 
-        header { background-color: var(--card-bg); padding: 14px 20px; border-bottom: 0.5px solid rgba(128,128,128,0.2); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-        header h1 { font-size: 18px; font-weight: 700; }
-        .header-btns { display: flex; gap: 8px; align-items: center; }
-        .header-btns button { background: none; border: none; font-size: 18px; cursor: pointer; }
+        header { 
+            background-color: var(--card-bg); 
+            padding: 14px 20px; 
+            border-bottom: 0.5px solid rgba(128,128,128,0.2); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
 
-        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
-        .card { background-color: var(--card-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 0.5px solid rgba(128,128,128,0.1); }
-        .card h2 { font-size: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        header h1 { 
+            font-size: 18px; 
+            font-weight: 700; 
+        }
 
-        .pumpo-box { background: rgba(0, 122, 255, 0.08); border: 1.5px solid var(--primary); border-radius: 14px; padding: 12px; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start; position: relative; }
-        body.kids-mode .pumpo-box { background: #FFF0F5; border: 2px solid #FF2D55; }
-        .pumpo-avatar { font-size: 32px; animation: bounce 2s infinite ease-in-out; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-        .pumpo-text { font-size: 13px; line-height: 1.4; flex: 1; }
-        .pumpo-btns { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
-        .pumpo-btn-next { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
-        .pumpo-close { background: none; border: none; font-size: 11px; color: var(--text-secondary); cursor: pointer; text-decoration: underline; }
+        .header-btns { 
+            display: flex; 
+            gap: 8px; 
+            align-items: center; 
+        }
 
-        .parent-share-box { display: none; margin-bottom: 16px; }
-        body.kids-mode .parent-share-box { display: block; }
-        .btn-parent-share { background: linear-gradient(135deg, #FF9500, #FFCC00); color: #000; border: none; border-radius: 14px; padding: 14px; width: 100%; font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3); display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .header-btns button { 
+            background: none; 
+            border: none; 
+            font-size: 18px; 
+            cursor: pointer; 
+        }
 
-        .hypo-card { background: rgba(255, 59, 48, 0.1); border: 1.5px solid var(--danger); border-radius: var(--radius); padding: 14px; margin-bottom: 16px; text-align: center; }
-        .btn-hypo { background-color: var(--danger); color: white; border: none; border-radius: 12px; padding: 14px; width: 100%; font-weight: 700; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3); }
+        .container { 
+            padding: 16px; 
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
 
-        .type-selector { display: flex; background: rgba(128,128,128,0.12); border-radius: 10px; padding: 3px; margin-bottom: 14px; }
-        .type-btn { flex: 1; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; color: var(--text-secondary); }
-        .type-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        .card { 
+            background-color: var(--card-bg); 
+            border-radius: var(--radius); 
+            padding: 16px; 
+            margin-bottom: 16px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+            border: 0.5px solid rgba(128,128,128,0.1); 
+        }
 
-        .view-switch { display: flex; justify-content: center; gap: 10px; margin-bottom: 12px; }
-        .view-switch button { background: rgba(128,128,128,0.12); border: none; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
-        .view-switch button.active { background: var(--primary); color: white; }
+        .card h2 { 
+            font-size: 16px; 
+            margin-bottom: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            cursor: pointer; 
+            user-select: none; 
+        }
 
-        .body-canvas { position: relative; width: 100%; max-width: 280px; height: 380px; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
-        .body-svg { height: 100%; width: auto; opacity: 0.9; }
+        .pumpo-box { 
+            background: rgba(0, 122, 255, 0.08); 
+            border: 1.5px solid var(--primary); 
+            border-radius: 14px; 
+            padding: 12px; 
+            margin-bottom: 16px; 
+            display: flex; 
+            gap: 12px; 
+            align-items: flex-start; 
+            position: relative; 
+        }
+
+        body.kids-mode .pumpo-box { 
+            background: #FFF0F5; 
+            border: 2px solid #FF2D55; 
+        }
+
+        .pumpo-avatar { 
+            font-size: 32px; 
+            animation: bounce 2s infinite ease-in-out; 
+        }
+
+        @keyframes bounce { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-4px); } 
+        }
+
+        .pumpo-text { 
+            font-size: 13px; 
+            line-height: 1.4; 
+            flex: 1; 
+        }
+
+        .pumpo-btns { 
+            display: flex; 
+            gap: 8px; 
+            margin-top: 8px; 
+            align-items: center; 
+        }
+
+        .pumpo-btn-next { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            font-size: 12px; 
+            font-weight: 600; 
+            cursor: pointer; 
+        }
+
+        .pumpo-close { 
+            background: none; 
+            border: none; 
+            font-size: 11px; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+            text-decoration: underline; 
+        }
+
+        .parent-share-box { 
+            display: none; 
+            margin-bottom: 16px; 
+        }
+
+        body.kids-mode .parent-share-box { 
+            display: block; 
+        }
+
+        .btn-parent-share { 
+            background: linear-gradient(135deg, #FF9500, #FFCC00); 
+            color: #000; 
+            border: none; 
+            border-radius: 14px; 
+            padding: 14px; 
+            width: 100%; 
+            font-weight: 800; 
+            font-size: 15px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+        }
+
+        .hypo-card { 
+            background: rgba(255, 59, 48, 0.1); 
+            border: 1.5px solid var(--danger); 
+            border-radius: var(--radius); 
+            padding: 14px; 
+            margin-bottom: 16px; 
+            text-align: center; 
+        }
+
+        .btn-hypo { 
+            background-color: var(--danger); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            padding: 14px; 
+            width: 100%; 
+            font-weight: 700; 
+            font-size: 16px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3); 
+        }
+
+        .type-selector { 
+            display: flex; 
+            background: rgba(128,128,128,0.12); 
+            border-radius: 10px; 
+            padding: 3px; 
+            margin-bottom: 14px; 
+        }
+
+        .type-btn { 
+            flex: 1; 
+            text-align: center; 
+            padding: 8px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            color: var(--text-secondary); 
+        }
+
+        .type-btn.active { 
+            background: var(--card-bg); 
+            color: var(--primary); 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08); 
+        }
+
+        .view-switch { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-bottom: 12px; 
+        }
+
+        .view-switch button { 
+            background: rgba(128,128,128,0.12); 
+            border: none; 
+            padding: 6px 16px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+        }
+
+        .view-switch button.active { 
+            background: var(--primary); 
+            color: white; 
+        }
+
+        .body-canvas { 
+            position: relative; 
+            width: 100%; 
+            max-width: 280px; 
+            height: 380px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .body-svg { 
+            height: 100%; 
+            width: auto; 
+            opacity: 0.9; 
+        }
 
         .body-pin {
-            position: absolute; width: 34px; height: 34px; border-radius: 50%;
-            background: var(--card-bg); border: 2px solid var(--primary);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15); display: flex; flex-direction: column;
-            justify-content: center; align-items: center; cursor: pointer; transition: transform 0.2s;
-            z-index: 10; font-size: 9px; font-weight: 700; color: var(--text);
+            position: absolute; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 50%;
+            background: var(--card-bg); 
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15); 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer; 
+            transition: transform 0.2s;
+            z-index: 10; 
+            font-size: 9px; 
+            font-weight: 700; 
+            color: var(--text);
         }
-        .body-pin::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
-        .body-pin.selected { transform: scale(1.3); border-color: #000 !important; }
 
-        .pin-active { background: var(--primary) !important; border-color: #FFF !important; color: #FFF !important; }
-        .pin-active::after { background: #FFF !important; animation: pulse 1.5s infinite; }
-        .pin-red { border-color: var(--danger) !important; background: rgba(255, 59, 48, 0.2) !important; color: var(--danger); }
-        .pin-red::after { background: var(--danger) !important; }
-        .pin-orange { border-color: var(--warning) !important; background: rgba(255, 149, 0, 0.2) !important; color: var(--warning); }
-        .pin-orange::after { background: var(--warning) !important; }
-        .pin-yellow { border-color: #FFCC00 !important; background: rgba(255, 204, 0, 0.2) !important; color: #856404; }
-        .pin-yellow::after { background: #FFCC00 !important; }
-        .pin-tissue { border-color: #8E8E93 !important; border-style: dashed !important; background: rgba(142, 142, 147, 0.2) !important; color: #8E8E93; }
-        .pin-tissue::after { background: #8E8E93 !important; }
+        .body-pin::after { 
+            content: ''; 
+            width: 8px; 
+            height: 8px; 
+            border-radius: 50%; 
+            background: var(--primary); 
+        }
 
-        @keyframes pulse { 0% { transform: scale(0.8); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.3; } 100% { transform: scale(0.8); opacity: 1; } }
+        .body-pin.selected { 
+            transform: scale(1.3); 
+            border-color: #000 !important; 
+        }
+
+        .pin-active { 
+            background: var(--primary) !important; 
+            border-color: #FFF !important; 
+            color: #FFF !important; 
+        }
+
+        .pin-active::after { 
+            background: #FFF !important; 
+            animation: pulse 1.5s infinite; 
+        }
+
+        .pin-red { 
+            border-color: var(--danger) !important; 
+            background: rgba(255, 59, 48, 0.2) !important; 
+            color: var(--danger); 
+        }
+
+        .pin-red::after { 
+            background: var(--danger) !important; 
+        }
+
+        .pin-orange { 
+            border-color: var(--warning) !important; 
+            background: rgba(255, 149, 0, 0.2) !important; 
+            color: var(--warning); 
+        }
+
+        .pin-orange::after { 
+            background: var(--warning) !important; 
+        }
+
+        .pin-yellow { 
+            border-color: #FFCC00 !important; 
+            background: rgba(255, 204, 0, 0.2) !important; 
+            color: #856404; 
+        }
+
+        .pin-yellow::after { 
+            background: #FFCC00 !important; 
+        }
+
+        .pin-tissue { 
+            border-color: #8E8E93 !important; 
+            border-style: dashed !important; 
+            background: rgba(142, 142, 147, 0.2) !important; 
+            color: #8E8E93; 
+        }
+
+        .pin-tissue::after { 
+            background: #8E8E93 !important; 
+        }
+
+        @keyframes pulse { 
+            0% { transform: scale(0.8); opacity: 1; } 
+            50% { transform: scale(1.4); opacity: 0.3; } 
+            100% { transform: scale(0.8); opacity: 1; } 
+        }
 
         #pin-arm-front-l { top: 90px; left: 18px; }
         #pin-arm-front-r { top: 90px; right: 18px; }
@@ -117,41 +388,246 @@
         #pin-glute-l { top: 185px; left: 82px; }
         #pin-glute-r { top: 185px; right: 82px; }
 
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
-        .time-row { display: flex; gap: 10px; }
-        input, select, textarea { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid rgba(128,128,128,0.4); background: var(--card-bg); color: var(--text); font-size: 13px; }
+        .form-group { 
+            margin-bottom: 12px; 
+        }
 
-        .shift-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
-        .shift-btn { background: rgba(128,128,128,0.1); border: 2px solid transparent; border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
-        .shift-btn.active { background: rgba(0, 122, 255, 0.1); border-color: var(--primary); color: var(--primary); }
+        .form-group label { 
+            display: block; 
+            font-size: 12px; 
+            color: var(--text-secondary); 
+            margin-bottom: 4px; 
+        }
 
-        .stock-box { background: rgba(128,128,128,0.08); padding: 12px; border-radius: 10px; margin-bottom: 12px; }
-        .stock-header { font-weight: 600; font-size: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-        .stock-inputs { display: flex; gap: 10px; align-items: center; }
-        .stock-inputs div { flex: 1; }
+        .time-row { 
+            display: flex; 
+            gap: 8px; 
+            align-items: center; 
+        }
 
-        .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
-        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
-        .checkbox-label input { width: auto; }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 8px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(128,128,128,0.4); 
+            background: var(--card-bg); 
+            color: var(--text); 
+            font-size: 13px; 
+        }
 
-        .btn-primary { background-color: var(--primary); color: white; border: none; border-radius: 12px; padding: 12px; width: 100%; font-weight: 600; font-size: 15px; cursor: pointer; margin-top: 10px; }
-        .btn-secondary { background-color: rgba(128,128,128,0.12); color: var(--text); border: none; border-radius: 12px; padding: 10px; width: 100%; font-weight: 600; font-size: 13px; cursor: pointer; margin-top: 8px; }
+        .shift-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 8px; 
+            margin-bottom: 12px; 
+        }
 
-        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); border-top: 0.5px solid rgba(128,128,128,0.2); display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
-        .nav-item { text-align: center; color: var(--text-secondary); font-size: 11px; cursor: pointer; }
-        .nav-item.active { color: var(--primary); font-weight: 600; }
-        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+        .shift-btn { 
+            background: rgba(128,128,128,0.1); 
+            border: 2px solid transparent; 
+            border-radius: 8px; 
+            padding: 8px 4px; 
+            text-align: center; 
+            font-size: 12px; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+        }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .alert-box { background: rgba(255, 149, 0, 0.15); border-left: 4px solid var(--warning); padding: 10px; border-radius: 0 8px 8px 0; font-size: 13px; margin-top: 10px; color: var(--warning); }
-        .info-box { background: rgba(0, 122, 255, 0.1); border-left: 4px solid var(--primary); padding: 10px; border-radius: 0 8px 8px 0; font-size: 12px; margin-top: 10px; }
+        .shift-btn.active { 
+            background: rgba(0, 122, 255, 0.1); 
+            border-color: var(--primary); 
+            color: var(--primary); 
+        }
 
-        #pinOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--card-bg); z-index: 999; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
-        #pinOverlay input { padding: 12px; font-size: 20px; text-align: center; width: 160px; margin: 15px 0; border-radius: 10px; border: 2px solid var(--primary); background: var(--card-bg); color: var(--text); }
+        .stock-box { 
+            background: rgba(128,128,128,0.08); 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 12px; 
+        }
+
+        .stock-header { 
+            font-weight: 600; 
+            font-size: 14px; 
+            margin-bottom: 8px; 
+            display: flex; 
+            justify-content: space-between; 
+        }
+
+        .stock-inputs { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+        }
+
+        .stock-inputs div { 
+            flex: 1; 
+        }
+
+        .checkbox-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+            margin-bottom: 10px; 
+        }
+
+        .checkbox-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 13px; 
+            cursor: pointer; 
+        }
+
+        .checkbox-label input { 
+            width: auto; 
+        }
+
+        .btn-primary { 
+            background-color: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            padding: 12px; 
+            width: 100%; 
+            font-weight: 600; 
+            font-size: 15px; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        }
+
+        .btn-secondary { 
+            background-color: rgba(128,128,128,0.12); 
+            color: var(--text); 
+            border: none; 
+            border-radius: 12px; 
+            padding: 10px; 
+            width: 100%; 
+            font-weight: 600; 
+            font-size: 13px; 
+            cursor: pointer; 
+            margin-top: 8px; 
+        }
+
+        nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: var(--card-bg); 
+            border-top: 0.5px solid rgba(128,128,128,0.2); 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 10px 0; 
+            z-index: 100; 
+        }
+
+        .nav-item { 
+            text-align: center; 
+            color: var(--text-secondary); 
+            font-size: 11px; 
+            cursor: pointer; 
+        }
+
+        .nav-item.active { 
+            color: var(--primary); 
+            font-weight: 600; 
+        }
+
+        .nav-icon { 
+            font-size: 20px; 
+            margin-bottom: 2px; 
+        }
+
+        .tab-content { 
+            display: none; 
+        }
+
+        .tab-content.active { 
+            display: block; 
+        }
+
+        .alert-box { 
+            background: rgba(255, 149, 0, 0.15); 
+            border-left: 4px solid var(--warning); 
+            padding: 10px; 
+            border-radius: 0 8px 8px 0; 
+            font-size: 13px; 
+            margin-top: 10px; 
+            color: var(--warning); 
+        }
+
+        .info-box { 
+            background: rgba(0, 122, 255, 0.1); 
+            border-left: 4px solid var(--primary); 
+            padding: 10px; 
+            border-radius: 0 8px 8px 0; 
+            font-size: 12px; 
+            margin-top: 10px; 
+        }
+
+        .collapsible-body { 
+            display: none; 
+            margin-top: 10px; 
+        }
+
+        #pinOverlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: var(--card-bg); 
+            z-index: 999; 
+            display: none; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+
+        #pinOverlay input { 
+            padding: 12px; 
+            font-size: 20px; 
+            text-align: center; 
+            width: 160px; 
+            margin: 15px 0; 
+            border-radius: 10px; 
+            border: 2px solid var(--primary); 
+            background: var(--card-bg); 
+            color: var(--text); 
+        }
         
-        .doc-preview { width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px; margin-top: 8px; border: 1px solid rgba(128,128,128,0.3); display: none; }
+        .doc-preview { 
+            width: 100%; 
+            max-height: 200px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            margin-top: 8px; 
+            border: 1px solid rgba(128,128,128,0.3); 
+            display: none; 
+        }
+
+        .factor-card { 
+            background: rgba(128,128,128,0.08); 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 12px; 
+            border: 1px solid rgba(128,128,128,0.15); 
+        }
+
+        .btn-remove-slot { 
+            background: var(--danger); 
+            color: white; 
+            border: none; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
+            font-size: 11px; 
+            cursor: pointer; 
+            float: right; 
+            font-weight: bold; 
+        }
     </style>
 </head>
 <body>
@@ -329,31 +805,34 @@
                 <textarea id="prescriptionOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
             </div>
 
+            <!-- KLAPPBARE REISE-CHECKLISTE & DOKUMENTE -->
             <div class="card">
-                <h2>✈️ Urlaubs- & Reise-Checkliste</h2>
-                <div class="checkbox-group" id="travelChecklist">
-                    <label class="checkbox-label"><input type="checkbox"> 💉 Katheter (Doppelte Menge)</label>
-                    <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire / Patronen</label>
-                    <label class="checkbox-label"><input type="checkbox"> 💧 Insulin (Auf KÜHLUNG achten! Nie im Frachtraum!)</label>
-                    <label class="checkbox-label"><input type="checkbox"> 🖋️ Pen-Nadeln & U100-Einwegspritzen</label>
-                    <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren & Ersatz-Sensor</label>
-                    <label class="checkbox-label"><input type="checkbox"> 🍬 Traubenzucker / Notfall-Hypo-Set</label>
-                    <label class="checkbox-label"><input type="checkbox"> 🩸 Blutzuckermessgerät & Teststreifen (Backup)</label>
-                    <label class="checkbox-label"><input type="checkbox"> 📄 Ärztliche Bescheinigung für den Zoll / Flughafen</label>
+                <h2 onclick="toggleSection('travelSection')">✈️ Urlaubs- & Reise-Checkliste <span id="arrowTravel">▼</span></h2>
+                <div id="travelSection" class="collapsible-body">
+                    <div class="checkbox-group" id="travelChecklist">
+                        <label class="checkbox-label"><input type="checkbox"> 💉 Katheter (Doppelte Menge einpacken)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire / Vorgefüllte Patronen</label>
+                        <label class="checkbox-label"><input type="checkbox"> 💧 Insulin (Auf KÜHLUNG achten! Nie im Frachtraum!)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🖋️ Pen-Nadeln & U100-Einwegspritzen (Ausreichend Puffer)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren & Ersatz-Sensor</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🍬 Traubenzucker / Notfall-Hypo-Set</label>
+                        <label class="checkbox-label"><input type="checkbox"> 🩸 Blutzuckermessgerät & Teststreifen (Backup)</label>
+                        <label class="checkbox-label"><input type="checkbox"> 📄 Ärztliche Bescheinigung für den Zoll / Flughafen</label>
+                    </div>
+                    <div class="info-box">
+                        <strong>🌴 Tropen- & Kälte-Tipp:</strong> Insulin vor direkter Sonne schützen! Verwende in heißen Ländern eine Frio-Kühltasche. Im Flugzeug Insulin IMMER ins Handgepäck nehmen (im Frachtraum herrscht Frostgefahr!).
+                    </div>
+                    
+                    <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
+                    
+                    <h3 style="font-size:14px; margin-bottom:8px;">📄 Reisedokumente & Zoll-Attest</h3>
+                    <div class="form-group">
+                        <label>Attest / Ausweis ablegen (Foto auswählen):</label>
+                        <input type="file" id="docUploadInput" accept="image/*" onchange="handleDocUpload(event)">
+                    </div>
+                    <img id="docPreviewImg" class="doc-preview" alt="Vorschau Reisedokument">
+                    <button class="btn-secondary" id="btnRemoveDoc" style="display:none;" onclick="removeDocImage()">Dokument löschen</button>
                 </div>
-                <div class="info-box">
-                    <strong>🌴 Tropen- & Kälte-Tipp:</strong> Insulin vor direkter Sonne schützen! Verwende in heißen Ländern eine Frio-Kühltasche. Im Flugzeug Insulin IMMER ins Handgepäck nehmen (im Frachtraum herrscht Frostgefahr!).
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>📄 Reisedokumente & Zoll-Attest</h2>
-                <div class="form-group">
-                    <label>Attest / Ausweis ablegen (Foto auswählen):</label>
-                    <input type="file" id="docUploadInput" accept="image/*" onchange="handleDocUpload(event)">
-                </div>
-                <img id="docPreviewImg" class="doc-preview" alt="Vorschau Reisedokument">
-                <button class="btn-secondary" id="btnRemoveDoc" style="display:none;" onclick="removeDocImage()">Dokument löschen</button>
             </div>
 
             <div class="card">
@@ -444,31 +923,38 @@
         <div id="tab-settings" class="tab-content">
             <div class="card">
                 <h2>🚨 Notfall-Plan (Pumpenausfall / ICT)</h2>
+                
                 <div class="form-group">
-                    <label>Notfall-Langzeitinsulin (Präparat):</label>
+                    <label>Notfall-Langzeitinsulin (Basal-Präparat):</label>
                     <input type="text" id="emergencyInsulinBrand" value="Tresiba / Lantus">
                 </div>
                 <div class="time-row form-group">
                     <div>
                         <label>Dosis Morgens (IE):</label>
-                        <input type="number" id="basalMorningIE" value="12">
+                        <input type="number" id="basalMorn" value="12">
                     </div>
                     <div>
                         <label>Dosis Abends (IE):</label>
-                        <input type="number" id="basalEveningIE" value="10">
+                        <input type="number" id="basalEve" value="10">
                     </div>
                 </div>
-                <div class="time-row form-group">
-                    <div>
-                        <label>Mahlzeiten-Faktor (BE):</label>
-                        <input type="text" id="factorBE" value="1.5 IE / BE">
-                    </div>
-                    <div>
-                        <label>Korrektur-Faktor:</label>
-                        <input type="text" id="factorCorrection" value="1 IE senkt 40 mg/dl">
-                    </div>
+
+                <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
+                <label style="font-size:13px; font-weight:700; margin-bottom:8px; display:block;">🕒 Zeitfenster für BE-Faktoren, Korrektur & Zielwerte:</label>
+                <div id="factorSlotsContainer"></div>
+                <button class="btn-secondary" style="margin-bottom:12px;" onclick="addFactorSlot()">+ Zeitfenster hinzufügen</button>
+
+                <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
+                
+                <h3 onclick="toggleSection('basalProfileSection')" style="font-size:14px; cursor:pointer; user-select:none;">
+                    📟 Manuelle Pumpen-Basalrate (0-24 Uhr) <span id="arrowBasal">▼</span>
+                </h3>
+                <div id="basalProfileSection" class="collapsible-body">
+                    <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Ablage deiner stündlichen Basalrate zur Kontrolle bei Pumpenausfall:</p>
+                    <div id="hourlyBasalContainer" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:6px;"></div>
                 </div>
-                <button class="btn-primary" style="background-color:var(--danger);" onclick="saveEmergencyPlan()">💾 Notfall-Plan speichern</button>
+
+                <button class="btn-primary" style="background-color:var(--danger); margin-top:14px;" onclick="saveEmergencyPlan()">💾 Notfall-Plan komplett speichern</button>
             </div>
 
             <div class="card">
@@ -545,6 +1031,15 @@
         let batteryDate = parseInt(localStorage.getItem('ypso_battery')) || new Date().getTime();
         let insulinBrand = localStorage.getItem('ypso_insulin') || 'Fiasp (10ml Fläschchen)';
 
+        let factorSlots = JSON.parse(localStorage.getItem('ypso_factor_slots')) || [
+            { start: "00:00", end: "06:00", be: "1.0 IE/BE", corr: "1 IE / 50 mg/dl", target: "100 mg/dl" },
+            { start: "06:00", end: "11:00", be: "1.5 IE/BE", corr: "1 IE / 40 mg/dl", target: "100 mg/dl" },
+            { start: "11:00", end: "18:00", be: "1.2 IE/BE", corr: "1 IE / 40 mg/dl", target: "100 mg/dl" },
+            { start: "18:00", end: "24:00", be: "1.0 IE/BE", corr: "1 IE / 50 mg/dl", target: "100 mg/dl" }
+        ];
+
+        let hourlyBasal = JSON.parse(localStorage.getItem('ypso_hourly_basal')) || Array(24).fill("0.50");
+
         const PARENT_PIN = "1234";
         let pendingAction = null;
 
@@ -561,9 +1056,57 @@
         updateHistoryUI();
         updateBatteryUI();
         loadDocImage();
+        renderFactorSlots();
+        renderHourlyBasalUI();
         startPumpoTour(1);
 
         if (currentShift !== 'Keine') selectShift(currentShift, false);
+
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            const isVisible = el.style.display === 'block';
+            el.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function renderFactorSlots() {
+            const container = document.getElementById('factorSlotsContainer');
+            container.innerHTML = factorSlots.map((slot, idx) => `
+                <div class="factor-card">
+                    <button class="btn-remove-slot" onclick="removeFactorSlot(${idx})">✕ Entfernen</button>
+                    <div class="time-row" style="margin-bottom:8px;">
+                        <span style="font-size:12px; font-weight:600;">Zeit:</span>
+                        <input type="time" value="${slot.start}" onchange="factorSlots[${idx}].start = this.value">
+                        <span>bis</span>
+                        <input type="time" value="${slot.end}" onchange="factorSlots[${idx}].end = this.value">
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:6px;">
+                        <div><label style="font-size:10px;">BE-Faktor:</label><input type="text" value="${slot.be}" onchange="factorSlots[${idx}].be = this.value"></div>
+                        <div><label style="font-size:10px;">Korrekturfaktor:</label><input type="text" value="${slot.corr}" onchange="factorSlots[${idx}].corr = this.value"></div>
+                    </div>
+                    <div><label style="font-size:10px;">Zielwert:</label><input type="text" value="${slot.target}" onchange="factorSlots[${idx}].target = this.value"></div>
+                </div>
+            `).join('');
+        }
+
+        function addFactorSlot() {
+            factorSlots.push({ start: "12:00", end: "16:00", be: "1.0 IE/BE", corr: "1 IE / 40 mg/dl", target: "100 mg/dl" });
+            renderFactorSlots();
+        }
+
+        function removeFactorSlot(idx) {
+            factorSlots.splice(idx, 1);
+            renderFactorSlots();
+        }
+
+        function renderHourlyBasalUI() {
+            const container = document.getElementById('hourlyBasalContainer');
+            container.innerHTML = hourlyBasal.map((val, h) => `
+                <div style="display:flex; align-items:center; gap:4px; font-size:11px;">
+                    <span style="width:45px;">${h < 10 ? '0' + h : h}:00 Uhr:</span>
+                    <input type="number" step="0.05" value="${val}" style="padding:4px;" onchange="hourlyBasal[${h}] = this.value">
+                </div>
+            `).join('');
+        }
 
         function protectedAction(actionCallback) {
             if (kidsMode) {
@@ -774,15 +1317,9 @@
         }
 
         function saveEmergencyPlan() {
-            const plan = {
-                brand: document.getElementById('emergencyInsulinBrand').value,
-                morn: document.getElementById('basalMorningIE').value,
-                eve: document.getElementById('basalEveningIE').value,
-                be: document.getElementById('factorBE').value,
-                corr: document.getElementById('factorCorrection').value
-            };
-            localStorage.setItem('ypso_emergency_plan', JSON.stringify(plan));
-            alert('🚨 Notfall-Plan erfolgreich gespeichert!');
+            localStorage.setItem('ypso_factor_slots', JSON.stringify(factorSlots));
+            localStorage.setItem('ypso_hourly_basal', JSON.stringify(hourlyBasal));
+            alert('🚨 Notfall-Plan komplett gespeichert!');
         }
 
         function renderPins() {
@@ -874,7 +1411,7 @@
             document.getElementById('boxCatheter').value = stock.catBox;
             document.getElementById('singleCatheter').value = stock.catSingle;
             document.getElementById('boxRes').value = stock.resBox;
-            document.getElementById('singleRes').value = stock.singleRes;
+            document.getElementById('singleRes').value = stock.resSingle;
             document.getElementById('boxInsulin').value = stock.insBox || 0;
             document.getElementById('singleInsulin').value = stock.insSingle || 0;
             document.getElementById('singleNeedles').value = stock.needles || 0;
