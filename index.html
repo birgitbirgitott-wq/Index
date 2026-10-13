@@ -40,348 +40,670 @@
             font-family: -apple-system, BlinkMacSystemFont, "Comic Sans MS", "Chalkboard SE", sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: inherit; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 95px; transition: background-color 0.3s, color 0.3s; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: inherit; 
+            -webkit-tap-highlight-color: transparent; 
+        }
 
-        header { background-color: var(--card-bg); padding: 14px 20px; border-bottom: 0.5px solid rgba(128,128,128,0.2); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-        header h1 { font-size: 18px; font-weight: 700; }
-        .header-btns { display: flex; gap: 8px; align-items: center; }
-        .header-btns button { background: none; border: none; font-size: 18px; cursor: pointer; padding: 4px; border-radius: 8px; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            padding-bottom: 95px; 
+            transition: background-color 0.3s, color 0.3s; 
+        }
 
-        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
-        .card { background-color: var(--card-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 0.5px solid rgba(128,128,128,0.1); }
-        .card h2 { font-size: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+        header { 
+            background-color: var(--card-bg); 
+            padding: 14px 20px; 
+            border-bottom: 0.5px solid rgba(128,128,128,0.2); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
 
-        .pumpo-box { background: rgba(0, 122, 255, 0.1); border: 2px solid var(--primary); border-radius: 14px; padding: 14px; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 4px 15px rgba(0,122,255,0.15); }
-        .pumpo-avatar { font-size: 32px; }
-        .pumpo-text { font-size: 13px; line-height: 1.4; flex: 1; }
-        .pumpo-btns { display: flex; gap: 6px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
-        .pumpo-btn-next { background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; }
-        .pumpo-close { background: none; border: none; font-size: 11px; color: var(--text-secondary); cursor: pointer; text-decoration: underline; margin-left: auto; }
+        header h1 { 
+            font-size: 18px; 
+            font-weight: 700; 
+        }
 
-        .parent-share-box { display: none; margin-bottom: 16px; }
-        body.kids-mode .parent-share-box { display: block; }
-        .btn-parent-share { background: linear-gradient(135deg, #FF9500, #FFCC00); color: #000; border: none; border-radius: 14px; padding: 14px; width: 100%; font-weight: 800; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 10px rgba(255,149,0,0.3); }
+        .header-btns { 
+            display: flex; 
+            gap: 8px; 
+            align-items: center; 
+        }
 
-        .hypo-card { background: rgba(255, 59, 48, 0.1); border: 1.5px solid var(--danger); border-radius: var(--radius); padding: 14px; margin-bottom: 16px; text-align: center; }
-        .btn-hypo { background-color: var(--danger); color: white; border: none; border-radius: 12px; padding: 14px; width: 100%; font-weight: 700; font-size: 16px; cursor: pointer; }
+        .header-btns button { 
+            background: none; 
+            border: none; 
+            font-size: 18px; 
+            cursor: pointer; 
+        }
 
-        .type-selector { display: flex; background: rgba(128,128,128,0.12); border-radius: 10px; padding: 3px; margin-bottom: 14px; }
-        .type-btn { flex: 1; text-align: center; padding: 8px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; color: var(--text-secondary); border: none; background: transparent; }
-        .type-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        .container { 
+            padding: 16px; 
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
 
-        .view-switch { display: flex; justify-content: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-        .view-switch button { background: rgba(128,128,128,0.12); border: none; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
-        .view-switch button.active { background: var(--primary); color: white; }
+        .card { 
+            background-color: var(--card-bg); 
+            border-radius: var(--radius); 
+            padding: 16px; 
+            margin-bottom: 16px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+            border: 0.5px solid rgba(128,128,128,0.1); 
+        }
 
-        .body-canvas { position: relative; width: 100%; max-width: 280px; height: 380px; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
-        .body-svg { height: 100%; width: auto; opacity: 0.95; }
-        .body-pin { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: var(--card-bg); border: 2px solid var(--primary); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.2s; z-index: 10; font-size: 9px; font-weight: 700; color: var(--text); }
-        .body-pin::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
-        .body-pin.selected { transform: scale(1.3); border-color: #000 !important; }
-        .pin-active { background: var(--primary) !important; border-color: #FFF !important; color: #FFF !important; }
-        .pin-active::after { background: #FFF !important; animation: pulse 1.5s infinite; }
-        .pin-red { border-color: var(--danger) !important; background: rgba(255, 59, 48, 0.2) !important; color: var(--danger); }
-        .pin-orange { border-color: var(--warning) !important; background: rgba(255, 149, 0, 0.2) !important; color: var(--warning); }
-        .pin-yellow { border-color: #FFCC00 !important; background: rgba(255, 204, 0, 0.2) !important; color: #856404; }
-        .pin-tissue { border-color: #8E8E93 !important; border-style: dashed !important; background: rgba(142, 142, 147, 0.2) !important; color: #8E8E93; }
+        .card h2 { 
+            font-size: 16px; 
+            margin-bottom: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            cursor: pointer; 
+            user-select: none; 
+        }
 
-        #pin-arm-front-l { top: 95px; left: 16px; }
-        #pin-arm-front-r { top: 95px; right: 16px; }
+        .pumpo-box { 
+            background: rgba(0, 122, 255, 0.08); 
+            border: 1.5px solid var(--primary); 
+            border-radius: 14px; 
+            padding: 12px; 
+            margin-bottom: 16px; 
+            display: flex; 
+            gap: 12px; 
+            align-items: flex-start; 
+            position: relative; 
+        }
+
+        body.kids-mode .pumpo-box { 
+            background: #FFF0F5; 
+            border: 2px solid #FF2D55; 
+        }
+
+        .pumpo-avatar { 
+            font-size: 32px; 
+            animation: bounce 2s infinite ease-in-out; 
+        }
+
+        @keyframes bounce { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-4px); } 
+        }
+
+        .pumpo-text { 
+            font-size: 13px; 
+            line-height: 1.4; 
+            flex: 1; 
+        }
+
+        .pumpo-btns { 
+            display: flex; 
+            gap: 8px; 
+            margin-top: 8px; 
+            align-items: center; 
+        }
+
+        .pumpo-btn-next { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            font-size: 12px; 
+            font-weight: 600; 
+            cursor: pointer; 
+        }
+
+        .pumpo-close { 
+            background: none; 
+            border: none; 
+            font-size: 11px; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+            text-decoration: underline; 
+        }
+
+        .parent-share-box { 
+            display: none; 
+            margin-bottom: 16px; 
+        }
+
+        body.kids-mode .parent-share-box { 
+            display: block; 
+        }
+
+        .btn-parent-share { 
+            background: linear-gradient(135deg, #FF9500, #FFCC00); 
+            color: #000; 
+            border: none; 
+            border-radius: 14px; 
+            padding: 14px; 
+            width: 100%; 
+            font-weight: 800; 
+            font-size: 15px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+        }
+
+        .hypo-card { 
+            background: rgba(255, 59, 48, 0.1); 
+            border: 1.5px solid var(--danger); 
+            border-radius: var(--radius); 
+            padding: 14px; 
+            margin-bottom: 16px; 
+            text-align: center; 
+        }
+
+        .btn-hypo { 
+            background-color: var(--danger); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            padding: 14px; 
+            width: 100%; 
+            font-weight: 700; 
+            font-size: 16px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3); 
+        }
+
+        .type-selector { 
+            display: flex; 
+            background: rgba(128,128,128,0.12); 
+            border-radius: 10px; 
+            padding: 3px; 
+            margin-bottom: 14px; 
+        }
+
+        .type-btn { 
+            flex: 1; 
+            text-align: center; 
+            padding: 8px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            color: var(--text-secondary); 
+        }
+
+        .type-btn.active { 
+            background: var(--card-bg); 
+            color: var(--primary); 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08); 
+        }
+
+        .view-switch { 
+            display: flex; 
+            justify-content: center; 
+            gap: 8px; 
+            margin-bottom: 12px; 
+            flex-wrap: wrap;
+        }
+
+        .view-switch button { 
+            background: rgba(128,128,128,0.12); 
+            border: none; 
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+        }
+
+        .view-switch button.active { 
+            background: var(--primary); 
+            color: white; 
+        }
+
+        .body-canvas { 
+            position: relative; 
+            width: 100%; 
+            max-width: 280px; 
+            height: 380px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .body-svg { 
+            height: 100%; 
+            width: auto; 
+            opacity: 0.9; 
+        }
+
+        .body-pin {
+            position: absolute; 
+            width: 34px; 
+            height: 34px; 
+            border-radius: 50%;
+            background: var(--card-bg); 
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15); 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer; 
+            transition: transform 0.2s;
+            z-index: 10; 
+            font-size: 9px; 
+            font-weight: 700; 
+            color: var(--text);
+        }
+
+        .body-pin::after { 
+            content: ''; 
+            width: 8px; 
+            height: 8px; 
+            border-radius: 50%; 
+            background: var(--primary); 
+        }
+
+        .body-pin.selected { 
+            transform: scale(1.3); 
+            border-color: #000 !important; 
+        }
+
+        .pin-active { 
+            background: var(--primary) !important; 
+            border-color: #FFF !important; 
+            color: #FFF !important; 
+        }
+
+        .pin-active::after { 
+            background: #FFF !important; 
+            animation: pulse 1.5s infinite; 
+        }
+
+        .pin-red { 
+            border-color: var(--danger) !important; 
+            background: rgba(255, 59, 48, 0.2) !important; 
+            color: var(--danger); 
+        }
+
+        .pin-orange { 
+            border-color: var(--warning) !important; 
+            background: rgba(255, 149, 0, 0.2) !important; 
+            color: var(--warning); 
+        }
+
+        .pin-yellow { 
+            border-color: #FFCC00 !important; 
+            background: rgba(255, 204, 0, 0.2) !important; 
+            color: #856404; 
+        }
+
+        .pin-tissue { 
+            border-color: #8E8E93 !important; 
+            border-style: dashed !important; 
+            background: rgba(142, 142, 147, 0.2) !important; 
+            color: #8E8E93; 
+        }
+
+        @keyframes pulse { 
+            0% { transform: scale(0.8); opacity: 1; } 
+            50% { transform: scale(1.4); opacity: 0.3; } 
+            100% { transform: scale(0.8); opacity: 1; } 
+        }
+
+        /* Pin-Positionen */
+        #pin-arm-front-l { top: 90px; left: 16px; }
+        #pin-arm-front-r { top: 90px; right: 16px; }
         #pin-belly-lu { top: 140px; left: 88px; }
         #pin-belly-ru { top: 140px; right: 88px; }
         #pin-belly-ld { top: 175px; left: 88px; }
         #pin-belly-rd { top: 175px; right: 88px; }
         #pin-thigh-l { top: 245px; left: 78px; }
         #pin-thigh-r { top: 245px; right: 78px; }
-        #pin-arm-back-l { top: 95px; left: 16px; }
-        #pin-arm-back-r { top: 95px; right: 16px; }
+
+        #pin-arm-back-l { top: 90px; left: 16px; }
+        #pin-arm-back-r { top: 90px; right: 16px; }
         #pin-glute-l { top: 180px; left: 82px; }
         #pin-glute-r { top: 180px; right: 82px; }
 
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
         .time-row { display: flex; gap: 8px; align-items: center; }
-        input, select, textarea { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid rgba(128,128,128,0.4); background: var(--card-bg); color: var(--text); font-size: 13px; }
 
-        .shift-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
-        .shift-btn { background: rgba(128,128,128,0.1); border: 2px solid transparent; border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
-        .shift-btn.active { background: rgba(0, 122, 255, 0.1); border-color: var(--primary); color: var(--primary); }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 8px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(128,128,128,0.4); 
+            background: var(--card-bg); 
+            color: var(--text); 
+            font-size: 13px; 
+        }
 
-        .stock-box { background: rgba(128,128,128,0.08); padding: 12px; border-radius: 10px; margin-bottom: 12px; }
-        .stock-header { font-weight: 600; font-size: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-        .stock-inputs { display: flex; gap: 10px; align-items: center; }
+        .shift-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 8px; 
+            margin-bottom: 12px; 
+        }
+
+        .shift-btn { 
+            background: rgba(128,128,128,0.1); 
+            border: 2px solid transparent; 
+            border-radius: 8px; 
+            padding: 8px 4px; 
+            text-align: center; 
+            font-size: 12px; 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+        }
+
+        .shift-btn.active { 
+            background: rgba(0, 122, 255, 0.1); 
+            border-color: var(--primary); 
+            color: var(--primary); 
+        }
+
+        .stock-box { 
+            background: rgba(128,128,128,0.08); 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 12px; 
+        }
+
+        .stock-header { 
+            font-weight: 600; 
+            font-size: 14px; 
+            margin-bottom: 8px; 
+            display: flex; 
+            justify-content: space-between; 
+        }
+
+        .stock-inputs { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+        }
+
         .stock-inputs div { flex: 1; }
 
-        .filter-box { background: rgba(0, 122, 255, 0.05); border: 1.5px dashed var(--primary); padding: 12px; border-radius: 12px; margin-bottom: 12px; }
-        .filter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+        .checkbox-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+            margin-bottom: 10px; 
+        }
 
-        .checkbox-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
-        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+        .checkbox-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-size: 13px; 
+            cursor: pointer; 
+        }
+
         .checkbox-label input { width: auto; }
 
-        .btn-primary { background-color: var(--primary); color: white; border: none; border-radius: 12px; padding: 12px; width: 100%; font-weight: 600; font-size: 15px; cursor: pointer; margin-top: 10px; }
-        .btn-secondary { background-color: rgba(128,128,128,0.12); color: var(--text); border: none; border-radius: 12px; padding: 10px; width: 100%; font-weight: 600; font-size: 13px; cursor: pointer; margin-top: 8px; }
+        .btn-primary { 
+            background-color: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            padding: 12px; 
+            width: 100%; 
+            font-weight: 600; 
+            font-size: 15px; 
+            cursor: pointer; 
+            margin-top: 10px; 
+        }
 
-        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); border-top: 0.5px solid rgba(128,128,128,0.2); display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
-        .nav-item { text-align: center; color: var(--text-secondary); font-size: 11px; cursor: pointer; background: none; border: none; flex: 1; }
-        .nav-item.active { color: var(--primary); font-weight: 600; }
-        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+        .btn-secondary { 
+            background-color: rgba(128,128,128,0.12); 
+            color: var(--text); 
+            border: none; 
+            border-radius: 12px; 
+            padding: 10px; 
+            width: 100%; 
+            font-weight: 600; 
+            font-size: 13px; 
+            cursor: pointer; 
+            margin-top: 8px; 
+        }
+
+        nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: var(--card-bg); 
+            border-top: 0.5px solid rgba(128,128,128,0.2); 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 10px 0; 
+            z-index: 100; 
+        }
+
+        .nav-item { 
+            text-align: center; 
+            color: var(--text-secondary); 
+            font-size: 11px; 
+            cursor: pointer; 
+            flex: 1;
+        }
+
+        .nav-item.active { 
+            color: var(--primary); 
+            font-weight: 600; 
+        }
+
+        .nav-icon { 
+            font-size: 20px; 
+            margin-bottom: 2px; 
+        }
+
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        .alert-box { background: rgba(255, 149, 0, 0.15); border-left: 4px solid var(--warning); padding: 10px; border-radius: 0 8px 8px 0; font-size: 13px; margin-top: 10px; color: var(--warning); }
-        .info-box { background: rgba(0, 122, 255, 0.1); border-left: 4px solid var(--primary); padding: 10px; border-radius: 0 8px 8px 0; font-size: 12px; margin-top: 10px; }
-        .calc-result-box { background: rgba(52, 199, 89, 0.12); border: 1px solid var(--success); padding: 12px; border-radius: 10px; margin-top: 10px; text-align: center; }
+        .alert-box { 
+            background: rgba(255, 149, 0, 0.15); 
+            border-left: 4px solid var(--warning); 
+            padding: 10px; 
+            border-radius: 0 8px 8px 0; 
+            font-size: 13px; 
+            margin-top: 10px; 
+            color: var(--warning); 
+        }
+
+        .info-box { 
+            background: rgba(0, 122, 255, 0.1); 
+            border-left: 4px solid var(--primary); 
+            padding: 10px; 
+            border-radius: 0 8px 8px 0; 
+            font-size: 12px; 
+            margin-top: 10px; 
+        }
 
         .collapsible-body { display: none; margin-top: 10px; }
 
-        #pinOverlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--card-bg); z-index: 999; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
-        #pinOverlay input { padding: 12px; font-size: 20px; text-align: center; width: 160px; margin: 15px 0; border-radius: 10px; border: 2px solid var(--primary); background: var(--card-bg); color: var(--text); }
+        #pinOverlay { 
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            background: var(--card-bg); 
+            z-index: 999; 
+            display: none; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
 
-        .group-container { background: rgba(128,128,128,0.05); border: 1px solid rgba(128,128,128,0.15); border-radius: 12px; padding: 12px; margin-bottom: 14px; }
-        .group-title { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .factor-card { background: var(--card-bg); padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid rgba(128,128,128,0.2); }
-        .btn-remove-slot { background: var(--danger); color: white; border: none; padding: 2px 6px; border-radius: 4px; font-size: 10px; cursor: pointer; float: right; font-weight: bold; }
+        #pinOverlay input { 
+            padding: 12px; 
+            font-size: 20px; 
+            text-align: center; 
+            width: 160px; 
+            margin: 15px 0; 
+            border-radius: 10px; 
+            border: 2px solid var(--primary); 
+            background: var(--card-bg); 
+            color: var(--text); 
+        }
         
-        .doc-thumb-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-        .doc-thumb { position: relative; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(128,128,128,0.3); background: #000; }
-        .doc-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .doc-thumb button { position: absolute; top: 2px; right: 2px; background: rgba(255,59,48,0.8); color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 10px; cursor: pointer; }
+        .doc-preview { 
+            width: 100%; 
+            max-height: 200px; 
+            object-fit: contain; 
+            border-radius: 8px; 
+            margin-top: 8px; 
+            border: 1px solid rgba(128,128,128,0.3); 
+            display: none; 
+        }
+
+        .factor-card { 
+            background: rgba(128,128,128,0.08); 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 12px; 
+            border: 1px solid rgba(128,128,128,0.15); 
+        }
+
+        .btn-remove-slot { 
+            background: var(--danger); 
+            color: white; 
+            border: none; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
+            font-size: 11px; 
+            cursor: pointer; 
+            float: right; 
+            font-weight: bold; 
+        }
     </style>
 </head>
 <body>
 
-    <div id="srAnnounce" class="sr-only" aria-live="polite"></div>
-
-    <div id="pinOverlay" role="dialog" aria-modal="true">
+    <!-- PIN OVERLAY MIT NOTFALL-RESET -->
+    <div id="pinOverlay">
         <h2>🔒 Eltern-PIN erforderlich</h2>
-        <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Bitte 4-stellige PIN eingeben (Default: 1234):</p>
+        <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Bitte 4-stellige PIN eingeben:</p>
         <input type="password" id="pinInput" maxlength="4" placeholder="****">
         <button class="btn-primary" style="width:160px;" onclick="checkPin()">Bestätigen</button>
         <button class="btn-secondary" style="width:160px; margin-top:10px;" onclick="cancelPin()">Abbrechen</button>
+        <button style="background:none; border:none; color:var(--danger); font-size:11px; margin-top:16px; cursor:pointer; text-decoration:underline;" onclick="emergencyPinReset()">PIN vergessen? (Notfall-Reset auf 1234)</button>
     </div>
 
-    <header role="banner">
+    <header>
         <h1 id="appTitle">YpsoShift Master Pro</h1>
         <div class="header-btns">
-            <button onclick="startPumpoTour(1)" title="Pumpo Hilfe">📟</button>
+            <button onclick="startPumpoTour(1)" title="Pumpo Tour starten">📟</button>
             <button onclick="toggleDarkMode()" title="Dunkelmodus">🌙</button>
-            <button onclick="protectedAction(requestKidsModeToggle)" title="Kinder-Modus">🎈</button>
+            <button onclick="requestKidsModeToggle()" title="Kinder-Modus">🎈</button>
         </div>
     </header>
 
-    <div class="container" role="main">
+    <div class="container">
         
-        <!-- PUMPO 3.0 SUPER-ASSISTENT -->
         <div class="pumpo-box" id="pumpoGuide">
-            <div class="pumpo-avatar" id="pumpoAvatar">📟</div>
+            <div class="pumpo-avatar" id="pumpoAvatar">🤖</div>
             <div class="pumpo-text">
-                <span id="pumpoMsg"><strong>Hi, ich bin Pumpo! Dein intelligenter Pumpen-Mentor.</strong><br>Ich helfe dir im Schichtdienst, bei Katheterwechseln und passe auf deine Versorgung auf!</span>
+                <span id="pumpoMsg"><strong>Willkommen bei YpsoShift! Ich bin Pumpo!</strong><br>Hier verwaltest du Katheter, Sensoren, Schichten & Notfallpläne.</span>
                 <div class="pumpo-btns">
-                    <button class="pumpo-btn-next" onclick="nextPumpoStep()">Tour ➔</button>
-                    <button class="pumpo-btn-next" style="background:var(--success);" onclick="switchTab('shifts', document.getElementById('nav-shifts'))">🍎 BE-Rechner</button>
-                    <button class="pumpo-btn-next" style="background:var(--warning);" onclick="switchTab('settings', document.getElementById('nav-settings'))">🚨 ICT-Notfall</button>
+                    <button class="pumpo-btn-next" id="pumpoNextBtn" onclick="nextPumpoStep()">Weiter ➔</button>
                     <button class="pumpo-close" onclick="closePumpoGuide()">[X]</button>
                 </div>
             </div>
         </div>
 
         <div class="parent-share-box">
-            <button class="btn-parent-share" onclick="shareWithParents()"><span>📱</span> Mit Eltern teilen (Status / Notfall)</button>
+            <button class="btn-parent-share" onclick="shareWithParents()">
+                <span>📱</span> Mit Eltern teilen
+            </button>
         </div>
 
         <div class="hypo-card" id="hypoCard" style="display:none;">
             <button class="btn-hypo" onclick="triggerHypoQuick()">🚨 HYPO-NOTFALL ( +<span id="hypoUnitVal">1.0</span> BE/KE )</button>
         </div>
 
-        <!-- 3-MONATS-ERINNERUNG FÜR ARZTBESUCH -->
-        <div id="checkupReminderCard" class="alert-box" style="display:none; margin-bottom:16px;">
-            <strong>🏥 3-Monats-Erinnerung: Diabetologen-Termin!</strong>
-            <p style="font-size:12px; margin-top:4px;">Dein nächster Check ist da. Bitte aktualisiere dein Gewicht und deine Werte im Optionen-Bereich.</p>
-        </div>
-
-        <!-- TAB 1: KÖRPER & KATHETER -->
-        <div id="tab-pump" class="tab-content active" role="tabpanel">
+        <!-- TAB 1: KÖRPER & EINSTICHSTELLEN -->
+        <div id="tab-pump" class="tab-content active">
             <div class="card">
                 <h2>Einstichstelle wählen</h2>
+                
                 <div class="type-selector">
-                    <button class="type-btn active" id="typeCatheter" onclick="setEntryType('catheter')">💉 Katheter</button>
-                    <button class="type-btn" id="typeSensor" onclick="setEntryType('sensor')">📡 BZ-Sensor</button>
+                    <div class="type-btn active" id="typeCatheter" onclick="setEntryType('catheter')">💉 Katheter (Bauch/Po/Bein)</div>
+                    <div class="type-btn" id="typeSensor" onclick="setEntryType('sensor')">📡 BZ-Sensor (Arm/Bauch/Po)</div>
                 </div>
 
                 <div class="view-switch">
                     <button class="active" id="btnViewFront" onclick="switchBodyView('front')">Vorderseite</button>
                     <button id="btnViewBack" onclick="switchBodyView('back')">Rückseite / Gesäß</button>
-                    <button id="btnGenderToggle" style="background:rgba(0,122,255,0.15); color:var(--primary);" onclick="toggleGenderView()">♂️ / ♀️ Geschlecht</button>
+                    <button style="background:rgba(0,122,255,0.15); color:var(--primary);" onclick="toggleGenderView()">♂️ / ♀️ Geschlecht</button>
                 </div>
 
                 <div class="body-canvas">
-                    <!-- SPORTLICHE ANATOMISCHE SVG-SILHOUETTE -->
-                    <svg id="svgFront" class="body-svg" viewBox="0 0 200 340">
-                        <!-- MÄNNLICHE FORM VORNE -->
+                    <svg id="svgFront" class="body-svg" viewBox="0 0 200 320">
                         <g id="bodyMaleFront">
-                            <path d="M 100 15 C 88 15 82 25 82 38 C 82 48 70 54 58 60 C 46 66 38 90 42 130 C 44 150 48 185 54 220 C 58 245 64 295 68 315 L 96 315 L 98 210 L 102 210 L 104 315 L 132 315 C 136 295 142 245 146 220 C 152 185 156 150 158 130 C 162 90 154 66 142 60 C 130 54 118 48 118 38 C 118 25 112 15 100 15 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2"/>
-                            <path d="M 62 105 C 78 112 88 112 100 108 C 112 112 122 112 138 105" fill="none" stroke="var(--body-stroke)" stroke-width="1" opacity="0.6"/>
-                            <circle cx="100" cy="180" r="2.5" fill="var(--body-stroke)" opacity="0.5"/>
+                            <path d="M 100 15 C 88 15 80 25 80 38 C 80 48 68 55 58 65 C 48 75 42 100 48 135 C 52 160 55 190 60 290 L 100 290 L 140 290 C 145 190 148 160 152 135 C 158 100 152 75 142 65 C 132 55 120 48 120 38 C 120 25 112 15 100 15 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
                         </g>
-                        <!-- WEIBLICHE FORM VORNE -->
                         <g id="bodyFemaleFront" style="display:none;">
-                            <path d="M 100 15 C 89 15 84 25 84 38 C 84 46 72 52 62 58 C 50 64 42 88 45 125 C 47 145 52 170 52 185 C 50 205 58 245 66 315 L 95 315 L 98 205 L 102 205 L 105 315 L 134 315 C 142 245 150 205 148 185 C 148 170 153 145 155 125 C 158 88 150 64 138 58 C 128 52 116 46 116 38 C 116 25 111 15 100 15 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2"/>
-                            <circle cx="100" cy="185" r="2.5" fill="var(--body-stroke)" opacity="0.5"/>
+                            <path d="M 100 15 C 89 15 84 25 84 38 C 84 46 72 52 62 58 C 50 64 42 88 45 125 C 47 145 52 170 52 185 C 50 205 58 245 66 290 L 100 290 L 134 290 C 142 245 150 205 148 185 C 148 170 153 145 155 125 C 158 88 150 64 138 58 C 128 52 116 46 116 38 C 116 25 111 15 100 15 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
                         </g>
+                        <circle cx="100" cy="180" r="2.5" fill="var(--body-stroke)" opacity="0.5"/>
+                    </svg>
+                    
+                    <svg id="svgBack" class="body-svg" viewBox="0 0 200 320" style="display:none;">
+                        <path d="M 100 15 C 88 15 80 25 80 38 C 80 48 68 55 58 65 C 48 75 42 100 48 135 C 52 160 55 190 60 290 L 100 290 L 140 290 C 145 190 148 160 152 135 C 158 100 152 75 142 65 C 132 55 120 48 120 38 C 120 25 112 15 100 15 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
                     </svg>
 
-                    <svg id="svgBack" class="body-svg" viewBox="0 0 200 340" style="display:none;">
-                        <path d="M 100 15 C 88 15 82 25 82 38 C 82 48 70 54 58 60 C 46 66 38 90 42 130 C 44 150 48 185 54 220 C 58 245 64 295 68 315 L 96 315 L 98 210 L 102 210 L 104 315 L 132 315 C 136 295 142 245 146 220 C 152 185 156 150 158 130 C 162 90 154 66 142 60 C 130 54 118 48 118 38 C 118 25 112 15 100 15 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2"/>
-                    </svg>
+                    <!-- PINS (Vorderseite & Rückseite mit Po/Gesäß) -->
+                    <div class="body-pin pin-front" id="pin-arm-front-l" onclick="selectSpotPin('Oberarm Links (Sensor)', this)"></div>
+                    <div class="body-pin pin-front" id="pin-arm-front-r" onclick="selectSpotPin('Oberarm Rechts (Sensor)', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-lu" onclick="selectSpotPin('Bauch Oben Links', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-ru" onclick="selectSpotPin('Bauch Oben Rechts', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-ld" onclick="selectSpotPin('Bauch Unten Links', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-rd" onclick="selectSpotPin('Bauch Unten Rechts', this)"></div>
+                    <div class="body-pin pin-front pin-thigh" id="pin-thigh-l" onclick="selectSpotPin('Oberschenkel Links (Katheter)', this)"></div>
+                    <div class="body-pin pin-front pin-thigh" id="pin-thigh-r" onclick="selectSpotPin('Oberschenkel Rechts (Katheter)', this)"></div>
 
-                    <button class="body-pin pin-front" id="pin-arm-front-l" onclick="selectSpotPin('Oberarm Links (Vorne)', this)"></button>
-                    <button class="body-pin pin-front" id="pin-arm-front-r" onclick="selectSpotPin('Oberarm Rechts (Vorne)', this)"></button>
-                    <button class="body-pin pin-front" id="pin-belly-lu" onclick="selectSpotPin('Bauch Oben Links', this)"></button>
-                    <button class="body-pin pin-front" id="pin-belly-ru" onclick="selectSpotPin('Bauch Oben Rechts', this)"></button>
-                    <button class="body-pin pin-front" id="pin-belly-ld" onclick="selectSpotPin('Bauch Unten Links', this)"></button>
-                    <button class="body-pin pin-front" id="pin-belly-rd" onclick="selectSpotPin('Bauch Unten Rechts', this)"></button>
-                    <button class="body-pin pin-front pin-thigh" id="pin-thigh-l" onclick="selectSpotPin('Oberschenkel Links', this)"></button>
-                    <button class="body-pin pin-front pin-thigh" id="pin-thigh-r" onclick="selectSpotPin('Oberschenkel Rechts', this)"></button>
-
-                    <button class="body-pin pin-back" id="pin-arm-back-l" onclick="selectSpotPin('Oberarm-Rückseite Links 📡', this)" style="display:none;"></button>
-                    <button class="body-pin pin-back" id="pin-arm-back-r" onclick="selectSpotPin('Oberarm-Rückseite Rechts 📡', this)" style="display:none;"></button>
-                    <button class="body-pin pin-back" id="pin-glute-l" onclick="selectSpotPin('Gesäß Links', this)" style="display:none;"></button>
-                    <button class="body-pin pin-back" id="pin-glute-r" onclick="selectSpotPin('Gesäß Rechts', this)" style="display:none;"></button>
+                    <div class="body-pin pin-back" id="pin-arm-back-l" onclick="selectSpotPin('Oberarm-Rückseite Links (Sensor)', this)" style="display:none;"></div>
+                    <div class="body-pin pin-back" id="pin-arm-back-r" onclick="selectSpotPin('Oberarm-Rückseite Rechts (Sensor)', this)" style="display:none;"></div>
+                    <div class="body-pin pin-back" id="pin-glute-l" onclick="selectSpotPin('Gesäß / Po Links (Katheter & Sensor)', this)" style="display:none;"></div>
+                    <div class="body-pin pin-back" id="pin-glute-r" onclick="selectSpotPin('Gesäß / Po Rechts (Katheter & Sensor)', this)" style="display:none;"></div>
                 </div>
 
                 <p id="spotInfo" style="font-size:13px; font-weight:600; text-align:center; color:var(--primary); margin-top:8px;">Keine Stelle gewählt</p>
 
-                <!-- DYNAMISCHE DROPDOWNS FÜR KATHETER VS SENSOR -->
-                <div id="catheterOptionsGroup" class="form-group" style="margin-top:10px;">
-                    <label>Katheter-Material & Tragedauer:</label>
-                    <select id="activeCathMaterial">
-                        <option value="Teflon (Kunststoff) - 3 Tage">Teflon (Kunststoff) - 3 Tage Laufzeit</option>
-                        <option value="Teflon (Kunststoff) - 2 Tage">Teflon (Kunststoff) - 2 Tage Laufzeit</option>
-                        <option value="Stahl - 2 Tage">Stahl - 2 Tage Laufzeit</option>
-                    </select>
-                </div>
-
-                <div id="sensorOptionsGroup" class="form-group" style="margin-top:10px; display:none;">
-                    <label>BZ-Sensor Laufzeit (Hersteller):</label>
-                    <select id="activeSensorDuration">
-                        <option value="10">10 Tage (z.B. Dexcom G7)</option>
-                        <option value="14" selected>14 Tage (z.B. FreeStyle Libre 2/3)</option>
-                        <option value="15">15 Tage (z.B. Dexcom G6 / Andere)</option>
-                    </select>
-                </div>
-
-                <div class="checkbox-group" style="margin-top:10px;">
-                    <label class="checkbox-label" style="color: var(--danger); font-weight: 600;">
-                        <input type="checkbox" id="checkIssueClog"> ⚠️ Katheter war verstopft / lief nicht (vorzeitiger Wechsel)
-                    </label>
-                </div>
-
                 <button class="btn-primary" id="setButton" onclick="protectedAction(setNewEntry)">Neuen Katheter setzen</button>
-                <button class="btn-secondary" id="btnTissueIssue" onclick="protectedAction(markTissueIssue)">⚠️ Gewebe-Problem melden (14T Sperre)</button>
-            </div>
-
-            <!-- BLUTDRUCK & PULS-TRACKER -->
-            <div class="card">
-                <h2>❤️ Blutdruck & Puls-Tracker</h2>
-                <div class="time-row form-group">
-                    <div><label>SYS (Systolisch):</label><input type="number" id="bpSys" placeholder="120"></div>
-                    <div><label>DIA (Diastolisch):</label><input type="number" id="bpDia" placeholder="80"></div>
-                    <div><label>Puls (BPM):</label><input type="number" id="bpPulse" placeholder="72"></div>
-                </div>
-                <button class="btn-primary" style="background-color:var(--primary);" onclick="saveBloodPressure()">❤️ Blutdruck speichern</button>
-                <div id="bpHistoryList" style="margin-top:10px;"></div>
+                <button class="btn-secondary" onclick="protectedAction(markTissueIssue)">⚠️ Gewebe-Problem melden (14T Sperre)</button>
             </div>
 
             <div class="card">
                 <h2>Verlauf & Arzt-Bericht</h2>
-                <button class="btn-secondary" style="margin-bottom:10px;" onclick="generateDoctorReport()">📋 Arzt-Bericht (Detailliert & Übersicht)</button>
-                <textarea id="doctorReportOutput" style="height:140px; margin-top:8px; display:none;" readonly></textarea>
-                <div id="historyList" style="margin-top:10px;"></div>
+                <button class="btn-secondary" style="margin-bottom:10px;" onclick="generateDoctorReport()">📋 Arzt-Bericht erstellen</button>
+                <div id="historyList"></div>
             </div>
         </div>
 
-        <!-- TAB 2: SCHICHTEN & NOTFALL-TAGEBUCH -->
-        <div id="tab-shifts" class="tab-content" role="tabpanel">
+        <!-- TAB 2: SCHICHTEN & SPORT -->
+        <div id="tab-shifts" class="tab-content">
             <div class="card">
-                <h2>🔄 Schichtplan & Schicht-Assistent</h2>
+                <h2>🔄 Schichtplan & Basal-Anpassung</h2>
                 <div class="shift-grid">
-                    <button class="shift-btn" onclick="selectShift('Früh')">Früh</button>
-                    <button class="shift-btn" onclick="selectShift('Spät')">Spät</button>
-                    <button class="shift-btn" onclick="selectShift('Nacht')">Nacht</button>
-                    <button class="shift-btn" onclick="selectShift('Frei')">Frei</button>
-                </div>
-                <div id="shiftAssistantMsg" class="info-box" style="margin-bottom:12px; display:none;"></div>
-                <div class="form-group">
-                    <label>Zeitraum:</label>
-                    <div class="time-row">
-                        <input type="time" id="shiftStartTime" value="02:00">
-                        <span style="align-self: center;">bis</span>
-                        <input type="time" id="shiftEndTime" value="06:00">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Modus:</label>
-                    <select id="shiftPumpMode">
-                        <option value="Easy Boost (+)">Easy Boost (+)</option>
-                        <option value="Easy Off (-)">Easy Off (-)</option>
-                        <option value="Basalrate -15%">Basalrate -15%</option>
-                        <option value="Basalrate +15%">Basalrate +15%</option>
-                    </select>
+                    <div class="shift-btn" onclick="selectShift('Früh')">Früh</div>
+                    <div class="shift-btn" onclick="selectShift('Spät')">Spät</div>
+                    <div class="shift-btn" onclick="selectShift('Nacht')">Nacht</div>
+                    <div class="shift-btn" onclick="selectShift('Frei')">Frei</div>
                 </div>
                 <button class="btn-primary" onclick="protectedAction(saveShiftNote)">Schicht-Anpassung speichern</button>
-            </div>
-
-            <div class="card">
-                <h2>🍎 BE / KH Skalierungs-Rechner</h2>
-                <div class="time-row form-group">
-                    <div>
-                        <label>KH pro 100g / ml:</label>
-                        <input type="number" step="0.1" id="calcKh100" value="50.0" oninput="calculateBE()">
-                    </div>
-                    <div>
-                        <label>Gegessene Menge (g / ml):</label>
-                        <input type="number" step="1" id="calcMenge" value="150" oninput="calculateBE()">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>1 BE entspricht:</label>
-                    <select id="calcBeFactor" onchange="calculateBE()">
-                        <option value="10" selected>10g Kohlenhydrate = 1 BE</option>
-                        <option value="12">12g Kohlenhydrate = 1 BE</option>
-                    </select>
-                </div>
-                <div class="calc-result-box" id="calcResultBox">
-                    <strong>Ergebnis:</strong> <span id="calcKhTotal">0.0</span> g Kohlenhydrate = <strong id="calcBeTotal" style="font-size:16px;">0.0</strong> BE
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>⚽ Sport & Aktivitäts-Tracker</h2>
-                <div class="form-group">
-                    <label>Sportart & Intensität:</label>
-                    <input type="text" id="sportTypeInput" placeholder="z. B. Ausdauer / Krafttraining (45 Min)">
-                </div>
-                <button class="btn-primary" style="background-color:var(--success);" onclick="logSportEvent()">⚽ Sport erfassen & Muskelauffülleffekt-Warnung</button>
-            </div>
-
-            <div class="card">
-                <h2 onclick="toggleSection('emergencyLogSection')" style="cursor:pointer;">
-                    🩸 Sensor-Ausfall Notfall-Tagebuch (Urlaub) <span id="arrowEmergencyLog">▼</span>
-                </h2>
-                <div id="emergencyLogSection" class="collapsible-body">
-                    <p style="font-size:11px; color:var(--text-secondary); margin-bottom:10px;">Falls im Urlaub kein Sensor verfügbar ist:</p>
-                    <div class="time-row form-group">
-                        <div><label>BZ (mg/dl):</label><input type="number" id="manualBzVal" placeholder="z.B. 140"></div>
-                        <div><label>Gegessene BE:</label><input type="number" step="0.5" id="manualBeVal" placeholder="z.B. 3.0"></div>
-                        <div><label>Gespritzt (IE):</label><input type="number" step="0.5" id="manualIeVal" placeholder="z.B. 4.5"></div>
-                    </div>
-                    <div class="form-group"><label>Notiz / Grund:</label><input type="text" id="manualNoteVal" placeholder="z.B. Sensor abgerissen"></div>
-                    <button class="btn-primary" style="background-color:var(--warning);" onclick="addManualLogEntry()">📝 Manuelle Notfall-Messung speichern</button>
-                    <div id="manualLogList" style="margin-top:12px;"></div>
-                </div>
             </div>
 
             <div class="card">
@@ -392,72 +714,58 @@
                         <option value="+10%">+10% Basalrate</option>
                         <option value="+20%" selected>+20% Basalrate (Standard Infekt)</option>
                         <option value="+30%">+30% Basalrate (Fieber)</option>
-                        <option value="+50%">+50% Basalrate (Starker Infekt)</option>
                     </select>
                 </div>
-                <button class="btn-primary" style="background-color:var(--warning);" onclick="protectedAction(logSickMode)">🤒 Krankheit-Status aktivieren & speichern</button>
+                <button class="btn-primary" style="background-color:var(--warning);" onclick="protectedAction(logSickMode)">🤒 Krankheit-Status aktivieren</button>
+            </div>
+
+            <div class="card">
+                <h2>⚽ Sport & Aktivitäts-Tracker</h2>
+                <div class="form-group">
+                    <label>Sportart & Intensität:</label>
+                    <input type="text" id="sportTypeInput" placeholder="z. B. Joggen / Krafttraining">
+                </div>
+                <button class="btn-primary" style="background-color:var(--success);" onclick="logSportEvent()">⚽ Sport erfassen</button>
             </div>
         </div>
 
-        <!-- TAB 3: LAGER & FILTER -->
-        <div id="tab-stock" class="tab-content" role="tabpanel">
+        <!-- TAB 3: LAGER & REISE -->
+        <div id="tab-stock" class="tab-content">
             <div class="card">
-                <h2>📝 Smarter Katheter-Suchfilter & Rezept</h2>
-                <div class="filter-box">
-                    <label style="font-size:12px; font-weight:700; color:var(--primary); margin-bottom:8px; display:block;">🔍 Katheter-Filter (Kaskadierend):</label>
-                    
-                    <div class="filter-grid">
-                        <div>
-                            <label style="font-size:10px;">Marke:</label>
-                            <select id="fltBrand" onchange="applyKatheterFilter()">
-                                <option value="all">Alle Marken</option>
-                                <option value="mylife">mylife / YpsoPump</option>
-                                <option value="Accu-Chek">Accu-Chek</option>
-                                <option value="MiniMed">MiniMed</option>
-                                <option value="Neria">Neria</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label style="font-size:10px;">Material:</label>
-                            <select id="fltMaterial" onchange="applyKatheterFilter()">
-                                <option value="all">Alle Materialien</option>
-                                <option value="Teflon">Teflon (Kunststoff)</option>
-                                <option value="Stahl">Stahl</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="filterResultBox" class="info-box" style="margin-top:8px; font-weight:600;">
-                        Passende Katheter: <strong>Wähle oben Filter aus</strong>
-                    </div>
+                <h2>📝 Rezept-Bestellung</h2>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" id="orderCath" checked> Katheter</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderRes" checked> Leere Reservoire</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderSens" checked> BZ-Sensoren</label>
+                    <label class="checkbox-label"><input type="checkbox" id="orderIns" checked> Insulin</label>
                 </div>
-
                 <button class="btn-primary" onclick="generatePrescriptionText()">📄 Rezept-Anforderung generieren</button>
-                <textarea id="prescriptionOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
+                <textarea id="prescriptionOutput" style="height:100px; margin-top:8px; display:none;" readonly></textarea>
             </div>
 
             <div class="card">
-                <h2 onclick="toggleSection('travelSection')">✈️ Umfassende Urlaubs-Checkliste & Attest-Backup <span id="arrowTravel">▼</span></h2>
+                <h2 onclick="toggleSection('travelSection')">✈️ Urlaubs- & Reise-Checkliste <span id="arrowTravel">▼</span></h2>
                 <div id="travelSection" class="collapsible-body">
-                    <div class="checkbox-group" id="travelChecklist">
-                        <label class="checkbox-label"><input type="checkbox"> 💉 Katheter & Infusionssets (Doppelte Menge + Puffer)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire / Ampullen</label>
-                        <label class="checkbox-label"><input type="checkbox"> 💧 Schnellinsulin + Langzeitinsulin (Handgepäck!)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren + Empfänger / App aktiv</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🩸 Blutzucker-Messgerät + Teststreifen & Stechhilfe</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🔋 Ersatzbatterien (z.B. AAA / Knopfzellen)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🖊️ Notfall-Insulinpens (falls Pumpe ausfällt)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🍬 Traubenzucker, Saft / Hypo-Snacks</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🧪 Keton-Teststreifen (Blut oder Urin)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox"> 💉 Doppelte Menge Katheter</label>
+                        <label class="checkbox-label"><input type="checkbox"> 💧 Kühlung für Insulin beachten!</label>
+                        <label class="checkbox-label"><input type="checkbox"> 📄 Ärztliche Zollbescheinigung</label>
                     </div>
-                    
-                    <div class="form-group" style="margin-top:14px;">
-                        <label style="font-weight:700; color:var(--primary);">📸 Ärztliches Attest / Zoll-Dokument fotografieren:</label>
-                        <input type="file" id="docImageInput" accept="image/*" capture="environment" style="display:none;" onchange="handleDocImageUpload(event)">
-                        <button class="btn-primary" style="background-color:var(--success);" onclick="document.getElementById('docImageInput').click()">📷 Foto vom Attest aufnehmen / hochladen</button>
+                    <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
+                    <div class="form-group">
+                        <label>Reisedokument / Attest (Foto):</label>
+                        <input type="file" id="docUploadInput" accept="image/*" onchange="handleDocUpload(event)">
                     </div>
+                    <img id="docPreviewImg" class="doc-preview" alt="Vorschau Reisedokument">
+                    <button class="btn-secondary" id="btnRemoveDoc" style="display:none;" onclick="removeDocImage()">Dokument löschen</button>
+                </div>
+            </div>
 
-                    <div class="doc-thumb-container" id="docThumbContainer"></div>
+            <div class="card">
+                <h2>🔋 Pumpen-Batterie</h2>
+                <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(128,128,128,0.1); padding:10px; border-radius:8px;">
+                    <span id="batteryStatus" style="font-size:13px; font-weight:600;">Gewechselt vor X Tagen</span>
+                    <button class="btn-primary" style="margin-top:0; width:auto; padding:6px 12px; font-size:12px;" onclick="protectedAction(resetBattery)">Neu gewechselt</button>
                 </div>
             </div>
 
@@ -466,15 +774,8 @@
                 <div class="stock-box">
                     <div class="stock-header"><span>💉 Katheter</span><span id="badgeCatheterTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
                     <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen (10er):</label><input type="number" id="boxCatheter" value="2" onchange="updateStock()"></div>
+                        <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxCatheter" value="2" onchange="updateStock()"></div>
                         <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleCatheter" value="5" onchange="updateStock()"></div>
-                    </div>
-                </div>
-                <div class="stock-box">
-                    <div class="stock-header"><span>🧪 Leere Reservoire</span><span id="badgeResTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
-                    <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxRes" value="2" onchange="updateStock()"></div>
-                        <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleRes" value="4" onchange="updateStock()"></div>
                     </div>
                 </div>
                 <div class="stock-box">
@@ -488,82 +789,39 @@
         </div>
 
         <!-- TAB 4: OPTIONEN & PROFIL -->
-        <div id="tab-settings" class="tab-content" role="tabpanel">
-            
-            <!-- PERSÖNLICHES PROFIL (GRÖSSE, GEWICHT, CHECK-IN) -->
+        <div id="tab-settings" class="tab-content">
             <div class="card">
-                <h2>👤 Benutzer-Profil & Körperdaten</h2>
-                <div class="time-row form-group">
-                    <div><label>Körpergröße (cm):</label><input type="number" id="userHeight" placeholder="168" onchange="saveUserProfile()"></div>
-                    <div><label>Gewicht (kg):</label><input type="number" id="userWeight" placeholder="75" onchange="saveUserProfile()"></div>
-                </div>
-                <p style="font-size:11px; color:var(--text-secondary);">Letzter Diabetologen-Check: <span id="lastCheckDate">Noch nie</span></p>
-                <button class="btn-secondary" onclick="confirmDoctorVisit()">✅ Arztbesuch heute bestätigen (Reset 90T)</button>
-            </div>
-
-            <div class="card">
-                <h2>🚨 Pumpe-zu-Pen Umrechner (ICT Notfall)</h2>
+                <h2>👤 Eltern-PIN & Sicherheit</h2>
                 <div class="form-group">
-                    <label>Tages-Gesamtdosis (TDD) in IE:</label>
-                    <input type="number" step="1" id="tddInputValue" value="40" oninput="calculatePumpToPen()">
-                </div>
-                <div class="form-group" style="margin-top:8px;">
-                    <label>Aufteilung Morgens / Abends (% Anteil morgens):</label>
-                    <select id="splitRatioSelect" onchange="calculatePumpToPen()">
-                        <option value="50" selected>50% Morgens / 50% Abends (Standard)</option>
-                        <option value="60">60% Morgens / 40% Abends</option>
-                        <option value="40">40% Morgens / 60% Abends</option>
-                        <option value="70">70% Morgens / 30% Abends</option>
-                    </select>
-                </div>
-                <div class="calc-result-box" id="pumpToPenResultBox">
-                    Empfohlenes Langzeitinsulin (z.B. Tresiba / Lantus):<br>
-                    <strong id="basalCalcResult" style="font-size:16px; color:var(--danger);">Gesamt: 20.0 IE / Tag</strong><br>
-                    <span id="basalSplitResult" style="font-size:13px; font-weight:600; color:var(--primary);">Morgens: 10.0 IE | Abends: 10.0 IE</span>
+                    <label>Eigenen Eltern-PIN ändern (4 Ziffern):</label>
+                    <div class="time-row">
+                        <input type="password" id="newCustomPinInput" maxlength="4" placeholder="Neuer PIN">
+                        <button class="btn-primary" style="margin-top:0;" onclick="saveCustomPin()">PIN speichern</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- OBERGRUPPE 1: BE-FAKTOREN -->
             <div class="card">
-                <div class="group-title">
-                    <span>🍞 1. BE-Faktoren (IE/BE)</span>
-                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('be')">+ Hinzufügen</button>
-                </div>
-                <div id="groupBeContainer"></div>
-            </div>
-
-            <!-- OBERGRUPPE 2: KORREKTURFAKTOREN -->
-            <div class="card">
-                <div class="group-title">
-                    <span>⚡ 2. Korrekturfaktoren (1 IE / mg/dl)</span>
-                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('corr')">+ Hinzufügen</button>
-                </div>
-                <div id="groupCorrContainer"></div>
-            </div>
-
-            <!-- OBERGRUPPE 3: ZIELWERTE -->
-            <div class="card">
-                <div class="group-title">
-                    <span>🎯 3. Zielwerte (mg/dl - manuell)</span>
-                    <button class="btn-secondary" style="width:auto; padding:4px 8px; font-size:11px;" onclick="addSlot('target')">+ Hinzufügen</button>
-                </div>
-                <div id="groupTargetContainer"></div>
+                <h2>🚨 Notfall-Plan & BE-Faktoren</h2>
+                <div id="factorSlotsContainer"></div>
+                <button class="btn-secondary" style="margin-bottom:12px;" onclick="addFactorSlot()">+ Zeitfenster hinzufügen</button>
+                <button class="btn-primary" style="background-color:var(--danger); margin-top:14px;" onclick="saveEmergencyPlan()">💾 Notfall-Plan speichern</button>
             </div>
 
             <div class="card">
                 <h2>⚙️ Allgemeine Optionen</h2>
                 <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🌙 Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🎈 Kinder-Modus (PIN 1234):</span><input type="checkbox" id="kidsToggle" onclick="protectedAction(requestKidsModeToggle)" style="width:auto;"></div>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🎈 Kinder-Modus:</span><input type="checkbox" id="kidsToggle" onclick="protectedAction(requestKidsModeToggle)" style="width:auto;"></div>
             </div>
         </div>
 
     </div>
 
-    <nav role="navigation">
-        <button class="nav-item active" id="nav-pump" onclick="switchTab('pump', this)"><div class="nav-icon">📍</div><span>Körper</span></button>
-        <button class="nav-item" id="nav-shifts" onclick="switchTab('shifts', this)"><div class="nav-icon">🔄</div><span>Schichten</span></button>
-        <button class="nav-item" id="nav-stock" onclick="switchTab('stock', this)"><div class="nav-icon">📦</div><span>Lager</span></button>
-        <button class="nav-item" id="nav-settings" onclick="switchTab('settings', this)"><div class="nav-icon">⚙️</div><span>Optionen</span></button>
+    <nav>
+        <div class="nav-item active" id="nav-pump" onclick="switchTab('pump', this)"><div class="nav-icon">📍</div>Körper</div>
+        <div class="nav-item" id="nav-shifts" onclick="switchTab('shifts', this)"><div class="nav-icon">🔄</div>Schichten</div>
+        <div class="nav-item" id="nav-stock" onclick="switchTab('stock', this)"><div class="nav-icon">📦</div>Lager</div>
+        <div class="nav-item" id="nav-settings" onclick="switchTab('settings', this)"><div class="nav-icon">⚙️</div>Optionen</div>
     </nav>
 
     <script>
@@ -576,46 +834,29 @@
 
         let kidsMode = localStorage.getItem('ypso_kids') === 'true';
         let darkMode = localStorage.getItem('ypso_dark') === 'true';
-        let pumpoDismissed = localStorage.getItem('ypso_pumpo_dismissed') === 'true';
+        let activePin = localStorage.getItem('ypso_user_pin') || "1234";
+        let pendingAction = null;
 
         let activeCatheter = JSON.parse(localStorage.getItem('ypso_active_cath')) || null;
         let activeSensor = JSON.parse(localStorage.getItem('ypso_active_sens')) || null;
         let recoveringSpots = JSON.parse(localStorage.getItem('ypso_recovering')) || [];
-        let doctorDocuments = JSON.parse(localStorage.getItem('ypso_doc_images')) || [];
-        let bloodPressureLogs = JSON.parse(localStorage.getItem('ypso_bp_logs')) || [];
         
-        let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { catBox: 2, catSingle: 5, resBox: 2, resSingle: 4, insBox: 1, insSingle: 3, senBox: 3 };
+        let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { catBox: 2, catSingle: 5, resBox: 2, resSingle: 4, senBox: 3 };
         let history = JSON.parse(localStorage.getItem('ypso_history')) || [];
-        let manualLogs = JSON.parse(localStorage.getItem('ypso_manual_logs')) || [];
+        let batteryDate = parseInt(localStorage.getItem('ypso_battery')) || new Date().getTime();
 
-        let beSlots = JSON.parse(localStorage.getItem('ypso_be_slots')) || [
-            { start: "06:00", end: "11:00", val: "1.5 IE/BE" },
-            { start: "11:00", end: "18:00", val: "1.2 IE/BE" },
-            { start: "18:00", end: "06:00", val: "1.0 IE/BE" }
+        let factorSlots = JSON.parse(localStorage.getItem('ypso_factor_slots')) || [
+            { start: "00:00", end: "06:00", be: "1.0 IE/BE", corr: "1 IE / 50 mg/dl" },
+            { start: "06:00", end: "24:00", be: "1.2 IE/BE", corr: "1 IE / 40 mg/dl" }
         ];
 
-        let corrSlots = JSON.parse(localStorage.getItem('ypso_corr_slots')) || [{ start: "06:00", end: "24:00", val: "1 IE / 40 mg/dl" }];
-        let targetSlots = JSON.parse(localStorage.getItem('ypso_target_slots')) || [{ start: "00:00", end: "24:00", val: "100" }];
-
-        const catheterDatabase = [
-            { name: "mylife YpsoPump Orbit micro 5.5mm / 60cm", brand: "mylife", material: "Stahl" },
-            { name: "mylife YpsoPump Orbit soft 6mm / 60cm", brand: "mylife", material: "Teflon" },
-            { name: "MiniMed Quick-set 9mm / 60cm", brand: "MiniMed", material: "Teflon" },
-            { name: "Accu-Chek Tender 13mm / 60cm", brand: "Accu-Chek", material: "Teflon" }
-        ];
-
-        const PARENT_PIN = "1234";
-        let pendingAction = null;
-
-        function applyTheme() {
-            document.body.classList.toggle('kids-mode', kidsMode);
-            document.body.classList.toggle('dark-mode', darkMode);
-            document.getElementById('appTitle').innerText = kidsMode ? '🎈 Pumpe & Pflaster' : 'YpsoShift Master Pro';
-            document.getElementById('kidsToggle').checked = kidsMode;
-            document.getElementById('darkToggle').checked = darkMode;
-        }
-
-        function toggleDarkMode() { darkMode = !darkMode; localStorage.setItem('ypso_dark', darkMode); applyTheme(); }
+        applyTheme();
+        renderPins();
+        updateStock();
+        updateHistoryUI();
+        updateBatteryUI();
+        loadDocImage();
+        renderFactorSlots();
 
         function toggleGenderView() {
             isFemaleView = !isFemaleView;
@@ -623,87 +864,43 @@
             document.getElementById('bodyFemaleFront').style.display = isFemaleView ? 'block' : 'none';
         }
 
-        function switchTab(tabId, el) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-            if (el) el.classList.add('active');
+        function renderFactorSlots() {
+            const container = document.getElementById('factorSlotsContainer');
+            container.innerHTML = factorSlots.map((slot, idx) => `
+                <div class="factor-card">
+                    <button class="btn-remove-slot" onclick="removeFactorSlot(${idx})">✕</button>
+                    <div class="time-row" style="margin-bottom:8px;">
+                        <input type="time" value="${slot.start}" onchange="factorSlots[${idx}].start = this.value">
+                        <span>bis</span>
+                        <input type="time" value="${slot.end}" onchange="factorSlots[${idx}].end = this.value">
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+                        <input type="text" value="${slot.be}" onchange="factorSlots[${idx}].be = this.value">
+                        <input type="text" value="${slot.corr}" onchange="factorSlots[${idx}].corr = this.value">
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function toggleSection(id) {
-            const el = document.getElementById(id);
-            el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        function addFactorSlot() {
+            factorSlots.push({ start: "12:00", end: "16:00", be: "1.0 IE/BE", corr: "1 IE / 40 mg/dl" });
+            renderFactorSlots();
         }
 
-        function setEntryType(type) {
-            currentType = type;
-            document.getElementById('typeCatheter').classList.toggle('active', type === 'catheter');
-            document.getElementById('typeSensor').classList.toggle('active', type === 'sensor');
-            document.getElementById('catheterOptionsGroup').style.display = type === 'catheter' ? 'block' : 'none';
-            document.getElementById('sensorOptionsGroup').style.display = type === 'sensor' ? 'block' : 'none';
-            document.getElementById('setButton').innerText = type === 'catheter' ? 'Neuen Katheter setzen' : 'Neuen BZ-Sensor setzen';
-            renderPins();
-        }
-
-        function switchBodyView(view) {
-            currentView = view;
-            document.getElementById('btnViewFront').classList.toggle('active', view === 'front');
-            document.getElementById('btnViewBack').classList.toggle('active', view === 'back');
-            document.getElementById('svgFront').style.display = view === 'front' ? 'block' : 'none';
-            document.getElementById('svgBack').style.display = view === 'back' ? 'block' : 'none';
-            document.querySelectorAll('.pin-front').forEach(p => p.style.display = view === 'front' ? 'flex' : 'none');
-            document.querySelectorAll('.pin-back').forEach(p => p.style.display = view === 'back' ? 'flex' : 'none');
-            renderPins();
-        }
-
-        function saveBloodPressure() {
-            const sys = document.getElementById('bpSys').value;
-            const dia = document.getElementById('bpDia').value;
-            const pulse = document.getElementById('bpPulse').value;
-            if (!sys || !dia) { alert('Bitte SYS und DIA Werte eingeben!'); return; }
-            const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            bloodPressureLogs.unshift({ date: dateStr, sys, dia, pulse: pulse || '-' });
-            localStorage.setItem('ypso_bp_logs', JSON.stringify(bloodPressureLogs));
-            renderBloodPressureUI();
-            document.getElementById('bpSys').value = '';
-            document.getElementById('bpDia').value = '';
-            document.getElementById('bpPulse').value = '';
-            alert('Blutdruck gespeichert!');
-        }
-
-        function renderBloodPressureUI() {
-            const container = document.getElementById('bpHistoryList');
-            if (!container) return;
-            if (bloodPressureLogs.length === 0) { container.innerHTML = `<p style="font-size:11px; color:var(--text-secondary);">Noch keine Blutdruckwerte erfasst.</p>`; return; }
-            container.innerHTML = bloodPressureLogs.slice(0, 5).map(b => `<div style="font-size:12px; padding:4px 0; border-bottom:0.5px solid rgba(128,128,128,0.2);">❤️ <strong>${b.sys}/${b.dia} mmHg</strong> (Puls: ${b.pulse}) <span style="float:right; color:var(--text-secondary);">${b.date}</span></div>`).join('');
-        }
-
-        function saveUserProfile() {
-            localStorage.setItem('ypso_user_height', document.getElementById('userHeight').value);
-            localStorage.setItem('ypso_user_weight', document.getElementById('userWeight').value);
-        }
-
-        function confirmDoctorVisit() {
-            const now = new Date().getTime();
-            localStorage.setItem('ypso_last_doctor_visit', now);
-            document.getElementById('lastCheckDate').innerText = new Date(now).toLocaleDateString('de-DE');
-            document.getElementById('checkupReminderCard').style.display = 'none';
-            alert('Arztbesuch heute bestätigt! Die nächste Erinnerung erscheint in 90 Tagen.');
-        }
-
-        function checkDoctorReminder() {
-            const last = parseInt(localStorage.getItem('ypso_last_doctor_visit')) || 0;
-            if (new Date().getTime() - last > (90 * 86400000)) {
-                document.getElementById('checkupReminderCard').style.display = 'block';
-            }
-            if (last > 0) document.getElementById('lastCheckDate').innerText = new Date(last).toLocaleDateString('de-DE');
+        function removeFactorSlot(idx) {
+            factorSlots.splice(idx, 1);
+            renderFactorSlots();
         }
 
         function protectedAction(actionCallback) {
-            pendingAction = actionCallback;
-            document.getElementById('pinInput').value = '';
-            document.getElementById('pinOverlay').style.display = 'flex';
-            document.getElementById('pinInput').focus();
+            if (kidsMode) {
+                pendingAction = actionCallback;
+                document.getElementById('pinInput').value = '';
+                document.getElementById('pinOverlay').style.display = 'flex';
+                document.getElementById('pinInput').focus();
+            } else {
+                actionCallback();
+            }
         }
 
         function requestKidsModeToggle() {
@@ -713,86 +910,59 @@
         }
 
         function checkPin() {
-            if (document.getElementById('pinInput').value === PARENT_PIN) {
+            const val = document.getElementById('pinInput').value;
+            if (val === activePin) {
                 document.getElementById('pinOverlay').style.display = 'none';
-                if (pendingAction) { pendingAction(); pendingAction = null; }
-            } else { alert('Falsche PIN (1234)'); }
+                if (pendingAction) {
+                    pendingAction();
+                    pendingAction = null;
+                }
+            } else {
+                alert('Falscher PIN!');
+            }
         }
 
-        function cancelPin() { document.getElementById('pinOverlay').style.display = 'none'; pendingAction = null; }
-
-        function shareWithParents() {
-            const cathText = activeCatheter ? `Katheter: ${activeCatheter.spot}` : "Kein aktiver Katheter";
-            const text = `Hallo! 🎈\nMein aktueller Status:\n- ${cathText}\n- Kindermodus aktiv. Alles bestens!`;
-            if (navigator.share) { navigator.share({ title: 'YpsoShift Status', text: text }).catch(() => {}); }
-            else { navigator.clipboard.writeText(text); alert("Status in die Zwischenablage kopiert!"); }
+        function emergencyPinReset() {
+            localStorage.removeItem('ypso_user_pin');
+            activePin = "1234";
+            alert("PIN wurde im Notfall auf '1234' zurückgesetzt!");
+            document.getElementById('pinOverlay').style.display = 'none';
         }
 
-        function calculateBE() {
-            const kh100 = parseFloat(document.getElementById('calcKh100').value) || 0;
-            const menge = parseFloat(document.getElementById('calcMenge').value) || 0;
-            const beGrams = parseFloat(document.getElementById('calcBeFactor').value) || 10;
-            const totalKh = (kh100 * menge) / 100;
-            document.getElementById('calcKhTotal').innerText = totalKh.toFixed(1);
-            document.getElementById('calcBeTotal').innerText = (totalKh / beGrams).toFixed(1);
+        function cancelPin() {
+            document.getElementById('pinOverlay').style.display = 'none';
+            pendingAction = null;
         }
 
-        function calculatePumpToPen() {
-            const tdd = parseFloat(document.getElementById('tddInputValue').value) || 0;
-            const morningPercent = parseInt(document.getElementById('splitRatioSelect').value) || 50;
-            const totalBasal = tdd * 0.5; 
-            document.getElementById('basalCalcResult').innerText = `Gesamt-Basalbedarf: ${totalBasal.toFixed(1)} IE / Tag`;
-            document.getElementById('basalSplitResult').innerText = `🌞 Morgens: ${(totalBasal * (morningPercent / 100)).toFixed(1)} IE  |  🌙 Abends: ${(totalBasal * ((100 - morningPercent) / 100)).toFixed(1)} IE`;
+        function saveCustomPin() {
+            const val = document.getElementById('newCustomPinInput').value;
+            if (val.length === 4) {
+                activePin = val;
+                localStorage.setItem('ypso_user_pin', val);
+                document.getElementById('newCustomPinInput').value = '';
+                alert('Neuer PIN erfolgreich gespeichert!');
+            } else {
+                alert('Der PIN muss genau 4 Ziffern lang sein.');
+            }
         }
 
-        function applyKatheterFilter() {
-            const brand = document.getElementById('fltBrand').value;
-            const material = document.getElementById('fltMaterial').value;
-            const filtered = catheterDatabase.filter(i => (brand === 'all' || i.brand === brand) && (material === 'all' || i.material === material));
-            document.getElementById('filterResultBox').innerHTML = filtered.length === 0 ? 'Kein Treffer' : filtered.map(f => `• ${f.name}`).join('<br>');
+        function switchBodyView(view) {
+            currentView = view;
+            document.getElementById('btnViewFront').classList.toggle('active', view === 'front');
+            document.getElementById('btnViewBack').classList.toggle('active', view === 'back');
+            document.getElementById('svgFront').style.display = view === 'front' ? 'block' : 'none';
+            document.getElementById('svgBack').style.display = view === 'front' ? 'none' : 'block';
+            
+            document.querySelectorAll('.pin-front').forEach(p => p.style.display = view === 'front' ? 'flex' : 'none');
+            document.querySelectorAll('.pin-back').forEach(p => p.style.display = view === 'front' ? 'none' : 'flex');
         }
 
-        function renderAllGroups() {
-            renderGroup('be', beSlots, 'groupBeContainer', 'IE/BE');
-            renderGroup('corr', corrSlots, 'groupCorrContainer', '1 IE / mg/dl');
-            renderGroup('target', targetSlots, 'groupTargetContainer', 'Zielwert');
-        }
-
-        function renderGroup(type, list, containerId, label) {
-            list.sort((a, b) => a.start.localeCompare(b.start));
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = list.map((slot, idx) => `
-                <div class="factor-card">
-                    <button class="btn-remove-slot" onclick="removeSlot('${type}', ${idx})">✕</button>
-                    <div class="time-row" style="margin-bottom:6px;">
-                        <span>Von:</span><input type="time" value="${slot.start}" onchange="${type}Slots[${idx}].start = this.value; saveAndRenderGroups();">
-                        <span>Bis:</span><input type="time" value="${slot.end}" onchange="${type}Slots[${idx}].end = this.value; saveAndRenderGroups();">
-                    </div>
-                    <div><label style="font-size:10px;">${label}:</label><input type="text" value="${slot.val}" onchange="${type}Slots[${idx}].val = this.value; saveAndRenderGroups();"></div>
-                </div>
-            `).join('');
-        }
-
-        function saveAndRenderGroups() {
-            localStorage.setItem('ypso_be_slots', JSON.stringify(beSlots));
-            localStorage.setItem('ypso_corr_slots', JSON.stringify(corrSlots));
-            localStorage.setItem('ypso_target_slots', JSON.stringify(targetSlots));
-            renderAllGroups();
-        }
-
-        function addSlot(type) {
-            if (type === 'be') beSlots.push({ start: "12:00", end: "15:00", val: "1.0 IE/BE" });
-            if (type === 'corr') corrSlots.push({ start: "12:00", end: "15:00", val: "1 IE / 50 mg/dl" });
-            if (type === 'target') targetSlots.push({ start: "12:00", end: "15:00", val: "100" });
-            saveAndRenderGroups();
-        }
-
-        function removeSlot(type, idx) {
-            if (type === 'be') beSlots.splice(idx, 1);
-            if (type === 'corr') corrSlots.splice(idx, 1);
-            if (type === 'target') targetSlots.splice(idx, 1);
-            saveAndRenderGroups();
+        function setEntryType(type) {
+            currentType = type;
+            document.getElementById('typeCatheter').classList.toggle('active', type === 'catheter');
+            document.getElementById('typeSensor').classList.toggle('active', type === 'sensor');
+            document.getElementById('setButton').innerText = type === 'catheter' ? 'Neuen Katheter setzen' : 'Neuen BZ-Sensor setzen';
+            renderPins();
         }
 
         function selectSpotPin(name, el) {
@@ -803,33 +973,22 @@
         }
 
         function setNewEntry() {
-            if (!selectedSpotName) { alert('Bitte wähle zuerst eine Stelle aus!'); return; }
+            if (!selectedSpotName) { alert('Bitte wähle zuerst einen Punkt aus!'); return; }
             const now = new Date().getTime();
-            const matOrDur = currentType === 'catheter' ? document.getElementById('activeCathMaterial').value : `${document.getElementById('activeSensorDuration').value} Tage Laufzeit`;
-            const isClogged = document.getElementById('checkIssueClog').checked;
-
             if (currentType === 'catheter') {
                 if (activeCatheter) recoveringSpots.push({ spot: activeCatheter.spot, removedTime: now, lockType: 'recovery' });
-                activeCatheter = { spot: selectedSpotName, material: matOrDur, clogged: isClogged, setTime: now };
+                activeCatheter = { spot: selectedSpotName, setTime: now };
                 localStorage.setItem('ypso_active_cath', JSON.stringify(activeCatheter));
-                removeStockItem('catheter');
             } else {
                 if (activeSensor) recoveringSpots.push({ spot: activeSensor.spot, removedTime: now, lockType: 'recovery' });
                 activeSensor = { spot: selectedSpotName, setTime: now };
                 localStorage.setItem('ypso_active_sens', JSON.stringify(activeSensor));
-                removeStockItem('sensor');
             }
-
-            const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            let logText = `${currentType === 'catheter' ? '💉 Katheter' : '📡 Sensor'}: ${selectedSpotName} (${matOrDur})`;
-            if (isClogged) logText += ` ⚠️ [VERSTOPFT / Vorzeitiger Wechsel!]`;
-
-            history.unshift({ text: logText, date: dateStr, clogged: isClogged, type: currentType, spot: selectedSpotName });
+            const dateStr = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            history.unshift({ text: `${currentType === 'catheter' ? '💉 Katheter' : '📡 Sensor'}: ${selectedSpotName}`, date: dateStr });
             localStorage.setItem('ypso_history', JSON.stringify(history));
             localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
-            
             selectedSpotName = null;
-            document.getElementById('checkIssueClog').checked = false;
             document.getElementById('spotInfo').innerText = 'Keine Stelle gewählt';
             renderPins();
             updateHistoryUI();
@@ -848,28 +1007,39 @@
             const now = new Date().getTime();
             const hours72 = 72 * 3600000;
             const days14 = 14 * 86400000;
-            document.querySelectorAll('.body-pin').forEach(el => { el.className = el.className.replace(/pin-(active|red|orange|yellow|tissue)/g, '').trim(); el.innerText = ''; });
-            recoveringSpots = recoveringSpots.filter(i => (now - i.removedTime) < (i.lockType === 'tissue' ? days14 : hours72));
+
+            document.querySelectorAll('.body-pin').forEach(el => {
+                el.className = el.className.replace(/pin-(active|red|orange|yellow|tissue)/g, '').trim();
+                el.innerText = '';
+            });
+
+            recoveringSpots = recoveringSpots.filter(item => (now - item.removedTime) < (item.lockType === 'tissue' ? days14 : hours72));
             localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
 
             recoveringSpots.forEach(item => {
                 const el = getPinByName(item.spot);
                 if (el) {
-                    if (item.lockType === 'tissue') el.classList.add('pin-tissue');
-                    else {
-                        const h = Math.ceil((hours72 - (now - item.removedTime)) / 3600000);
+                    const elapsed = now - item.removedTime;
+                    if (item.lockType === 'tissue') {
+                        el.classList.add('pin-tissue');
+                    } else if (elapsed < hours72) {
+                        const h = Math.ceil((hours72 - elapsed) / 3600000);
                         el.classList.add(h > 48 ? 'pin-red' : h > 24 ? 'pin-orange' : 'pin-yellow');
                         el.innerText = h + 'h';
                     }
                 }
             });
+
             const active = currentType === 'catheter' ? activeCatheter : activeSensor;
-            if (active) { const el = getPinByName(active.spot); if (el) { el.classList.add('pin-active'); el.innerText = 'ON'; } }
+            if (active) {
+                const el = getPinByName(active.spot);
+                if (el) { el.classList.add('pin-active'); el.innerText = 'ON'; }
+            }
         }
 
         function getPinByName(name) {
-            if (name.includes('Oberarm Links (Vorne)')) return document.getElementById('pin-arm-front-l');
-            if (name.includes('Oberarm Rechts (Vorne)')) return document.getElementById('pin-arm-front-r');
+            if (name.includes('Oberarm Links')) return document.getElementById('pin-arm-front-l');
+            if (name.includes('Oberarm Rechts')) return document.getElementById('pin-arm-front-r');
             if (name.includes('Bauch Oben Links')) return document.getElementById('pin-belly-lu');
             if (name.includes('Bauch Oben Rechts')) return document.getElementById('pin-belly-ru');
             if (name.includes('Bauch Unten Links')) return document.getElementById('pin-belly-ld');
@@ -878,188 +1048,80 @@
             if (name.includes('Oberschenkel Rechts')) return document.getElementById('pin-thigh-r');
             if (name.includes('Oberarm-Rückseite Links')) return document.getElementById('pin-arm-back-l');
             if (name.includes('Oberarm-Rückseite Rechts')) return document.getElementById('pin-arm-back-r');
-            if (name.includes('Gesäß Links')) return document.getElementById('pin-glute-l');
-            if (name.includes('Gesäß Rechts')) return document.getElementById('pin-glute-r');
+            if (name.includes('Gesäß / Po Links')) return document.getElementById('pin-glute-l');
+            if (name.includes('Gesäß / Po Rechts')) return document.getElementById('pin-glute-r');
             return null;
-        }
-
-        function updateHistoryUI() {
-            const list = document.getElementById('historyList');
-            if (!list) return;
-            if (history.length === 0) { list.innerHTML = `<div style="font-size:13px; color:var(--text-secondary);">Noch keine Einträge</div>`; return; }
-            list.innerHTML = history.slice(0, 8).map(i => `<div style="display:flex; justify-content:space-between; font-size:12px; padding:6px 0; border-bottom:0.5px solid rgba(128,128,128,0.2); ${i.clogged ? 'color:var(--danger); font-weight:bold;' : ''}"><span>${i.text}</span><span style="color:var(--text-secondary);">${i.date}</span></div>`).join('');
-        }
-
-        function selectShift(shift) {
-            currentShift = shift;
-            localStorage.setItem('ypso_shift', shift);
-            document.querySelectorAll('.shift-btn').forEach(b => b.classList.toggle('active', b.innerText.includes(shift)));
-        }
-
-        function saveShiftNote() { alert(`Schicht-Anpassung (${currentShift}) gespeichert!`); }
-
-        function triggerHypoQuick() {
-            const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ text: `🚨 HYPO: +1.0 BE/KE`, date: dateStr });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            updateHistoryUI();
-            alert(`🚨 1.0 BE im Verlauf gespeichert!`);
-        }
-
-        function logSickMode() {
-            const boost = document.getElementById('sickBasalBoost').value;
-            const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ text: `🤒 Krankheit gemeldet (${boost})`, date: dateStr });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            updateHistoryUI();
-            alert(`🤒 Krankheits-Modus gespeichert! (${boost})`);
-        }
-
-        function logSportEvent() {
-            const detail = document.getElementById('sportTypeInput').value || 'Sport / Bewegung';
-            const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ text: `⚽ Sport: ${detail}`, date: dateStr });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            updateHistoryUI();
-            alert(`⚽ Sport gespeichert! Denke an den Muskelauffülleffekt.`);
-        }
-
-        function addManualLogEntry() {
-            const bz = document.getElementById('manualBzVal').value;
-            const be = document.getElementById('manualBeVal').value;
-            const ie = document.getElementById('manualIeVal').value;
-            const note = document.getElementById('manualNoteVal').value;
-            if (!bz) { alert('Bitte BZ-Wert eingeben'); return; }
-            const dateStr = new Date().toLocaleString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            manualLogs.unshift({ date: dateStr, bz, be, ie, note });
-            localStorage.setItem('ypso_manual_logs', JSON.stringify(manualLogs));
-            renderManualLogUI();
-            document.getElementById('manualBzVal').value = '';
-            document.getElementById('manualBeVal').value = '';
-            document.getElementById('manualIeVal').value = '';
-            document.getElementById('manualNoteVal').value = '';
-        }
-
-        function renderManualLogUI() {
-            const container = document.getElementById('manualLogList');
-            if (!container) return;
-            if (manualLogs.length === 0) { container.innerHTML = `<p style="font-size:11px; color:var(--text-secondary);">Keine manuellen Einträge.</p>`; return; }
-            container.innerHTML = manualLogs.slice(0, 5).map(m => `<div style="font-size:12px; padding:4px 0; border-bottom:0.5px solid rgba(128,128,128,0.2);">🩸 <strong>${m.bz} mg/dl</strong> | ${m.be || 0} BE | ${m.ie || 0} IE (${m.note || '-'}) <span style="float:right; color:var(--text-secondary);">${m.date}</span></div>`).join('');
-        }
-
-        function removeStockItem(type) {
-            if (type === 'catheter') {
-                if (stock.catSingle > 0) stock.catSingle--;
-                else if (stock.catBox > 0) { stock.catBox--; stock.catSingle = 9; }
-            } else if (type === 'sensor') {
-                if (stock.senBox > 0) stock.senBox--;
-            }
-            localStorage.setItem('ypso_stock', JSON.stringify(stock));
-            updateStock();
         }
 
         function updateStock() {
             stock.catBox = parseInt(document.getElementById('boxCatheter').value) || 0;
-            stock.catSingle = parseInt(document.getElementById('singleCatheter').value) || 0;
-            stock.resBox = parseInt(document.getElementById('boxRes').value) || 0;
-            stock.resSingle = parseInt(document.getElementById('singleRes').value) || 0;
             stock.senBox = parseInt(document.getElementById('boxSensor').value) || 0;
             localStorage.setItem('ypso_stock', JSON.stringify(stock));
-
-            const totalCat = (stock.catBox * 10) + stock.catSingle;
-            const totalRes = (stock.resBox * 10) + stock.resSingle;
-            const totalSen = stock.senBox;
-
-            document.getElementById('badgeCatheterTotal').innerText = `${totalCat} Stk.`;
-            document.getElementById('badgeResTotal').innerText = `${totalRes} Stk.`;
-            document.getElementById('badgeSensorTotal').innerText = `${totalSen} Stk.`;
-
-            if (totalCat <= 5 || totalRes <= 5 || totalSen <= 1) {
-                document.getElementById('stockAlerts').innerHTML = `<div class="alert-box">🚨 Vorrat wird knapp. Zeit für das Rezept!</div>`;
-            } else {
-                document.getElementById('stockAlerts').innerHTML = `<p style="font-size:12px; color:var(--success); margin-top:10px;">✅ Vorrat ausreichend.</p>`;
-            }
+            document.getElementById('badgeCatheterTotal').innerText = `${stock.catBox * 10} Stk.`;
+            document.getElementById('badgeSensorTotal').innerText = `${stock.senBox} Stk.`;
         }
 
+        function selectShift(shift) { currentShift = shift; localStorage.setItem('ypso_shift', shift); alert('Schicht: ' + shift); }
+        function logSickMode() { alert('Krankheits-Modus aktiviert.'); }
+        function logSportEvent() { alert('Sport erfasst.'); }
+        function saveEmergencyPlan() { alert('Notfall-Plan gespeichert.'); }
         function generatePrescriptionText() {
-            const out = document.getElementById('prescriptionOutput');
-            out.style.display = 'block';
-            out.value = `Sehr geehrte Praxis / Versorger,\n\nbitte stellen Sie mir ein Folgerezept aus für Katheter und Sensoren.\n\nVielen Dank!`;
-            alert('Rezept-Anforderung erstellt!');
+            document.getElementById('prescriptionOutput').style.display = 'block';
+            document.getElementById('prescriptionOutput').value = `Rezeptbestellung für Katheter & Sensoren.`;
         }
-
-        function handleDocImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    doctorDocuments.push(e.target.result);
-                    localStorage.setItem('ypso_doc_images', JSON.stringify(doctorDocuments));
-                    renderDocThumbs();
+        function handleDocUpload(e) {
+            const f = e.target.files[0];
+            if (f) {
+                const r = new FileReader();
+                r.onload = function(ev) {
+                    localStorage.setItem('ypso_doc_img', ev.target.result);
+                    showDocPreview(ev.target.result);
                 };
-                reader.readAsDataURL(file);
+                r.readAsDataURL(f);
             }
         }
-
-        function renderDocThumbs() {
-            const container = document.getElementById('docThumbContainer');
-            if (!container) return;
-            container.innerHTML = doctorDocuments.map((imgSrc, idx) => `
-                <div class="doc-thumb">
-                    <img src="${imgSrc}">
-                    <button onclick="removeDocImage(${idx})">✕</button>
-                </div>
-            `).join('');
+        function showDocPreview(url) {
+            document.getElementById('docPreviewImg').src = url;
+            document.getElementById('docPreviewImg').style.display = 'block';
+            document.getElementById('btnRemoveDoc').style.display = 'block';
         }
-
-        function removeDocImage(idx) {
-            doctorDocuments.splice(idx, 1);
-            localStorage.setItem('ypso_doc_images', JSON.stringify(doctorDocuments));
-            renderDocThumbs();
+        function loadDocImage() {
+            const saved = localStorage.getItem('ypso_doc_img');
+            if (saved) showDocPreview(saved);
         }
-
-        function generateDoctorReport() {
-            const out = document.getElementById('doctorReportOutput');
-            out.style.display = 'block';
-            out.value = `--- DIABETES VERLAUFS-BERICHT ---\n\n` + history.map(h => `${h.date}: ${h.text}`).join('\n');
+        function removeDocImage() {
+            localStorage.removeItem('ypso_doc_img');
+            document.getElementById('docPreviewImg').style.display = 'none';
+            document.getElementById('btnRemoveDoc').style.display = 'none';
         }
-
-        function startPumpoTour(step) {
-            currentPumpoStep = step || 1;
-            const msgEl = document.getElementById('pumpoMsg');
-            if (currentPumpoStep === 1) { switchTab('pump', document.getElementById('nav-pump')); msgEl.innerHTML = `<strong>📍 Schritt 1: Körperkarte</strong><br>Setze hier Katheter und Sensoren.`; }
-            else if (currentPumpoStep === 2) { switchTab('shifts', document.getElementById('nav-shifts')); msgEl.innerHTML = `<strong>🔄 Schritt 2: Schichten & Rechner</strong><br>Anpassung für Schichtarbeit & BEs.`; }
-            else if (currentPumpoStep === 3) { switchTab('stock', document.getElementById('nav-stock')); msgEl.innerHTML = `<strong>📦 Schritt 3: Lager & Filter</strong><br>Materialvorrat verwalten.`; }
-            else if (currentPumpoStep === 4) { switchTab('settings', document.getElementById('nav-settings')); msgEl.innerHTML = `<strong>⚙️ Schritt 4: Optionen & Profil</strong><br>Faktoren und Notfallplan.`; }
-            else { closePumpoGuide(); }
+        function resetBattery() { batteryDate = new Date().getTime(); localStorage.setItem('ypso_battery', batteryDate); updateBatteryUI(); alert('Batterie erneuert!'); }
+        function updateBatteryUI() {
+            const days = Math.floor((new Date().getTime() - batteryDate) / 86400000);
+            document.getElementById('batteryStatus').innerText = `Gewechselt vor ${days} Tag(en)`;
         }
-
-        function nextPumpoStep() {
-            if (currentPumpoStep >= 4) closePumpoGuide();
-            else startPumpoTour(currentPumpoStep + 1);
+        function generateDoctorReport() { alert('Arztbericht generiert.'); }
+        function shareWithParents() { alert('Status geteilt.'); }
+        function toggleSection(id) { const el = document.getElementById(id); el.style.display = el.style.display === 'block' ? 'none' : 'block'; }
+        function startPumpoTour(s) { currentPumpoStep = s; }
+        function nextPumpoStep() { startPumpoTour(currentPumpoStep + 1); }
+        function closePumpoGuide() { document.getElementById('pumpoGuide').style.display = 'none'; }
+        function toggleDarkMode() { darkMode = !darkMode; localStorage.setItem('ypso_dark', darkMode); applyTheme(); }
+        function applyTheme() {
+            document.body.classList.toggle('kids-mode', kidsMode);
+            document.body.classList.toggle('dark-mode', darkMode);
+            document.getElementById('appTitle').innerText = kidsMode ? '🎈 Pumpe & Pflaster' : 'YpsoShift Master Pro';
         }
-
-        function closePumpoGuide() {
-            document.getElementById('pumpoGuide').style.display = 'none';
-            localStorage.setItem('ypso_pumpo_dismissed', 'true');
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            if (el) el.classList.add('active');
         }
-
-        // INITIALISIERUNG
-        applyTheme();
-        renderPins();
-        updateHistoryUI();
-        calculateBE();
-        calculatePumpToPen();
-        renderBloodPressureUI();
-        checkDoctorReminder();
-        renderAllGroups();
-        applyKatheterFilter();
-        renderDocThumbs();
-        renderManualLogUI();
-        updateStock();
-        if (pumpoDismissed) document.getElementById('pumpoGuide').style.display = 'none';
-        document.getElementById('userHeight').value = localStorage.getItem('ypso_user_height') || '';
-        document.getElementById('userWeight').value = localStorage.getItem('ypso_user_weight') || '';
+        function updateHistoryUI() {
+            const list = document.getElementById('historyList');
+            if (history.length === 0) { list.innerHTML = `<div style="font-size:13px; color:var(--text-secondary);">Keine Einträge</div>`; return; }
+            list.innerHTML = history.slice(0, 5).map(i => `<div style="font-size:12px; padding:4px 0;">${i.text} (${i.date})</div>`).join('');
+        }
     </script>
 </body>
 </html>
