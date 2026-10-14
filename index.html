@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,8 @@
             --text: #1C1C1E;
             --text-secondary: #8E8E93;
             --radius: 16px;
-            --body-fill: #E5E5EA;
-            --body-stroke: #8E8E93;
+            --skin-tone: #FFE0BD;
+            --body-stroke: #3A3A3C;
         }
 
         body.dark-mode {
@@ -25,8 +25,8 @@
             --card-bg: #1C1C1E;
             --text: #F2F2F7;
             --text-secondary: #98989F;
-            --body-fill: #2C2C2E;
-            --body-stroke: #636366;
+            --skin-tone: #3A2E2B;
+            --body-stroke: #8E8E93;
         }
 
         body.kids-mode {
@@ -35,1110 +35,446 @@
             --card-bg: #FFFFFF;
             --text: #1C1C1E;
             --text-secondary: #636366;
-            --body-fill: #FFE4E1;
+            --skin-tone: #FFD1DC;
             --body-stroke: #FF69B4;
             font-family: -apple-system, BlinkMacSystemFont, "Comic Sans MS", "Chalkboard SE", sans-serif;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: inherit; 
-            -webkit-tap-highlight-color: transparent; 
-        }
-
-        body { 
-            background-color: var(--bg); 
-            color: var(--text); 
-            padding-bottom: 95px; 
-            transition: background-color 0.3s, color 0.3s; 
-        }
-
-        header { 
-            background-color: var(--card-bg); 
-            padding: 14px 20px; 
-            border-bottom: 0.5px solid rgba(128,128,128,0.2); 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-
-        header h1 { 
-            font-size: 18px; 
-            font-weight: 700; 
-        }
-
-        .header-btns { 
-            display: flex; 
-            gap: 8px; 
-            align-items: center; 
-        }
-
-        .header-btns button { 
-            background: none; 
-            border: none; 
-            font-size: 18px; 
-            cursor: pointer; 
-        }
-
-        .container { 
-            padding: 16px; 
-            max-width: 600px; 
-            margin: 0 auto; 
-        }
-
-        .card { 
-            background-color: var(--card-bg); 
-            border-radius: var(--radius); 
-            padding: 16px; 
-            margin-bottom: 16px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
-            border: 0.5px solid rgba(128,128,128,0.1); 
-        }
-
-        .card h2 { 
-            font-size: 16px; 
-            margin-bottom: 12px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            cursor: pointer; 
-            user-select: none; 
-        }
-
-        .pumpo-box { 
-            background: rgba(0, 122, 255, 0.08); 
-            border: 1.5px solid var(--primary); 
-            border-radius: 14px; 
-            padding: 12px; 
-            margin-bottom: 16px; 
-            display: flex; 
-            gap: 12px; 
-            align-items: flex-start; 
-            position: relative; 
-        }
-
-        body.kids-mode .pumpo-box { 
-            background: #FFF0F5; 
-            border: 2px solid #FF2D55; 
-        }
-
-        .pumpo-avatar { 
-            font-size: 32px; 
-            animation: bounce 2s infinite ease-in-out; 
-        }
-
-        @keyframes bounce { 
-            0%, 100% { transform: translateY(0); } 
-            50% { transform: translateY(-4px); } 
-        }
-
-        .pumpo-text { 
-            font-size: 13px; 
-            line-height: 1.4; 
-            flex: 1; 
-        }
-
-        .pumpo-btns { 
-            display: flex; 
-            gap: 8px; 
-            margin-top: 8px; 
-            align-items: center; 
-        }
-
-        .pumpo-btn-next { 
-            background: var(--primary); 
-            color: white; 
-            border: none; 
-            padding: 6px 12px; 
-            border-radius: 8px; 
-            font-size: 12px; 
-            font-weight: 600; 
-            cursor: pointer; 
-        }
-
-        .pumpo-close { 
-            background: none; 
-            border: none; 
-            font-size: 11px; 
-            color: var(--text-secondary); 
-            cursor: pointer; 
-            text-decoration: underline; 
-        }
-
-        .parent-share-box { 
-            display: none; 
-            margin-bottom: 16px; 
-        }
-
-        body.kids-mode .parent-share-box { 
-            display: block; 
-        }
-
-        .btn-parent-share { 
-            background: linear-gradient(135deg, #FF9500, #FFCC00); 
-            color: #000; 
-            border: none; 
-            border-radius: 14px; 
-            padding: 14px; 
-            width: 100%; 
-            font-weight: 800; 
-            font-size: 15px; 
-            cursor: pointer; 
-            box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px; 
-        }
-
-        .hypo-card { 
-            background: rgba(255, 59, 48, 0.1); 
-            border: 1.5px solid var(--danger); 
-            border-radius: var(--radius); 
-            padding: 14px; 
-            margin-bottom: 16px; 
-            text-align: center; 
-        }
-
-        .btn-hypo { 
-            background-color: var(--danger); 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            padding: 14px; 
-            width: 100%; 
-            font-weight: 700; 
-            font-size: 16px; 
-            cursor: pointer; 
-            box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3); 
-        }
-
-        .type-selector, .gender-selector { 
-            display: flex; 
-            background: rgba(128,128,128,0.12); 
-            border-radius: 10px; 
-            padding: 3px; 
-            margin-bottom: 10px; 
-        }
-
-        .type-btn, .gender-btn { 
-            flex: 1; 
-            text-align: center; 
-            padding: 8px; 
-            font-size: 13px; 
-            font-weight: 600; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            color: var(--text-secondary); 
-            border: none;
-            background: transparent;
-        }
-
-        .type-btn.active, .gender-btn.active { 
-            background: var(--card-bg); 
-            color: var(--primary); 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08); 
-        }
-
-        .view-switch { 
-            display: flex; 
-            justify-content: center; 
-            gap: 10px; 
-            margin-bottom: 12px; 
-        }
-
-        .view-switch button { 
-            background: rgba(128,128,128,0.12); 
-            border: none; 
-            padding: 6px 16px; 
-            border-radius: 20px; 
-            font-size: 12px; 
-            font-weight: 600; 
-            color: var(--text-secondary); 
-            cursor: pointer; 
-        }
-
-        .view-switch button.active { 
-            background: var(--primary); 
-            color: white; 
-        }
-
-        .body-canvas { 
-            position: relative; 
-            width: 100%; 
-            max-width: 280px; 
-            height: 380px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
-
-        .body-svg { 
-            height: 100%; 
-            width: auto; 
-            opacity: 0.95; 
-        }
-
-        .body-pin {
-            position: absolute; 
-            width: 34px; 
-            height: 34px; 
-            border-radius: 50%;
-            background: var(--card-bg); 
-            border: 2px solid var(--primary);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15); 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-            cursor: pointer; 
-            transition: transform 0.2s;
-            z-index: 10; 
-            font-size: 9px; 
-            font-weight: 700; 
-            color: var(--text);
-        }
-
-        .body-pin::after { 
-            content: ''; 
-            width: 8px; 
-            height: 8px; 
-            border-radius: 50%; 
-            background: var(--primary); 
-        }
-
-        .body-pin.selected { 
-            transform: scale(1.3); 
-            border-color: #000 !important; 
-        }
-
-        .pin-active { 
-            background: var(--primary) !important; 
-            border-color: #FFF !important; 
-            color: #FFF !important; 
-        }
-
-        .pin-active::after { 
-            background: #FFF !important; 
-            animation: pulse 1.5s infinite; 
-        }
-
-        .pin-red { 
-            border-color: var(--danger) !important; 
-            background: rgba(255, 59, 48, 0.2) !important; 
-            color: var(--danger); 
-        }
-
-        .pin-red::after { 
-            background: var(--danger) !important; 
-        }
-
-        .pin-orange { 
-            border-color: var(--warning) !important; 
-            background: rgba(255, 149, 0, 0.2) !important; 
-            color: var(--warning); 
-        }
-
-        .pin-orange::after { 
-            background: var(--warning) !important; 
-        }
-
-        .pin-yellow { 
-            border-color: #FFCC00 !important; 
-            background: rgba(255, 204, 0, 0.2) !important; 
-            color: #856404; 
-        }
-
-        .pin-yellow::after { 
-            background: #FFCC00 !important; 
-        }
-
-        .pin-tissue { 
-            border-color: #8E8E93 !important; 
-            border-style: dashed !important; 
-            background: rgba(142, 142, 147, 0.2) !important; 
-            color: #8E8E93; 
-        }
-
-        .pin-tissue::after { 
-            background: #8E8E93 !important; 
-        }
-
-        @keyframes pulse { 
-            0% { transform: scale(0.8); opacity: 1; } 
-            50% { transform: scale(1.4); opacity: 0.3; } 
-            100% { transform: scale(0.8); opacity: 1; } 
-        }
-
-        #pin-arm-front-l { top: 95px; left: 16px; }
-        #pin-arm-front-r { top: 95px; right: 16px; }
-        #pin-belly-lu { top: 145px; left: 88px; }
-        #pin-belly-ru { top: 145px; right: 88px; }
-        #pin-belly-ld { top: 185px; left: 88px; }
-        #pin-belly-rd { top: 185px; right: 88px; }
-        #pin-thigh-l { top: 260px; left: 75px; }
-        #pin-thigh-r { top: 260px; right: 75px; }
-
-        #pin-arm-back-l { top: 95px; left: 16px; }
-        #pin-arm-back-r { top: 95px; right: 16px; }
-        #pin-glute-l { top: 185px; left: 80px; }
-        #pin-glute-r { top: 185px; right: 80px; }
-
-        .form-group { 
-            margin-bottom: 12px; 
-        }
-
-        .form-group label { 
-            display: block; 
-            font-size: 12px; 
-            color: var(--text-secondary); 
-            margin-bottom: 4px; 
-        }
-
-        .time-row { 
-            display: flex; 
-            gap: 8px; 
-            align-items: center; 
-        }
-
-        input, select, textarea { 
-            width: 100%; 
-            padding: 8px; 
-            border-radius: 8px; 
-            border: 1px solid rgba(128,128,128,0.4); 
-            background: var(--card-bg); 
-            color: var(--text); 
-            font-size: 13px; 
-        }
-
-        .shift-grid { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 8px; 
-            margin-bottom: 12px; 
-        }
-
-        .shift-btn { 
-            background: rgba(128,128,128,0.1); 
-            border: 2px solid transparent; 
-            border-radius: 8px; 
-            padding: 8px 4px; 
-            text-align: center; 
-            font-size: 12px; 
-            font-weight: 600; 
-            color: var(--text-secondary); 
-            cursor: pointer; 
-        }
-
-        .shift-btn.active { 
-            background: rgba(0, 122, 255, 0.1); 
-            border-color: var(--primary); 
-            color: var(--primary); 
-        }
-
-        .stock-box { 
-            background: rgba(128,128,128,0.08); 
-            padding: 12px; 
-            border-radius: 10px; 
-            margin-bottom: 12px; 
-        }
-
-        .stock-header { 
-            font-weight: 600; 
-            font-size: 14px; 
-            margin-bottom: 8px; 
-            display: flex; 
-            justify-content: space-between; 
-        }
-
-        .stock-inputs { 
-            display: flex; 
-            gap: 10px; 
-            align-items: center; 
-        }
-
-        .stock-inputs div { 
-            flex: 1; 
-        }
-
-        .checkbox-group { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 8px; 
-            margin-bottom: 10px; 
-        }
-
-        .checkbox-label { 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            font-size: 13px; 
-            cursor: pointer; 
-        }
-
-        .checkbox-label input { 
-            width: auto; 
-        }
-
-        .btn-primary { 
-            background-color: var(--primary); 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            padding: 12px; 
-            width: 100%; 
-            font-weight: 600; 
-            font-size: 15px; 
-            cursor: pointer; 
-            margin-top: 10px; 
-        }
-
-        .btn-secondary { 
-            background-color: rgba(128,128,128,0.12); 
-            color: var(--text); 
-            border: none; 
-            border-radius: 12px; 
-            padding: 10px; 
-            width: 100%; 
-            font-weight: 600; 
-            font-size: 13px; 
-            cursor: pointer; 
-            margin-top: 8px; 
-        }
-
-        nav { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            right: 0; 
-            background: var(--card-bg); 
-            border-top: 0.5px solid rgba(128,128,128,0.2); 
-            display: flex; 
-            justify-content: space-around; 
-            padding: 10px 0; 
-            z-index: 100; 
-        }
-
-        .nav-item { 
-            text-align: center; 
-            color: var(--text-secondary); 
-            font-size: 11px; 
-            cursor: pointer; 
-        }
-
-        .nav-item.active { 
-            color: var(--primary); 
-            font-weight: 600; 
-        }
-
-        .nav-icon { 
-            font-size: 20px; 
-            margin-bottom: 2px; 
-        }
-
-        .tab-content { 
-            display: none; 
-        }
-
-        .tab-content.active { 
-            display: block; 
-        }
-
-        .alert-box { 
-            background: rgba(255, 149, 0, 0.15); 
-            border-left: 4px solid var(--warning); 
-            padding: 10px; 
-            border-radius: 0 8px 8px 0; 
-            font-size: 13px; 
-            margin-top: 10px; 
-            color: var(--warning); 
-        }
-
-        .info-box { 
-            background: rgba(0, 122, 255, 0.1); 
-            border-left: 4px solid var(--primary); 
-            padding: 10px; 
-            border-radius: 0 8px 8px 0; 
-            font-size: 12px; 
-            margin-top: 10px; 
-        }
-
-        .collapsible-body { 
-            display: none; 
-            margin-top: 10px; 
-        }
-
-        #pinOverlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            bottom: 0; 
-            background: var(--card-bg); 
-            z-index: 999; 
-            display: none; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 20px; 
-        }
-
-        #pinOverlay input { 
-            padding: 12px; 
-            font-size: 20px; 
-            text-align: center; 
-            width: 160px; 
-            margin: 15px 0; 
-            border-radius: 10px; 
-            border: 2px solid var(--primary); 
-            background: var(--card-bg); 
-            color: var(--text); 
-        }
-        
-        .doc-preview { 
-            width: 100%; 
-            max-height: 200px; 
-            object-fit: contain; 
-            border-radius: 8px; 
-            margin-top: 8px; 
-            border: 1px solid rgba(128,128,128,0.3); 
-            display: none; 
-        }
-
-        .factor-card { 
-            background: rgba(128,128,128,0.08); 
-            padding: 12px; 
-            border-radius: 10px; 
-            margin-bottom: 12px; 
-            border: 1px solid rgba(128,128,128,0.15); 
-        }
-
-        .btn-remove-slot { 
-            background: var(--danger); 
-            color: white; 
-            border: none; 
-            padding: 3px 8px; 
-            border-radius: 6px; 
-            font-size: 11px; 
-            cursor: pointer; 
-            float: right; 
-            font-weight: bold; 
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 95px; transition: background-color 0.3s, color 0.3s; }
+
+        header { background-color: var(--card-bg); padding: 14px 20px; border-bottom: 0.5px solid rgba(128,128,128,0.2); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+        header h1 { font-size: 18px; font-weight: 700; }
+        .header-btns { display: flex; gap: 8px; align-items: center; }
+        .header-btns button { background: none; border: none; font-size: 18px; cursor: pointer; }
+
+        .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+        .card { background-color: var(--card-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 0.5px solid rgba(128,128,128,0.1); }
+        .card h2 { font-size: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+
+        /* PUMPO ASSISTENT */
+        .pumpo-box { background: linear-gradient(135deg, rgba(0,122,255,0.1), rgba(52,199,89,0.06)); border: 2px solid var(--primary); border-radius: 16px; padding: 16px; margin-bottom: 16px; display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 6px 20px rgba(0, 122, 255, 0.12); position: relative; }
+        .pumpo-avatar { font-size: 36px; background: rgba(0,122,255,0.15); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .pumpo-content { flex: 1; }
+        .pumpo-speech { font-size: 13px; line-height: 1.5; margin-bottom: 10px; color: var(--text); }
+        .pumpo-chat-input-row { display: flex; gap: 6px; margin-top: 8px; }
+        .pumpo-chat-input-row input { font-size: 12px; padding: 6px 10px; }
+        .pumpo-chat-input-row button { width: auto; padding: 6px 12px; font-size: 12px; margin-top: 0; }
+        .pumpo-quick-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+        .pumpo-chip { background: var(--card-bg); border: 1px solid var(--primary); color: var(--primary); padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .pumpo-close-x { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 14px; color: var(--text-secondary); cursor: pointer; }
+
+        .type-selector, .gender-selector { display: flex; background: rgba(128,128,128,0.12); border-radius: 10px; padding: 3px; margin-bottom: 12px; }
+        .type-btn, .gender-btn { flex: 1; text-align: center; padding: 7px; font-size: 12px; font-weight: 600; border-radius: 8px; cursor: pointer; color: var(--text-secondary); }
+        .type-btn.active, .gender-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+
+        .view-switch { display: flex; justify-content: center; gap: 10px; margin-bottom: 12px; }
+        .view-switch button { background: rgba(128,128,128,0.12); border: none; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
+        .view-switch button.active { background: var(--primary); color: white; }
+
+        /* KÃRPER-DIAGRAMM */
+        .body-canvas { position: relative; width: 100%; max-width: 260px; height: 360px; margin: 0 auto; display: flex; justify-content: center; align-items: center; background: rgba(128,128,128,0.04); border-radius: 14px; border: 1px solid rgba(128,128,128,0.1); }
+        .body-svg { height: 95%; width: auto; }
+
+        .body-pin { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: var(--card-bg); border: 2px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.2); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.2s; z-index: 10; font-size: 7px; font-weight: 700; color: var(--text); }
+        .body-pin::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--primary); }
+        .body-pin.selected { transform: scale(1.35); border-color: #000 !important; }
+
+        .pin-active { background: var(--primary) !important; border-color: #FFF !important; color: #FFF !important; }
+        .pin-red { border-color: var(--danger) !important; background: rgba(255, 59, 48, 0.25) !important; color: var(--danger); }
+        .pin-orange { border-color: var(--warning) !important; background: rgba(255, 149, 0, 0.25) !important; color: var(--warning); }
+        .pin-yellow { border-color: #FFCC00 !important; background: rgba(255, 204, 0, 0.25) !important; color: #856404; }
+        .pin-tissue { border-color: #8E8E93 !important; border-style: dashed !important; background: rgba(142, 142, 147, 0.25) !important; color: #8E8E93; }
+
+        /* Pin Positionen */
+        #pin-belly-lu { top: 135px; left: 88px; }
+        #pin-belly-ru { top: 135px; right: 88px; }
+        #pin-belly-ld { top: 175px; left: 88px; }
+        #pin-belly-rd { top: 175px; right: 88px; }
+        #pin-arm-back-l { top: 110px; left: 32px; }
+        #pin-arm-back-r { top: 110px; right: 32px; }
+        #pin-glute-l { top: 195px; left: 82px; }
+        #pin-glute-r { top: 195px; right: 82px; }
+
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+        input, select, textarea { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid rgba(128,128,128,0.4); background: var(--card-bg); color: var(--text); font-size: 13px; }
+
+        .shift-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; }
+        .shift-btn { background: rgba(128,128,128,0.1); border: 2px solid transparent; border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; }
+        .shift-btn.active { background: rgba(0, 122, 255, 0.1); border-color: var(--primary); color: var(--primary); }
+
+        .btn-primary { background-color: var(--primary); color: white; border: none; border-radius: 12px; padding: 12px; width: 100%; font-weight: 600; font-size: 15px; cursor: pointer; margin-top: 10px; }
+        .btn-secondary { background-color: rgba(128,128,128,0.12); color: var(--text); border: none; border-radius: 12px; padding: 10px; width: 100%; font-weight: 600; font-size: 13px; cursor: pointer; margin-top: 8px; }
+
+        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); border-top: 0.5px solid rgba(128,128,128,0.2); display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
+        .nav-item { text-align: center; color: var(--text-secondary); font-size: 11px; cursor: pointer; }
+        .nav-item.active { color: var(--primary); font-weight: 600; }
+        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 999; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px); }
+        .modal-card { background: var(--card-bg); width: 100%; max-width: 340px; border-radius: var(--radius); padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 0.5px solid rgba(128,128,128,0.2); }
+        .modal-card input { margin: 10px 0 14px 0; }
     </style>
 </head>
 <body>
 
-    <div id="pinOverlay">
-        <h2>🔒 Eltern-PIN erforderlich</h2>
-        <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Bitte gib die 4-stellige PIN ein (Standard: 1234):</p>
-        <input type="password" id="pinInput" maxlength="4" placeholder="****">
-        <button class="btn-primary" style="width:160px;" onclick="checkPin()">Bestätigen</button>
-        <button class="btn-secondary" style="width:160px; margin-top:10px;" onclick="cancelPin()">Abbrechen</button>
-        <button class="btn-secondary" style="width:160px; margin-top:15px; border-color:var(--danger); color:var(--danger);" onclick="emergencyPinReset()">🔑 PIN vergessen? (Reset auf 1234)</button>
+    <!-- SETUP MODAL -->
+    <div id="setupModal" class="modal-overlay">
+        <div class="modal-card">
+            <h2 id="setupTitle" style="font-size: 17px; margin-bottom: 8px;">ð Willkommen bei YpsoShift!</h2>
+            <p id="setupDesc" style="color:var(--text-secondary); font-size:13px; margin-bottom:14px;">Bitte trage deine Profildaten ein:</p>
+            <div class="form-group" id="groupAge"><label>Dein Alter:</label><input type="number" id="setupAge" value="32"></div>
+            <div class="form-group" id="groupHeight"><label>GrÃ¶Ãe:</label><input type="text" id="setupHeight" value="1.68"></div>
+            <div class="form-group"><label>Gewicht (kg):</label><input type="number" step="0.1" id="setupWeight" value="75.0"></div>
+            <button class="btn-primary" onclick="saveSetupData()">Speichern & Starten</button>
+        </div>
+    </div>
+
+    <!-- PIN & NOTFALL OVERLAY -->
+    <div id="pinOverlay" class="modal-overlay">
+        <div class="modal-card" style="text-align: center;">
+            <h2>ð Eltern-PIN erforderlich</h2>
+            <p id="pinOverlayDesc" style="color:var(--text-secondary); font-size:13px; margin: 8px 0;">Bitte gib deine 4-stellige PIN ein:</p>
+            <input type="password" id="pinInput" maxlength="4" placeholder="****" style="text-align: center; font-size: 22px; letter-spacing: 6px;">
+            <button class="btn-primary" onclick="checkPin()">BestÃ¤tigen</button>
+            <button class="btn-secondary" onclick="cancelPin()">Abbrechen</button>
+            <button onclick="triggerEmergencyReset()" style="background:none; border:none; color:var(--danger); font-size:12px; margin-top:14px; cursor:pointer; text-decoration:underline;">PIN vergessen? (Rechenaufgabe)</button>
+        </div>
     </div>
 
     <header>
         <h1 id="appTitle">YpsoShift Master Pro</h1>
         <div class="header-btns">
-            <button onclick="startPumpoTour(1)" title="Pumpo Tour starten">📟</button>
-            <button onclick="toggleDarkMode()" title="Dunkelmodus">🌙</button>
-            <button onclick="requestKidsModeToggle()" title="Kinder-Modus">🎈</button>
+            <button onclick="triggerPumpoChat()" title="Pumpo Assistent">ð¬</button>
+            <button onclick="toggleDarkMode()" title="Dunkelmodus">ð</button>
+            <button onclick="requestKidsModeToggle()" title="Kinder-Modus">ð</button>
         </div>
     </header>
 
     <div class="container">
         
+        <!-- PUMPO ASSISTENT -->
         <div class="pumpo-box" id="pumpoGuide">
-            <div class="pumpo-avatar" id="pumpoAvatar">🤖</div>
-            <div class="pumpo-text">
-                <span id="pumpoMsg"><strong>Willkommen bei YpsoShift! Ich bin Pumpo!</strong><br>Lass mich dir kurz zeigen, was die App alles kann:</span>
-                <div class="pumpo-btns">
-                    <button class="pumpo-btn-next" id="pumpoNextBtn" onclick="nextPumpoStep()">Weiter ➔</button>
-                    <button class="pumpo-close" onclick="closePumpoGuide()">[X] Nicht mehr anzeigen</button>
+            <button class="pumpo-close-x" onclick="closePumpoGuide()">Ã</button>
+            <div class="pumpo-avatar">ð¡</div>
+            <div class="pumpo-content">
+                <div class="pumpo-speech" id="pumpoMsg"><strong>Hi! Ich bin Pumpo.</strong> Frag mich etwas oder wÃ¤hle einen Bereich:</div>
+                <div class="pumpo-quick-btns">
+                    <button class="pumpo-chip" onclick="pumpoAsk('schicht')">ð Schicht-Info</button>
+                    <button class="pumpo-chip" onclick="pumpoAsk('zonen')">ð Zonen & Eignung</button>
+                    <button class="pumpo-chip" onclick="pumpoAsk('lager')">ð¦ Material</button>
+                </div>
+                <div class="pumpo-chat-input-row">
+                    <input type="text" id="pumpoUserInput" placeholder="Frage an Pumpo eingeben..." onkeydown="if(event.key==='Enter') pumpoSendQuery()">
+                    <button class="btn-primary" onclick="pumpoSendQuery()">Fragen</button>
                 </div>
             </div>
         </div>
 
-        <div class="parent-share-box">
-            <button class="btn-parent-share" onclick="shareWithParents()">
-                <span>📱</span> Mit Eltern teilen
-            </button>
-        </div>
-
-        <div class="hypo-card" id="hypoCard" style="display:none;">
-            <button class="btn-hypo" onclick="triggerHypoQuick()">🚨 HYPO-NOTFALL ( +<span id="hypoUnitVal">1.0</span> BE/KE )</button>
-        </div>
-
-        <!-- TAB PUMPE / KÖRPER -->
+        <!-- TAB 1: KÃRPER / PUMPE -->
         <div id="tab-pump" class="tab-content active">
             <div class="card">
-                <h2>Einstichstelle wählen</h2>
+                <h2>Einstichstelle wÃ¤hlen</h2>
                 
-                <div class="gender-selector">
-                    <button class="gender-btn active" id="genderMale" onclick="setGender('male')">🚹 Männlich</button>
-                    <button class="gender-btn" id="genderFemale" onclick="setGender('female')">🚺 Weiblich</button>
+                <div class="type-selector">
+                    <div class="type-btn active" id="typeCatheter" onclick="setEntryType('catheter')">ð Katheter</div>
+                    <div class="type-btn" id="typeSensor" onclick="setEntryType('sensor')">ð¡ BZ-Sensor</div>
                 </div>
 
-                <div class="type-selector">
-                    <div class="type-btn active" id="typeCatheter" onclick="setEntryType('catheter')">💉 Katheter</div>
-                    <div class="type-btn" id="typeSensor" onclick="setEntryType('sensor')">📡 BZ-Sensor</div>
+                <div class="gender-selector">
+                    <div class="gender-btn active" id="btnGenderMale" onclick="setBodyGender('male')">MÃ¤nnlich ð¨</div>
+                    <div class="gender-btn" id="btnGenderFemale" onclick="setBodyGender('female')">Weiblich ð©</div>
                 </div>
 
                 <div class="view-switch">
-                    <button class="active" id="btnViewFront" onclick="switchBodyView('front')">Vorderseite</button>
-                    <button id="btnViewBack" onclick="switchBodyView('back')">Rückseite / Gesäß</button>
+                    <button class="active" id="btnViewFront" onclick="switchBodyView('front')">Vorderseite (Bauch)</button>
+                    <button id="btnViewBack" onclick="switchBodyView('back')">RÃ¼ckseite (Arm / GesÃ¤Ã)</button>
                 </div>
 
                 <div class="body-canvas">
+                    <!-- KÃRPER-DIAGRAMM OHNE KLEIDUNG (COMIC-STIL) -->
                     <svg id="svgFront" class="body-svg" viewBox="0 0 200 340">
-                        <path id="bodyPathFront" d="M 100 12 C 86 12 78 22 78 35 C 78 45 62 52 45 60 C 28 68 26 95 34 135 C 40 165 48 200 55 295 L 100 295 L 145 295 C 152 200 160 165 166 135 C 174 95 172 68 155 60 C 138 52 122 45 122 35 C 122 22 114 12 100 12 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
-                        <circle cx="100" cy="180" r="2.5" fill="var(--body-stroke)" opacity="0.5"/>
+                        <circle cx="100" cy="28" r="16" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2.5"/>
+                        <path id="hairFront" d="M 84 20 Q 100 8 116 20 Q 112 14 100 12 Q 88 14 84 20 Z" fill="var(--body-stroke)"/>
+                        <path d="M 94 44 L 94 54 L 106 54 L 106 44 Z" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2"/>
+                        <path id="torsoFrontPath" d="" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M 74 55 L 48 135 L 58 139 L 78 85" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M 126 55 L 152 135 L 142 139 L 122 85" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M 78 220 C 76 250 72 280 72 310 L 86 312 C 88 280 90 250 92 220 Z" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M 122 220 C 124 250 128 280 128 310 L 114 312 C 112 280 110 250 108 220 Z" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
                     </svg>
                     
                     <svg id="svgBack" class="body-svg" viewBox="0 0 200 340" style="display:none;">
-                        <path id="bodyPathBack" d="M 100 12 C 86 12 78 22 78 35 C 78 45 62 52 45 60 C 28 68 26 95 34 135 C 40 165 48 200 55 295 L 100 295 L 145 295 C 152 200 160 165 166 135 C 174 95 172 68 155 60 C 138 52 122 45 122 35 C 122 22 114 12 100 12 Z" fill="var(--body-fill)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
+                        <circle cx="100" cy="28" r="16" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2.5"/>
+                        <path id="hairBack" d="M 84 16 Q 100 6 116 16 L 116 28 L 84 28 Z" fill="var(--body-stroke)"/>
+                        <path d="M 94 44 L 94 54 L 106 54 L 106 44 Z" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2"/>
+                        <path id="torsoBackPath" d="" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2.5" stroke-linejoin="round"/>
+                        <line x1="100" y1="54" x2="100" y2="190" stroke="var(--body-stroke)" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.6"/>
+                        <path d="M 74 55 L 48 135 L 58 139 L 78 85" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M 126 55 L 152 135 L 142 139 L 122 85" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M 78 220 C 76 250 72 280 72 310 L 86 312 C 88 280 90 250 92 220 Z" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M 122 220 C 124 250 128 280 128 310 L 114 312 C 112 280 110 250 108 220 Z" fill="var(--skin-tone)" stroke="var(--body-stroke)" stroke-width="2" stroke-linejoin="round"/>
                     </svg>
 
-                    <div class="body-pin pin-front" id="pin-arm-front-l" onclick="selectSpotPin('Oberarm Links (Vorne)', this)"></div>
-                    <div class="body-pin pin-front" id="pin-arm-front-r" onclick="selectSpotPin('Oberarm Rechts (Vorne)', this)"></div>
-                    <div class="body-pin pin-front" id="pin-belly-lu" onclick="selectSpotPin('Bauch Oben Links', this)"></div>
-                    <div class="body-pin pin-front" id="pin-belly-ru" onclick="selectSpotPin('Bauch Oben Rechts', this)"></div>
-                    <div class="body-pin pin-front" id="pin-belly-ld" onclick="selectSpotPin('Bauch Unten Links', this)"></div>
-                    <div class="body-pin pin-front" id="pin-belly-rd" onclick="selectSpotPin('Bauch Unten Rechts', this)"></div>
-                    <div class="body-pin pin-front pin-thigh" id="pin-thigh-l" onclick="selectSpotPin('Oberschenkel Links', this)"></div>
-                    <div class="body-pin pin-front pin-thigh" id="pin-thigh-r" onclick="selectSpotPin('Oberschenkel Rechts', this)"></div>
+                    <!-- Pins Vorderseite (Katheter: nur Bauch) -->
+                    <div class="body-pin pin-front" id="pin-belly-lu" onclick="selectSpotPin('Bauch Oben Links (Katheter)', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-ru" onclick="selectSpotPin('Bauch Oben Rechts (Katheter)', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-ld" onclick="selectSpotPin('Bauch Unten Links (Katheter)', this)"></div>
+                    <div class="body-pin pin-front" id="pin-belly-rd" onclick="selectSpotPin('Bauch Unten Rechts (Katheter)', this)"></div>
 
-                    <div class="body-pin pin-back" id="pin-arm-back-l" onclick="selectSpotPin('Oberarm-Rückseite Links 📡', this)" style="display:none;"></div>
-                    <div class="body-pin pin-back" id="pin-arm-back-r" onclick="selectSpotPin('Oberarm-Rückseite Rechts 📡', this)" style="display:none;"></div>
-                    <div class="body-pin pin-back" id="pin-glute-l" onclick="selectSpotPin('Gesäß Links', this)" style="display:none;"></div>
-                    <div class="body-pin pin-back" id="pin-glute-r" onclick="selectSpotPin('Gesäß Rechts', this)" style="display:none;"></div>
+                    <!-- Pins RÃ¼ckseite (Arme fÃ¼r Sensor, GesÃ¤Ã fÃ¼r Katheter/Fettgewebe) -->
+                    <div class="body-pin pin-back" id="pin-arm-back-l" onclick="selectSpotPin('Oberarm-RÃ¼ckseite Links (Ideal fÃ¼r BZ-Sensor ð¡)', this)" style="display:none;"></div>
+                    <div class="body-pin pin-back" id="pin-arm-back-r" onclick="selectSpotPin('Oberarm-RÃ¼ckseite Rechts (Ideal fÃ¼r BZ-Sensor ð¡)', this)" style="display:none;"></div>
+                    <div class="body-pin pin-back" id="pin-glute-l" onclick="selectSpotPin('GesÃ¤Ã Links (Katheter / Fettgewebe)', this)" style="display:none;"></div>
+                    <div class="body-pin pin-back" id="pin-glute-r" onclick="selectSpotPin('GesÃ¤Ã Rechts (Katheter / Fettgewebe)', this)" style="display:none;"></div>
                 </div>
 
-                <p id="spotInfo" style="font-size:13px; font-weight:600; text-align:center; color:var(--primary); margin-top:8px;">Keine Stelle gewählt</p>
+                <p id="spotInfo" style="font-size:13px; font-weight:600; text-align:center; color:var(--primary); margin-top:8px;">Keine Stelle gewÃ¤hlt</p>
 
                 <button class="btn-primary" id="setButton" onclick="protectedAction(setNewEntry)">Neuen Katheter setzen</button>
-                <button class="btn-secondary" onclick="protectedAction(markTissueIssue)">⚠️ Gewebe-Problem melden (14T Sperre)</button>
-            </div>
-
-            <div class="card">
-                <h2>Verlauf & Arzt-Bericht</h2>
-                <button class="btn-secondary" style="margin-bottom:10px;" onclick="generateDoctorReport()">📋 Arzt-Bericht erstellen</button>
-                <div id="historyList"></div>
+                <button class="btn-secondary" onclick="protectedAction(markTissueIssue)">â ï¸ Gewebe-Problem melden (14T Sperre)</button>
             </div>
         </div>
 
-        <!-- TAB SCHICHTEN -->
+        <!-- TAB 2: SCHICHTEN -->
         <div id="tab-shifts" class="tab-content">
             <div class="card">
-                <h2>🔄 Schichtplan & Basal-Anpassung</h2>
+                <h2>ð Schichtplan</h2>
                 <div class="shift-grid">
-                    <div class="shift-btn" onclick="selectShift('Früh')">Früh</div>
-                    <div class="shift-btn" onclick="selectShift('Spät')">Spät</div>
+                    <div class="shift-btn" onclick="selectShift('FrÃ¼h')">FrÃ¼h</div>
+                    <div class="shift-btn" onclick="selectShift('SpÃ¤t')">SpÃ¤t</div>
                     <div class="shift-btn" onclick="selectShift('Nacht')">Nacht</div>
                     <div class="shift-btn" onclick="selectShift('Frei')">Frei</div>
                 </div>
-                <div class="form-group">
-                    <label>Zeitraum:</label>
-                    <div class="time-row">
-                        <input type="time" id="shiftStartTime" value="02:00">
-                        <span style="align-self: center;">bis</span>
-                        <input type="time" id="shiftEndTime" value="06:00">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Modus:</label>
-                    <select id="shiftPumpMode">
-                        <option value="Easy Boost (+)">Easy Boost (+)</option>
-                        <option value="Easy Off (-)">Easy Off (-)</option>
-                        <option value="Basalrate -15%">Basalrate -15%</option>
-                        <option value="Basalrate +15%">Basalrate +15%</option>
-                    </select>
-                </div>
-                <button class="btn-primary" onclick="protectedAction(saveShiftNote)">Schicht-Anpassung speichern</button>
-            </div>
-
-            <div class="card">
-                <h2>🤒 Krankheits-Modus (Fieber / Infekt)</h2>
-                <p style="font-size:12px; color:var(--text-secondary); margin-bottom:10px;">Bei Krankheit steigt der Insulinbedarf durch Stresshormone an.</p>
-                <div class="form-group">
-                    <label>Basalraten-Korrektur:</label>
-                    <select id="sickBasalBoost">
-                        <option value="+10%">+10% Basalrate</option>
-                        <option value="+20%" selected>+20% Basalrate (Standard Infekt)</option>
-                        <option value="+30%">+30% Basalrate (Fieber)</option>
-                        <option value="+50%">+50% Basalrate (Starker Infekt)</option>
-                    </select>
-                </div>
-                <button class="btn-primary" style="background-color:var(--warning);" onclick="protectedAction(logSickMode)">🤒 Krankheit-Status aktivieren & im Verlauf speichern</button>
-            </div>
-
-            <div class="card">
-                <h2>⚽ Sport & Aktivitäts-Tracker</h2>
-                <div class="form-group">
-                    <label>Sportart & Intensität:</label>
-                    <input type="text" id="sportTypeInput" placeholder="z. B. Krafttraining / Ausdauer (45 Min)">
-                </div>
-                <button class="btn-primary" style="background-color:var(--success);" onclick="logSportEvent()">⚽ Sport erfassen & Muskelauffülleffekt-Warnung</button>
+                <button class="btn-primary" onclick="protectedAction(saveShiftNote)">Schicht speichern</button>
             </div>
         </div>
 
-        <!-- TAB LAGER -->
+        <!-- TAB 3: LAGER -->
         <div id="tab-stock" class="tab-content">
             <div class="card">
-                <h2>📝 Rezept-Bestellung (Flexibel wählbar)</h2>
-                <div class="checkbox-group">
-                    <label class="checkbox-label"><input type="checkbox" id="orderCath" checked> Katheter (Teflon / Stahl)</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderRes" checked> Leere Reservoire (Aufziehen)</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderCartridges"> Vorgefüllte Patronen (160 IE)</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderSens" checked> BZ-Sensoren (10/14/15T)</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderPenNeedles"> Pen-Nadeln (4/5/6/8mm)</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderSyringes"> U100-Einwegspritzen</label>
-                    <label class="checkbox-label"><input type="checkbox" id="orderIns" checked> Insulin (Fläschchen / Patronen)</label>
-                </div>
-
-                <div class="form-group">
-                    <label>Insulin-Typ & Gebindegröße:</label>
-                    <input type="text" id="insulinTypeInput" value="Fiasp (10ml Fläschchen)">
-                </div>
-
-                <button class="btn-primary" onclick="generatePrescriptionText()">📄 Rezept-Anforderung generieren</button>
-                <textarea id="prescriptionOutput" style="height:120px; margin-top:8px; display:none;" readonly></textarea>
-            </div>
-
-            <div class="card">
-                <h2 onclick="toggleSection('travelSection')">✈️ Urlaubs- & Reise-Checkliste <span id="arrowTravel">▼</span></h2>
-                <div id="travelSection" class="collapsible-body">
-                    <div class="checkbox-group" id="travelChecklist">
-                        <label class="checkbox-label"><input type="checkbox"> 💉 Katheter (Doppelte Menge einpacken)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🧪 Leere Reservoire / Vorgefüllte Patronen</label>
-                        <label class="checkbox-label"><input type="checkbox"> 💧 Insulin (Auf KÜHLUNG achten! Nie im Frachtraum!)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🖋️ Pen-Nadeln & U100-Einwegspritzen (Ausreichend Puffer)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 📡 BZ-Sensoren & Ersatz-Sensor</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🍬 Traubenzucker / Notfall-Hypo-Set</label>
-                        <label class="checkbox-label"><input type="checkbox"> 🩸 Blutzuckermessgerät & Teststreifen (Backup)</label>
-                        <label class="checkbox-label"><input type="checkbox"> 📄 Ärztliche Bescheinigung für den Zoll / Flughafen</label>
-                    </div>
-                    <div class="info-box">
-                        <strong>🌴 Tropen- & Kälte-Tipp:</strong> Insulin vor direkter Sonne schützen! Verwende in heißen Ländern eine Frio-Kühltasche. Im Flugzeug Insulin IMMER ins Handgepäck nehmen.
-                    </div>
-                    
-                    <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
-                    
-                    <h3 style="font-size:14px; margin-bottom:8px;">📄 Reisedokumente & Zoll-Attest</h3>
-                    <div class="form-group">
-                        <label>Attest / Ausweis ablegen (Foto auswählen):</label>
-                        <input type="file" id="docUploadInput" accept="image/*" onchange="handleDocUpload(event)">
-                    </div>
-                    <img id="docPreviewImg" class="doc-preview" alt="Vorschau Reisedokument">
-                    <button class="btn-secondary" id="btnRemoveDoc" style="display:none;" onclick="removeDocImage()">Dokument löschen</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>🔋 Pumpen-Batterie</h2>
-                <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(128,128,128,0.1); padding:10px; border-radius:8px;">
-                    <span id="batteryStatus" style="font-size:13px; font-weight:600;">Gewechselt vor X Tagen</span>
-                    <button class="btn-primary" style="margin-top:0; width:auto; padding:6px 12px; font-size:12px;" onclick="protectedAction(resetBattery)">Neu gewechselt</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>📦 Material-Bestand</h2>
-
-                <div class="stock-box">
-                    <div class="stock-header"><span>💉 Katheter</span><span id="badgeCatheterTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
-                    <div class="form-group">
-                        <label style="font-size:11px;">Typ & Längen:</label>
-                        <select id="cathConfigSelect">
-                            <option value="Teflon 6mm / 60cm">Teflon (6mm Kanüle / 60cm Schlauch)</option>
-                            <option value="Teflon 9mm / 80cm">Teflon (9mm Kanüle / 80cm Schlauch)</option>
-                            <option value="Stahl 5.5mm / 60cm">Stahl Orbit (5.5mm / 60cm Schlauch)</option>
-                            <option value="Stahl 8mm / 80cm">Stahl Orbit (8mm / 80cm Schlauch)</option>
-                        </select>
-                    </div>
-                    <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen (10er):</label><input type="number" id="boxCatheter" value="2" onchange="updateStock()"></div>
-                        <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleCatheter" value="5" onchange="updateStock()"></div>
-                    </div>
-                </div>
-
-                <div class="stock-box">
-                    <div class="stock-header"><span>🧪 Leere Reservoire</span><span id="badgeResTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
-                    <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxRes" value="2" onchange="updateStock()"></div>
-                        <div><label style="font-size:11px;">Einzeln:</label><input type="number" id="singleRes" value="4" onchange="updateStock()"></div>
-                    </div>
-                </div>
-
-                <div class="stock-box">
-                    <div class="stock-header"><span>💧 Insulin-Vorrat</span><span id="badgeInsulinTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
-                    <div class="form-group" style="margin-bottom:8px;">
-                        <label style="font-size:11px;">Insulin & Behälter:</label>
-                        <input type="text" id="userInsulinBrand" value="Fiasp (10ml Fläschchen)" onchange="saveInsulinBrand()">
-                    </div>
-                    <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen:</label><input type="number" id="boxInsulin" value="1" onchange="updateStock()"></div>
-                        <div><label style="font-size:11px;">Einzelne Einheiten:</label><input type="number" id="singleInsulin" value="3" onchange="updateStock()"></div>
-                    </div>
-                </div>
-
-                <div class="stock-box">
-                    <div class="stock-header"><span>🖋️ Pen-Nadeln & Einwegspritzen</span><span id="badgeNeedlesTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
-                    <div class="form-group">
-                        <label style="font-size:11px;">Nadelgröße:</label>
-                        <select id="needleSizeSelect">
-                            <option value="4mm">4 mm (Sehr kurz)</option>
-                            <option value="5mm" selected>5 mm (Standard)</option>
-                            <option value="6mm">6 mm</option>
-                            <option value="8mm">8 mm</option>
-                        </select>
-                    </div>
-                    <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Pen-Nadeln (Stk.):</label><input type="number" id="singleNeedles" value="20" onchange="updateStock()"></div>
-                        <div><label style="font-size:11px;">U100 Spritzen (Stk.):</label><input type="number" id="singleSyringes" value="5" onchange="updateStock()"></div>
-                    </div>
-                </div>
-
-                <div class="stock-box">
-                    <div class="stock-header"><span>📡 BZ-Sensoren</span><span id="badgeSensorTotal" style="color:var(--primary); font-weight:bold;">0 Stk.</span></div>
-                    <div class="form-group">
-                        <label style="font-size:11px;">Sensor-Tragedauer:</label>
-                        <select id="sensorDurationSelect">
-                            <option value="10T">10 Tage (z. B. Dexcom G7)</option>
-                            <option value="14T" selected>14 Tage (z. B. Libre 3)</option>
-                            <option value="15T">15 Tage (Neue Generation)</option>
-                        </select>
-                    </div>
-                    <div class="stock-inputs">
-                        <div><label style="font-size:11px;">Packungen / Stk.:</label><input type="number" id="boxSensor" value="3" onchange="updateStock()"></div>
-                    </div>
-                </div>
-                
-                <div id="stockAlerts"></div>
+                <h2>ð¦ Material-Bestand</h2>
+                <div class="form-group"><label>Katheter Packungen:</label><input type="number" id="boxCatheter" value="2" onchange="updateStock()"></div>
             </div>
         </div>
 
-        <!-- TAB OPTIONEN & EINSTELLUNGEN -->
+        <!-- TAB 4: EINSTELLUNGEN -->
         <div id="tab-settings" class="tab-content">
             <div class="card">
-                <h2>🚨 Notfall-Plan (Pumpenausfall / ICT)</h2>
-                
-                <div class="form-group">
-                    <label>Notfall-Langzeitinsulin (Basal-Präparat):</label>
-                    <input type="text" id="emergencyInsulinBrand" value="Tresiba / Lantus">
-                </div>
-                <div class="time-row form-group">
-                    <div>
-                        <label>Dosis Morgens (IE):</label>
-                        <input type="number" id="basalMorn" value="12">
-                    </div>
-                    <div>
-                        <label>Dosis Abends (IE):</label>
-                        <input type="number" id="basalEve" value="10">
-                    </div>
-                </div>
-
-                <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
-                <label style="font-size:13px; font-weight:700; margin-bottom:8px; display:block;">🕒 Zeitfenster für BE-Faktoren, Korrektur & Zielwerte:</label>
-                <div id="factorSlotsContainer"></div>
-                <button class="btn-secondary" style="margin-bottom:12px;" onclick="addFactorSlot()">+ Zeitfenster hinzufügen</button>
-
-                <hr style="margin: 14px 0; border: 0.5px solid rgba(128,128,128,0.2);">
-                
-                <h3 onclick="toggleSection('basalProfileSection')" style="font-size:14px; cursor:pointer; user-select:none;">
-                    📟 Manuelle Pumpen-Basalrate (0-24 Uhr) <span id="arrowBasal">▼</span>
-                </h3>
-                <div id="basalProfileSection" class="collapsible-body">
-                    <p style="font-size:11px; color:var(--text-secondary); margin-bottom:8px;">Ablage deiner stündlichen Basalrate zur Kontrolle bei Pumpenausfall:</p>
-                    <div id="hourlyBasalContainer" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:6px;"></div>
-                </div>
-
-                <button class="btn-primary" style="background-color:var(--danger); margin-top:14px;" onclick="saveEmergencyPlan()">💾 Notfall-Plan komplett speichern</button>
+                <h2>ð Eltern-PIN & Sicherheit</h2>
+                <div class="form-group"><label>Neue PIN (4 Ziffern):</label><input type="text" id="customPinInput" maxlength="4" placeholder="z. B. 5821"></div>
+                <button class="btn-secondary" onclick="saveCustomPin()">PIN speichern</button>
             </div>
-
             <div class="card">
-                <h2>🚨 Notfall-Knopf Optionen</h2>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;">
-                    <span>Notfall-Knopf anzeigen:</span><input type="checkbox" id="hypoToggle" onchange="toggleHypoSetting()" style="width:auto;">
-                </div>
-                <div class="form-group">
-                    <label>Einheit je Klick:</label>
-                    <select id="hypoStepSelect" onchange="saveHypoStep()">
-                        <option value="0.5">0.5 BE / KE</option>
-                        <option value="1.0" selected>1.0 BE / KE</option>
-                        <option value="1.5">1.5 BE / KE</option>
-                        <option value="2.0">2.0 BE / KE</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>📟 Pumpo-Assistent</h2>
-                <button class="btn-secondary" onclick="resetPumpoGuide()">📟 Pumpo-Hilfe & Tour zurücksetzen</button>
-            </div>
-
-            <div class="card">
-                <h2>💾 Datensicherung</h2>
-                <button class="btn-secondary" onclick="exportData()">📤 Daten sichern (Export)</button>
-                <button class="btn-secondary" onclick="importData()">📥 Daten laden (Import)</button>
-            </div>
-
-            <div class="card">
-                <h2>⚙️ Allgemeine Optionen</h2>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🌙 Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🔒 PIN-App-Sperre:</span><input type="checkbox" id="pinToggle" onchange="togglePinSetting()" style="width:auto;"></div>
-                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>🎈 Kinder-Modus:</span><input type="checkbox" id="kidsToggle" onchange="requestKidsModeToggle()" style="width:auto;"></div>
+                <h2>âï¸ Optionen</h2>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>ð Dunkelmodus:</span><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()" style="width:auto;"></div>
+                <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;"><span>ð PIN-Sperre aktiv:</span><input type="checkbox" id="pinToggle" onchange="togglePinSetting()" style="width:auto;"></div>
             </div>
         </div>
 
     </div>
 
     <nav>
-        <div class="nav-item active" id="nav-pump" onclick="switchTab('pump', this)"><div class="nav-icon">📍</div>Körper</div>
-        <div class="nav-item" id="nav-shifts" onclick="switchTab('shifts', this)"><div class="nav-icon">🔄</div>Schichten</div>
-        <div class="nav-item" id="nav-stock" onclick="switchTab('stock', this)"><div class="nav-icon">📦</div>Lager</div>
-        <div class="nav-item" id="nav-settings" onclick="switchTab('settings', this)"><div class="nav-icon">⚙️</div>Optionen</div>
+        <div class="nav-item active" id="nav-pump" onclick="switchTab('pump', this)"><div class="nav-icon">ð</div>KÃ¶rper</div>
+        <div class="nav-item" id="nav-shifts" onclick="switchTab('shifts', this)"><div class="nav-icon">ð</div>Schichten</div>
+        <div class="nav-item" id="nav-stock" onclick="switchTab('stock', this)"><div class="nav-icon">ð¦</div>Lager</div>
+        <div class="nav-item" id="nav-settings" onclick="switchTab('settings', this)"><div class="nav-icon">âï¸</div>Optionen</div>
     </nav>
 
     <script>
         let selectedSpotName = null;
         let currentType = 'catheter';
         let currentView = 'front';
-        let currentGender = localStorage.getItem('ypso_gender') || 'male';
+        let bodyGender = localStorage.getItem('ypso_gender') || 'male';
         let currentShift = localStorage.getItem('ypso_shift') || 'Keine';
-        let currentPumpoStep = 1;
 
         let kidsMode = localStorage.getItem('ypso_kids') === 'true';
         let darkMode = localStorage.getItem('ypso_dark') === 'true';
         let pinProtection = localStorage.getItem('ypso_pin_active') === 'true';
-        let hypoActive = localStorage.getItem('ypso_hypo_active') === 'true';
-        let hypoStep = parseFloat(localStorage.getItem('ypso_hypo_step')) || 1.0;
-        let pumpoDismissed = localStorage.getItem('ypso_pumpo_dismissed') === 'true';
+        let parentPin = localStorage.getItem('ypso_custom_pin') || '1234';
 
+        let userProfile = JSON.parse(localStorage.getItem('ypso_profile')) || null;
         let activeCatheter = JSON.parse(localStorage.getItem('ypso_active_cath')) || null;
         let activeSensor = JSON.parse(localStorage.getItem('ypso_active_sens')) || null;
         let recoveringSpots = JSON.parse(localStorage.getItem('ypso_recovering')) || [];
-        
-        let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { 
-            catBox: 2, catSingle: 5, 
-            resBox: 2, resSingle: 4, 
-            insBox: 1, insSingle: 3,
-            needles: 20, syringes: 5,
-            senBox: 3 
-        };
-        
+        let stock = JSON.parse(localStorage.getItem('ypso_stock')) || { catBox: 2, catSingle: 5 };
         let history = JSON.parse(localStorage.getItem('ypso_history')) || [];
-        let batteryDate = parseInt(localStorage.getItem('ypso_battery')) || new Date().getTime();
-        let insulinBrand = localStorage.getItem('ypso_insulin') || 'Fiasp (10ml Fläschchen)';
 
-        let factorSlots = JSON.parse(localStorage.getItem('ypso_factor_slots')) || [
-            { start: "00:00", end: "06:00", be: "1.0 IE/BE", corr: "1 IE / 50 mg/dl", target: "100 mg/dl" },
-            { start: "06:00", end: "11:00", be: "1.5 IE/BE", corr: "1 IE / 40 mg/dl", target: "100 mg/dl" },
-            { start: "11:00", end: "18:00", be: "1.2 IE/BE", corr: "1 IE / 40 mg/dl", target: "100 mg/dl" },
-            { start: "18:00", end: "24:00", be: "1.0 IE/BE", corr: "1 IE / 50 mg/dl", target: "100 mg/dl" }
-        ];
-
-        let hourlyBasal = JSON.parse(localStorage.getItem('ypso_hourly_basal')) || Array(24).fill("0.50");
-
-        const PARENT_PIN = localStorage.getItem('ypso_custom_pin') || "1234";
         let pendingAction = null;
+        let emergencyMathAnswer = null;
 
-        if (pinProtection) {
-            document.getElementById('pinOverlay').style.display = 'flex';
-        }
-        if (pumpoDismissed) document.getElementById('pumpoGuide').style.display = 'none';
-
-        document.getElementById('userInsulinBrand').value = insulinBrand;
+        if (!userProfile) document.getElementById('setupModal').style.display = 'flex';
+        if (pinProtection) document.getElementById('pinOverlay').style.display = 'flex';
 
         applyTheme();
-        setGender(currentGender, false);
+        setBodyGender(bodyGender, false);
+        filterPinsForType();
         renderPins();
-        updateStock();
-        updateHistoryUI();
-        updateBatteryUI();
-        loadDocImage();
-        renderFactorSlots();
-        renderHourlyBasalUI();
-        startPumpoTour(1);
-
         if (currentShift !== 'Keine') selectShift(currentShift, false);
 
-        function toggleSection(id) {
-            const el = document.getElementById(id);
-            const isVisible = el.style.display === 'block';
-            el.style.display = isVisible ? 'none' : 'block';
+        function saveSetupData() {
+            const weightVal = parseFloat(document.getElementById('setupWeight').value) || 75.0;
+            userProfile = { age: parseInt(document.getElementById('setupAge').value) || 32, height: document.getElementById('setupHeight').value || "1.68", weight: weightVal };
+            localStorage.setItem('ypso_profile', JSON.stringify(userProfile));
+            document.getElementById('setupModal').style.display = 'none';
+            alert('Profil gespeichert!');
         }
 
-        function setGender(gender, update = true) {
-            currentGender = gender;
-            localStorage.setItem('ypso_gender', gender);
-            document.getElementById('genderMale').classList.toggle('active', gender === 'male');
-            document.getElementById('genderFemale').classList.toggle('active', gender === 'female');
+        /* PUMPO */
+        function pumpoGreet() {
+            document.getElementById('pumpoMsg').innerHTML = `<strong>Hallo!</strong> Aktuelle Schicht: <strong>${currentShift}</strong>. Wie kann ich dir helfen?`;
+        }
 
-            const pathFront = document.getElementById('bodyPathFront');
-            const pathBack = document.getElementById('bodyPathBack');
+        function pumpoAsk(topic) {
+            if (topic === 'schicht') {
+                document.getElementById('pumpoMsg').innerHTML = `<strong>Schicht-Hinweis:</strong> Achte bei Nachtschichten besonders auf deine BZ-Werte!`;
+            } else if (topic === 'zonen') {
+                document.getElementById('pumpoMsg').innerHTML = `<strong>Zonen-Trennung:</strong> Katheter gehÃ¶ren an den Bauch oder das GesÃ¤Ã. BZ-Sensoren sitzen optimal an der Oberarm-RÃ¼ckseite.`;
+            } else if (topic === 'lager') {
+                document.getElementById('pumpoMsg').innerHTML = `<strong>Lager:</strong> Noch ${stock.catBox} Packungen Katheter da.`;
+            }
+        }
+
+        function pumpoSendQuery() {
+            const val = document.getElementById('pumpoUserInput').value.toLowerCase();
+            if (!val) return;
+            let reply = "Pass gut auf deine Werte auf!";
+            if (val.includes('schicht') || val.includes('coca') || val.includes('arbeit')) {
+                reply = `Schicht (${currentShift}): Vor und nach Belastung messen.`;
+            } else if (val.includes('sensor') || val.includes('arm')) {
+                reply = `Sensoren gehÃ¶ren auf die Oberarm-RÃ¼ckseite. Katheter an Bauch oder GesÃ¤Ã.`;
+            }
+            document.getElementById('pumpoMsg').innerHTML = `<strong>ð¬ ${reply}</strong>`;
+            document.getElementById('pumpoUserInput').value = '';
+        }
+
+        function triggerPumpoChat() {
+            document.getElementById('pumpoGuide').style.display = 'flex';
+            pumpoGreet();
+        }
+
+        function closePumpoGuide() {
+            document.getElementById('pumpoGuide').style.display = 'none';
+        }
+
+        function setBodyGender(gender, save = true) {
+            bodyGender = gender;
+            if (save) localStorage.setItem('ypso_gender', gender);
+            document.getElementById('btnGenderMale').classList.toggle('active', gender === 'male');
+            document.getElementById('btnGenderFemale').classList.toggle('active', gender === 'female');
+            
+            const torsoFront = document.getElementById('torsoFrontPath');
+            const torsoBack = document.getElementById('torsoBackPath');
+            const hairFront = document.getElementById('hairFront');
+            const hairBack = document.getElementById('hairBack');
 
             if (gender === 'female') {
-                const femalePath = 'M 100 12 C 86 12 78 22 78 35 C 78 45 64 54 48 70 C 34 86 30 115 38 145 C 44 175 48 200 52 295 L 100 295 L 148 295 C 152 200 156 175 162 145 C 170 115 166 86 152 70 C 136 54 122 45 122 35 C 122 22 114 12 100 12 Z';
-                pathFront.setAttribute('d', femalePath);
-                pathBack.setAttribute('d', femalePath);
+                const femalePath = 'M 74 54 C 65 56 52 66 55 86 C 58 106 54 130 58 150 C 62 170 72 195 76 220 L 88 220 L 92 150 L 108 150 L 112 220 L 124 220 C 128 195 138 170 142 150 C 146 130 142 106 145 86 C 148 66 135 56 126 54 Z';
+                torsoFront.setAttribute('d', femalePath);
+                torsoBack.setAttribute('d', femalePath);
+                hairFront.setAttribute('d', 'M 82 22 Q 100 2 118 22 Q 124 38 116 42 Q 100 30 84 42 Q 76 38 82 22 Z');
+                hairBack.setAttribute('d', 'M 82 20 Q 100 2 118 20 L 122 45 Q 100 52 78 45 Z');
             } else {
-                const malePath = 'M 100 12 C 86 12 78 22 78 35 C 78 45 62 52 45 60 C 28 68 26 95 34 135 C 40 165 48 200 55 295 L 100 295 L 145 295 C 152 200 160 165 166 135 C 174 95 172 68 155 60 C 138 52 122 45 122 35 C 122 22 114 12 100 12 Z';
-                pathFront.setAttribute('d', malePath);
-                pathBack.setAttribute('d', malePath);
+                const malePath = 'M 70 54 C 55 56 48 66 52 86 C 56 106 62 130 66 150 C 70 170 74 195 77 220 L 88 220 L 92 150 L 108 150 L 112 220 L 123 220 C 126 195 130 170 134 150 C 138 130 144 106 148 86 C 152 66 145 56 130 54 Z';
+                torsoFront.setAttribute('d', malePath);
+                torsoBack.setAttribute('d', malePath);
+                hairFront.setAttribute('d', 'M 84 20 Q 100 10 116 20 Q 112 14 100 12 Q 88 14 84 20 Z');
+                hairBack.setAttribute('d', 'M 84 16 Q 100 6 116 16 L 116 28 L 84 28 Z');
             }
-            if(update) renderPins();
         }
 
-        function renderFactorSlots() {
-            const container = document.getElementById('factorSlotsContainer');
-            container.innerHTML = factorSlots.map((slot, idx) => `
-                <div class="factor-card">
-                    <button class="btn-remove-slot" onclick="removeFactorSlot(${idx})">✕ Entfernen</button>
-                    <div class="time-row" style="margin-bottom:8px;">
-                        <span style="font-size:12px; font-weight:600;">Zeit:</span>
-                        <input type="time" value="${slot.start}" onchange="factorSlots[${idx}].start = this.value">
-                        <span>bis</span>
-                        <input type="time" value="${slot.end}" onchange="factorSlots[${idx}].end = this.value">
-                    </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:6px;">
-                        <div><label style="font-size:10px;">BE-Faktor:</label><input type="text" value="${slot.be}" onchange="factorSlots[${idx}].be = this.value"></div>
-                        <div><label style="font-size:10px;">Korrekturfaktor:</label><input type="text" value="${slot.corr}" onchange="factorSlots[${idx}].corr = this.value"></div>
-                    </div>
-                    <div><label style="font-size:10px;">Zielwert:</label><input type="text" value="${slot.target}" onchange="factorSlots[${idx}].target = this.value"></div>
-                </div>
-            `).join('');
+        function switchBodyView(view) {
+            currentView = view;
+            document.getElementById('btnViewFront').classList.toggle('active', view === 'front');
+            document.getElementById('btnViewBack').classList.toggle('active', view === 'back');
+            document.getElementById('svgFront').style.display = view === 'front' ? 'block' : 'none';
+            document.getElementById('svgBack').style.display = view === 'back' ? 'block' : 'none';
+            
+            filterPinsForType();
+            renderPins();
         }
 
-        function addFactorSlot() {
-            factorSlots.push({ start: "12:00", end: "16:00", be: "1.0 IE/BE", corr: "1 IE / 40 mg/dl", target: "100 mg/dl" });
-            renderFactorSlots();
+        function setEntryType(type) {
+            currentType = type;
+            document.getElementById('typeCatheter').classList.toggle('active', type === 'catheter');
+            document.getElementById('typeSensor').classList.toggle('active', type === 'sensor');
+            document.getElementById('setButton').innerText = type === 'catheter' ? 'Neuen Katheter setzen' : 'Neuen BZ-Sensor setzen';
+            
+            filterPinsForType();
+            renderPins();
         }
 
-        function removeFactorSlot(idx) {
-            factorSlots.splice(idx, 1);
-            renderFactorSlots();
+        function filterPinsForType() {
+            const isFront = currentView === 'front';
+            if (currentType === 'catheter') {
+                // Katheter: Vorderseite (Bauch) + RÃ¼ckseite (GesÃ¤Ã)
+                if (isFront) {
+                    document.querySelectorAll('.pin-front').forEach(p => p.style.display = 'flex');
+                    document.querySelectorAll('.pin-back').forEach(p => p.style.display = 'none');
+                } else {
+                    document.querySelectorAll('.pin-front').forEach(p => p.style.display = 'none');
+                    document.getElementById('pin-arm-back-l').style.display = 'none';
+                    document.getElementById('pin-arm-back-r').style.display = 'none';
+                    document.getElementById('pin-glute-l').style.display = 'flex';
+                    document.getElementById('pin-glute-r').style.display = 'flex';
+                }
+            } else {
+                // Sensor: Nur Oberarm-RÃ¼ckseite auf der RÃ¼ckseite
+                if (isFront) {
+                    document.querySelectorAll('.pin-front').forEach(p => p.style.display = 'none');
+                } else {
+                    document.querySelectorAll('.pin-front').forEach(p => p.style.display = 'none');
+                    document.getElementById('pin-arm-back-l').style.display = 'flex';
+                    document.getElementById('pin-arm-back-r').style.display = 'flex';
+                    document.getElementById('pin-glute-l').style.display = 'none';
+                    document.getElementById('pin-glute-r').style.display = 'none';
+                }
+            }
         }
 
-        function renderHourlyBasalUI() {
-            const container = document.getElementById('hourlyBasalContainer');
-            container.innerHTML = hourlyBasal.map((val, h) => `
-                <div style="display:flex; align-items:center; gap:4px; font-size:11px;">
-                    <span style="width:45px;">${h < 10 ? '0' + h : h}:00 Uhr:</span>
-                    <input type="number" step="0.05" value="${val}" style="padding:4px;" onchange="hourlyBasal[${h}] = this.value">
-                </div>
-            `).join('');
+        function selectSpotPin(name, el) {
+            selectedSpotName = name;
+            document.querySelectorAll('.body-pin').forEach(p => p.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('spotInfo').innerText = `AusgewÃ¤hlt: ${name}`;
+        }
+
+        function setNewEntry() {
+            if (!selectedSpotName) { alert('Bitte wÃ¤hle zuerst eine Stelle aus!'); return; }
+            const now = new Date().getTime();
+            if (currentType === 'catheter') {
+                if (activeCatheter) recoveringSpots.push({ spot: activeCatheter.spot, removedTime: now, lockType: 'recovery' });
+                activeCatheter = { spot: selectedSpotName, setTime: now };
+                localStorage.setItem('ypso_active_cath', JSON.stringify(activeCatheter));
+            } else {
+                if (activeSensor) recoveringSpots.push({ spot: activeSensor.spot, removedTime: now, lockType: 'recovery' });
+                activeSensor = { spot: selectedSpotName, setTime: now };
+                localStorage.setItem('ypso_active_sens', JSON.stringify(activeSensor));
+            }
+            localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
+            selectedSpotName = null;
+            document.getElementById('spotInfo').innerText = 'Keine Stelle gewÃ¤hlt';
+            renderPins();
+            alert('Gespeichert!');
+        }
+
+        function markTissueIssue() {
+            if (!selectedSpotName) { alert('Bitte wÃ¤hle zuerst die Stelle aus.'); return; }
+            recoveringSpots.push({ spot: selectedSpotName, removedTime: new Date().getTime(), lockType: 'tissue' });
+            localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
+            renderPins();
+            alert(`â ï¸ Stelle fÃ¼r 14 Tage gesperrt.`);
         }
 
         function protectedAction(actionCallback) {
-            if (kidsMode) {
+            if (kidsMode || pinProtection) {
                 pendingAction = actionCallback;
+                emergencyMathAnswer = null;
+                document.getElementById('pinOverlayDesc').innerText = 'Bitte gib deine 4-stellige Eltern-PIN ein:';
                 document.getElementById('pinInput').value = '';
                 document.getElementById('pinOverlay').style.display = 'flex';
                 document.getElementById('pinInput').focus();
@@ -1150,6 +486,7 @@
         function requestKidsModeToggle() {
             if (kidsMode) {
                 pendingAction = toggleKidsModeAction;
+                document.getElementById('pinOverlayDesc').innerText = 'Bitte gib die Eltern-PIN ein:';
                 document.getElementById('pinInput').value = '';
                 document.getElementById('pinOverlay').style.display = 'flex';
                 document.getElementById('pinInput').focus();
@@ -1166,429 +503,39 @@
 
         function checkPin() {
             const val = document.getElementById('pinInput').value;
-            const currentPin = localStorage.getItem('ypso_custom_pin') || "1234";
-            if (val === currentPin) {
-                document.getElementById('pinOverlay').style.display = 'none';
-                if (pendingAction) {
-                    pendingAction();
-                    pendingAction = null;
-                }
-            } else {
-                alert('Falsche PIN');
+            if (emergencyMathAnswer !== null) {
+                if (parseInt(val) === emergencyMathAnswer) {
+                    alert('PIN auf Standard (1234) zurÃ¼ckgesetzt.');
+                    parentPin = '1234';
+                    localStorage.setItem('ypso_custom_pin', '1234');
+                    emergencyMathAnswer = null;
+                    document.getElementById('pinOverlay').style.display = 'none';
+                    if (pendingAction) { pendingAction(); pendingAction = null; }
+                } else { alert('Falsche LÃ¶sung!'); }
+                return;
             }
-        }
 
-        function emergencyPinReset() {
-            localStorage.setItem('ypso_custom_pin', '1234');
-            alert('🔒 Notfall-Reset ausgeführt! PIN wurde auf Standard "1234" zurückgesetzt.');
-            document.getElementById('pinInput').value = '1234';
+            if (val === parentPin) {
+                document.getElementById('pinOverlay').style.display = 'none';
+                if (pendingAction) { pendingAction(); pendingAction = null; }
+            } else { alert('Falsche PIN!'); }
         }
 
         function cancelPin() {
             document.getElementById('pinOverlay').style.display = 'none';
             pendingAction = null;
-            applyTheme();
+            emergencyMathAnswer = null;
         }
 
-        function shareWithParents() {
-            const cathText = activeCatheter ? `Katheter: ${activeCatheter.spot}` : "Kein aktiver Katheter";
-            const text = `Hallo! 🎈\nMein aktueller Status:\n- ${cathText}\n- Kindermodus aktiv. Alles bestens!`;
-            if (navigator.share) {
-                navigator.share({ title: 'YpsoShift Status', text: text }).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(text);
-                alert("Status in die Zwischenablage kopiert!");
-            }
+        function triggerEmergencyReset() {
+            const num1 = Math.floor(Math.random() * 20) + 10;
+            const num2 = Math.floor(Math.random() * 20) + 10;
+            emergencyMathAnswer = num1 + num2;
+            document.getElementById('pinOverlayDesc').innerHTML = `<strong>ð¨ Rechenaufgabe:</strong><br>Was ist <strong>${num1} + ${num2}</strong>?`;
+            document.getElementById('pinInput').value = '';
+            document.getElementById('pinInput').focus();
         }
 
-        function startPumpoTour(step) {
-            if (pumpoDismissed) return;
-            currentPumpoStep = step;
-            const msgEl = document.getElementById('pumpoMsg');
-            const nextBtn = document.getElementById('pumpoNextBtn');
-            const avatarEl = document.getElementById('pumpoAvatar');
-            avatarEl.innerText = kidsMode ? '🤖' : '📟';
-
-            if (step === 1) {
-                switchTab('pump', document.getElementById('nav-pump'));
-                msgEl.innerHTML = `<strong>📍 Schritt 1: Anatomische Körperkarte</strong><br>Wähle oben Männlich/Weiblich und tippe auf die Pflaster-Punkte.`;
-                nextBtn.innerText = "Weiter: Schichten ➔";
-            } else if (step === 2) {
-                switchTab('shifts', document.getElementById('nav-shifts'));
-                msgEl.innerHTML = `<strong>🔄 Schritt 2: Schichtplaner, Krankheit & Sport</strong>`;
-                nextBtn.innerText = "Weiter: Lager ➔";
-            } else if (step === 3) {
-                switchTab('stock', document.getElementById('nav-stock'));
-                msgEl.innerHTML = `<strong>📦 Schritt 3: Material & Reise-Checkliste</strong>`;
-                nextBtn.innerText = "Weiter: Optionen ➔";
-            } else if (step === 4) {
-                switchTab('settings', document.getElementById('nav-settings'));
-                msgEl.innerHTML = `<strong>⚙️ Schritt 4: Notfall-Plan & Optionen</strong>`;
-                nextBtn.innerText = "Tour beenden ✅";
-            } else {
-                closePumpoGuide();
-            }
-        }
-
-        function nextPumpoStep() {
-            if (currentPumpoStep >= 4) closePumpoGuide();
-            else startPumpoTour(currentPumpoStep + 1);
-        }
-
-        function closePumpoGuide() {
-            document.getElementById('pumpoGuide').style.display = 'none';
-            localStorage.setItem('ypso_pumpo_dismissed', 'true');
-            pumpoDismissed = true;
-        }
-
-        function resetPumpoGuide() {
-            localStorage.removeItem('ypso_pumpo_dismissed');
-            pumpoDismissed = false;
-            document.getElementById('pumpoGuide').style.display = 'flex';
-            startPumpoTour(1);
-        }
-
-        function switchBodyView(view) {
-            currentView = view;
-            document.getElementById('btnViewFront').classList.toggle('active', view === 'front');
-            document.getElementById('btnViewBack').classList.toggle('active', view === 'back');
-            document.getElementById('svgFront').style.display = view === 'front' ? 'block' : 'none';
-            document.getElementById('svgBack').style.display = view === 'back' ? 'block' : 'none';
-            document.querySelectorAll('.pin-front').forEach(p => p.style.display = view === 'front' ? 'flex' : 'none');
-            document.querySelectorAll('.pin-back').forEach(p => p.style.display = view === 'back' ? 'flex' : 'none');
-            if (currentType === 'sensor' && view === 'front') {
-                document.querySelectorAll('.pin-thigh').forEach(p => p.style.display = 'none');
-            }
-            renderPins();
-        }
-
-        function setEntryType(type) {
-            currentType = type;
-            document.getElementById('typeCatheter').classList.toggle('active', type === 'catheter');
-            document.getElementById('typeSensor').classList.toggle('active', type === 'sensor');
-            document.getElementById('setButton').innerText = type === 'catheter' ? 'Neuen Katheter setzen' : 'Neuen BZ-Sensor setzen';
-            if (type === 'sensor') {
-                document.querySelectorAll('.pin-thigh').forEach(p => p.style.display = 'none');
-            } else {
-                if (currentView === 'front') document.querySelectorAll('.pin-thigh').forEach(p => p.style.display = 'flex');
-            }
-            renderPins();
-        }
-
-        function selectSpotPin(name, el) {
-            selectedSpotName = name;
-            document.querySelectorAll('.body-pin').forEach(p => p.classList.remove('selected'));
-            el.classList.add('selected');
-            document.getElementById('spotInfo').innerText = `Ausgewählt: ${name}`;
-        }
-
-        function setNewEntry() {
-            if (!selectedSpotName) { alert('Bitte wähle zuerst einen Punkt aus!'); return; }
-            const now = new Date().getTime();
-            if (currentType === 'catheter') {
-                if (activeCatheter) recoveringSpots.push({ spot: activeCatheter.spot, removedTime: now, lockType: 'recovery' });
-                activeCatheter = { spot: selectedSpotName, setTime: now };
-                localStorage.setItem('ypso_active_cath', JSON.stringify(activeCatheter));
-                removeStockItem('catheter');
-                removeStockItem('reservoir');
-            } else {
-                if (activeSensor) recoveringSpots.push({ spot: activeSensor.spot, removedTime: now, lockType: 'recovery' });
-                activeSensor = { spot: selectedSpotName, setTime: now };
-                localStorage.setItem('ypso_active_sens', JSON.stringify(activeSensor));
-                removeStockItem('sensor');
-            }
-            const dateStr = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ text: `${currentType === 'catheter' ? '💉 Katheter & Reservoir' : '📡 Sensor'}: ${selectedSpotName}`, date: dateStr });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
-            selectedSpotName = null;
-            document.getElementById('spotInfo').innerText = 'Keine Stelle gewählt';
-            renderPins();
-            updateStock();
-            updateHistoryUI();
-            alert('Gespeichert! Bestand automatisch angepasst.');
-        }
-
-        function markTissueIssue() {
-            if (!selectedSpotName) { alert('Bitte wähle zuerst die Stelle aus.'); return; }
-            recoveringSpots.push({ spot: selectedSpotName, removedTime: new Date().getTime(), lockType: 'tissue' });
-            localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
-            renderPins();
-            alert(`⚠️ Stelle für 14 Tage wegen Gewebe-Problem gesperrt.`);
-        }
-
-        function logSickMode() {
-            const boost = document.getElementById('sickBasalBoost').value;
-            const dateStr = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ text: `🤒 Krankheit gemeldet (${boost})`, date: dateStr });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            updateHistoryUI();
-            alert(`🤒 Krankheits-Modus gespeichert! (${boost})`);
-        }
-
-        function logSportEvent() {
-            const detail = document.getElementById('sportTypeInput').value || 'Sport / Bewegung';
-            const dateStr = new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-            history.unshift({ text: `⚽ Sport: ${detail}`, date: dateStr });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            updateHistoryUI();
-            alert(`⚽ Sport gespeichert! Denke an den Muskelauffülleffekt.`);
-        }
-
-        function saveEmergencyPlan() {
-            localStorage.setItem('ypso_factor_slots', JSON.stringify(factorSlots));
-            localStorage.setItem('ypso_hourly_basal', JSON.stringify(hourlyBasal));
-            alert('🚨 Notfall-Plan komplett gespeichert!');
-        }
-
-        function renderPins() {
-            const now = new Date().getTime();
-            const hours72 = 72 * 60 * 60 * 1000;
-            const days14 = 14 * 24 * 60 * 60 * 1000;
-
-            document.querySelectorAll('.body-pin').forEach(el => {
-                el.className = el.className.replace(/pin-(active|red|orange|yellow|ready|tissue)/g, '').trim();
-                el.innerText = '';
-            });
-
-            recoveringSpots = recoveringSpots.filter(item => (now - item.removedTime) < (item.lockType === 'tissue' ? days14 : hours72));
-            localStorage.setItem('ypso_recovering', JSON.stringify(recoveringSpots));
-
-            recoveringSpots.forEach(item => {
-                const el = getPinByName(item.spot);
-                if (el) {
-                    const elapsed = now - item.removedTime;
-                    if (item.lockType === 'tissue') {
-                        el.classList.add('pin-tissue');
-                    } else if (elapsed < hours72) {
-                        const hoursLeft = Math.ceil((hours72 - elapsed) / (1000 * 60 * 60));
-                        if (hoursLeft > 48) el.classList.add('pin-red');
-                        else if (hoursLeft > 24) el.classList.add('pin-orange');
-                        else el.classList.add('pin-yellow');
-                        el.innerText = hoursLeft + 'h';
-                    }
-                }
-            });
-
-            const active = currentType === 'catheter' ? activeCatheter : activeSensor;
-            if (active) {
-                const el = getPinByName(active.spot);
-                if (el) { el.classList.add('pin-active'); el.innerText = 'ON'; }
-            }
-        }
-
-        function getPinByName(name) {
-            if (name.includes('Oberarm Links (Vorne)')) return document.getElementById('pin-arm-front-l');
-            if (name.includes('Oberarm Rechts (Vorne)')) return document.getElementById('pin-arm-front-r');
-            if (name.includes('Bauch Oben Links')) return document.getElementById('pin-belly-lu');
-            if (name.includes('Bauch Oben Rechts')) return document.getElementById('pin-belly-ru');
-            if (name.includes('Bauch Unten Links')) return document.getElementById('pin-belly-ld');
-            if (name.includes('Bauch Unten Rechts')) return document.getElementById('pin-belly-rd');
-            if (name.includes('Oberschenkel Links')) return document.getElementById('pin-thigh-l');
-            if (name.includes('Oberschenkel Rechts')) return document.getElementById('pin-thigh-r');
-            if (name.includes('Oberarm-Rückseite Links')) return document.getElementById('pin-arm-back-l');
-            if (name.includes('Oberarm-Rückseite Rechts')) return document.getElementById('pin-arm-back-r');
-            if (name.includes('Gesäß Links')) return document.getElementById('pin-glute-l');
-            if (name.includes('Gesäß Rechts')) return document.getElementById('pin-glute-r');
-            return null;
-        }
-
-        function removeStockItem(type) {
-            if (type === 'catheter') {
-                if (stock.catSingle > 0) stock.catSingle--;
-                else if (stock.catBox > 0) { stock.catBox--; stock.catSingle = 9; }
-            } else if (type === 'reservoir') {
-                if (stock.resSingle > 0) stock.resSingle--;
-                else if (stock.resBox > 0) { stock.resBox--; stock.resSingle = 9; }
-            } else {
-                if (stock.senBox > 0) stock.senBox--;
-            }
-            localStorage.setItem('ypso_stock', JSON.stringify(stock));
-            syncStockUI();
-        }
-
-        function updateStock() {
-            stock.catBox = parseInt(document.getElementById('boxCatheter').value) || 0;
-            stock.catSingle = parseInt(document.getElementById('singleCatheter').value) || 0;
-            stock.resBox = parseInt(document.getElementById('boxRes').value) || 0;
-            stock.resSingle = parseInt(document.getElementById('singleRes').value) || 0;
-            stock.insBox = parseInt(document.getElementById('boxInsulin').value) || 0;
-            stock.insSingle = parseInt(document.getElementById('singleInsulin').value) || 0;
-            stock.needles = parseInt(document.getElementById('singleNeedles').value) || 0;
-            stock.syringes = parseInt(document.getElementById('singleSyringes').value) || 0;
-            stock.senBox = parseInt(document.getElementById('boxSensor').value) || 0;
-            localStorage.setItem('ypso_stock', JSON.stringify(stock));
-            syncStockUI();
-        }
-
-        function saveInsulinBrand() {
-            insulinBrand = document.getElementById('userInsulinBrand').value;
-            localStorage.setItem('ypso_insulin', insulinBrand);
-        }
-
-        function syncStockUI() {
-            document.getElementById('boxCatheter').value = stock.catBox;
-            document.getElementById('singleCatheter').value = stock.catSingle;
-            document.getElementById('boxRes').value = stock.resBox;
-            document.getElementById('singleRes').value = stock.resSingle;
-            document.getElementById('boxInsulin').value = stock.insBox || 0;
-            document.getElementById('singleInsulin').value = stock.insSingle || 0;
-            document.getElementById('singleNeedles').value = stock.needles || 0;
-            document.getElementById('singleSyringes').value = stock.syringes || 0;
-            document.getElementById('boxSensor').value = stock.senBox;
-
-            const totalCat = (stock.catBox * 10) + stock.catSingle;
-            const totalRes = (stock.resBox * 10) + stock.resSingle;
-            const totalIns = ((stock.insBox || 0) * 5) + (stock.insSingle || 0);
-            const totalNeedles = stock.needles || 0;
-            const totalSen = stock.senBox;
-
-            document.getElementById('badgeCatheterTotal').innerText = `${totalCat} Stk.`;
-            document.getElementById('badgeResTotal').innerText = `${totalRes} Stk.`;
-            document.getElementById('badgeInsulinTotal').innerText = `${totalIns} Einheiten`;
-            document.getElementById('badgeNeedlesTotal').innerText = `${totalNeedles} Nadeln`;
-            document.getElementById('badgeSensorTotal').innerText = `${totalSen} Stk.`;
-
-            if ((totalCat * 3) <= 12 || (totalRes * 3) <= 12 || (totalSen * 10) <= 12) {
-                document.getElementById('stockAlerts').innerHTML = `<div class="alert-box">🚨 Vorrat reicht unter 2 Wochen. Zeit für das Rezept!</div>`;
-            } else {
-                document.getElementById('stockAlerts').innerHTML = `<p style="font-size:12px; color:var(--success); margin-top:10px;">✅ Vorrat ausreichend.</p>`;
-            }
-        }
-
-        function selectShift(shift, save = true) {
-            currentShift = shift;
-            if (save) localStorage.setItem('ypso_shift', shift);
-            document.querySelectorAll('.shift-btn').forEach(btn => btn.classList.toggle('active', btn.innerText.includes(shift)));
-        }
-
-        function saveShiftNote() {
-            alert(`Schicht-Anpassung (${currentShift}) gespeichert!`);
-        }
-
-        function triggerHypoQuick() {
-            history.unshift({ text: `🚨 HYPO: +${hypoStep} BE/KE`, date: new Date().toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) });
-            localStorage.setItem('ypso_history', JSON.stringify(history));
-            updateHistoryUI();
-            alert(`🚨 ${hypoStep} BE/KE im Verlauf gespeichert!`);
-        }
-
-        function generatePrescriptionText() {
-            const out = document.getElementById('prescriptionOutput');
-            out.style.display = 'block';
-
-            let items = [];
-            if (document.getElementById('orderCath').checked) {
-                const cfg = document.getElementById('cathConfigSelect').value;
-                items.push(`- 3x Pck. Katheter (${cfg})`);
-            }
-            if (document.getElementById('orderRes').checked) items.push("- 3x Pck. Leere Reservoire zum Aufziehen");
-            if (document.getElementById('orderCartridges').checked) items.push("- 3x Pck. Vorgefüllte Ypsopump Patronen (160 IE)");
-            if (document.getElementById('orderSens').checked) {
-                const dur = document.getElementById('sensorDurationSelect').value;
-                items.push(`- 3x Pck. BZ-Sensoren (${dur})`);
-            }
-            if (document.getElementById('orderPenNeedles').checked) {
-                const nSize = document.getElementById('needleSizeSelect').value;
-                items.push(`- 1x Pck. Pen-Nadeln (${nSize})`);
-            }
-            if (document.getElementById('orderSyringes').checked) items.push("- 1x Pck. U100-Einwegspritzen");
-            if (document.getElementById('orderIns').checked) {
-                const insDesc = document.getElementById('insulinTypeInput').value;
-                items.push(`- Insulin: ${insDesc}`);
-            }
-
-            out.value = `Sehr geehrte Praxis / Versorger,\n\nbitte stellen Sie mir ein Folgerezept aus für:\n` + items.join('\n') + `\n\nVielen Dank!`;
-            alert('Rezept-Anforderung erstellt!');
-        }
-
-        function handleDocUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const dataUrl = e.target.result;
-                    localStorage.setItem('ypso_doc_img', dataUrl);
-                    showDocPreview(dataUrl);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function showDocPreview(url) {
-            const img = document.getElementById('docPreviewImg');
-            const btn = document.getElementById('btnRemoveDoc');
-            img.src = url;
-            img.style.display = 'block';
-            btn.style.display = 'block';
-        }
-
-        function loadDocImage() {
-            const saved = localStorage.getItem('ypso_doc_img');
-            if (saved) showDocPreview(saved);
-        }
-
-        function removeDocImage() {
-            localStorage.removeItem('ypso_doc_img');
-            document.getElementById('docPreviewImg').style.display = 'none';
-            document.getElementById('btnRemoveDoc').style.display = 'none';
-            document.getElementById('docUploadInput').value = '';
-        }
-
-        function resetBattery() {
-            batteryDate = new Date().getTime();
-            localStorage.setItem('ypso_battery', batteryDate);
-            updateBatteryUI();
-            alert('Batterie zurückgesetzt!');
-        }
-
-        function updateBatteryUI() {
-            const diffDays = Math.floor((new Date().getTime() - batteryDate) / (1000 * 60 * 60 * 24));
-            document.getElementById('batteryStatus').innerText = `Gewechselt vor ${diffDays} Tag(en)`;
-        }
-
-        function generateDoctorReport() { alert(`--- BERICHT ---\n` + history.slice(0, 5).map(h => `- ${h.text} (${h.date})`).join('\n')); }
-        function exportData() {
-            const blob = new Blob([JSON.stringify(localStorage)], {type: "application/json"});
-            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "ypso_backup.json"; a.click();
-        }
-        function importData() {
-            const input = prompt("Backup-Code einfügen:");
-            if (input) { try { Object.keys(JSON.parse(input)).forEach(k => localStorage.setItem(k, JSON.parse(input)[k])); location.reload(); } catch(e){ alert("Fehler!"); } }
-        }
-
-        function updateHistoryUI() {
-            const list = document.getElementById('historyList');
-            if (history.length === 0) { list.innerHTML = `<div style="font-size:13px; color:var(--text-secondary);">Noch keine Einträge</div>`; return; }
-            list.innerHTML = history.slice(0, 8).map(i => `<div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-bottom:0.5px solid rgba(128,128,128,0.2);"><span>${i.text}</span><span style="color:var(--text-secondary);">${i.date}</span></div>`).join('');
-        }
-
-        function toggleDarkMode() { darkMode = !darkMode; localStorage.setItem('ypso_dark', darkMode); applyTheme(); }
-        function togglePinSetting() { pinProtection = !pinProtection; localStorage.setItem('ypso_pin_active', pinProtection); }
-        function toggleHypoSetting() { hypoActive = !hypoActive; localStorage.setItem('ypso_hypo_active', hypoActive); applyTheme(); }
-        function saveHypoStep() { hypoStep = parseFloat(document.getElementById('hypoStepSelect').value); localStorage.setItem('ypso_hypo_step', hypoStep); document.getElementById('hypoUnitVal').innerText = hypoStep; }
-
-        function applyTheme() {
-            document.body.classList.toggle('kids-mode', kidsMode);
-            document.body.classList.toggle('dark-mode', darkMode);
-            document.getElementById('appTitle').innerText = kidsMode ? '🎈 Pumpe & Pflaster' : 'YpsoShift Master Pro';
-            document.getElementById('kidsToggle').checked = kidsMode;
-            document.getElementById('darkToggle').checked = darkMode;
-            document.getElementById('pinToggle').checked = pinProtection;
-            document.getElementById('hypoToggle').checked = hypoActive;
-            document.getElementById('hypoCard').style.display = hypoActive ? 'block' : 'none';
-            if (document.getElementById('pumpoAvatar')) {
-                document.getElementById('pumpoAvatar').innerText = kidsMode ? '🤖' : '📟';
-            }
-        }
-
-        function switchTab(tabId, el) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-            el.classList.add('active');
-        }
-        syncStockUI();
-    </script>
-</body>
-</html>
+        function saveCustomPin() {
+            const newPin = document.getElementById('customPinInput').value;
+            if (newPin.length === 4 && !isNaN(newPin))
